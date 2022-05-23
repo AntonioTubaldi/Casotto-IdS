@@ -2,9 +2,12 @@ package it.unicam.IdS.Casotto;
 
 import java.util.List;
 
-public class ombrelloneService implements Ombrellone {
+public class ombrelloneService  {
 
-    List<Ombrellone> ombrellone;
+    private List<DataDisponibilita> disponibilita;
+    private List<Ombrellone> ombrellone;
+    private int prezzo;
+
 
     /**
      * permette di ritornare la lista degli ombrelloni
@@ -16,34 +19,33 @@ public class ombrelloneService implements Ombrellone {
         return ombrellone;
     }
 
+    /**
+     * recupera dalla lista le date disponibili per prenotare
+     * l'ombrellone
+     * @return le date disponibili per la prenotazione
+     * */
+    protected List<DataDisponibilita> getDisponibilita(){
 
-    @Override
-    public int getPrezzo() {
-        return 0;
+        return disponibilita;
     }
 
-    @Override
-    public int setPrezzo(int prezzo) {
-        return 0;
+    /**
+     * @param idOmbrellone
+     * imposta la disponibiltà per la prenotazione dell'ombrellone
+     * in base al suo id
+     *
+     * */
+    protected void setDisponibilita(int idOmbrellone){
     }
 
-    @Override
-    public int getPosizione() {
-        return 0;
+
+    protected int getPrezzo(){
+        return prezzo;
     }
 
-    @Override
-    public int setPosizione(int posizione) {
-        return 0;
+    protected void setPrezzo(int prezzo){
+        this.prezzo = prezzo;
     }
 
-    @Override
-    public int getIdPosizione() {
-        return 0;
-    }
 
-    @Override
-    public int setIdOmbrellone(int idOmbrellone) {
-        return 0;
-    }
 }
