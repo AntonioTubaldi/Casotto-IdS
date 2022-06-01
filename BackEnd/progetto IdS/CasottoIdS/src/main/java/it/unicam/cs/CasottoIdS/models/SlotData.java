@@ -13,18 +13,35 @@ public class SlotData {
         this.data = data;
     }
 
+    /**
+     * recupera le informazioni della durata della prenotazione dell'ombrellone
+     * @return la durata della prenotazione
+     * */
     public Giorno getDurata() {
         return durata;
     }
 
+    /**
+     * @param durata
+     * imposta una durata per la prenotazione dell'ombrellone
+     * */
     public void setDurata(Giorno durata) {
         this.durata = durata;
     }
 
+
+    /**
+     * recupera la data della prenotazione di un dato ombrellone
+     * @return la data della prenotazione dell'ombrellone
+     * */
     public Date getData() {
         return data;
     }
 
+    /**
+     * @param data
+     * imposta una data per la prenotazione dell'ombrellone
+     * */
     public void setData(Date data) {
         this.data = data;
     }

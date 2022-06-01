@@ -26,38 +26,73 @@ public class Utente {
         this.ruolo = ruolo;
     }
 
+    /**
+     * recupera l'identificativo dell'utente
+     * @return l'identificativo dell'utente
+     * */
     public String getIdUtente() {
         return idUtente;
     }
 
+    /**
+     * recupera il nome di un determinato di un utente
+     * @return il nome dell'utente
+     * */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * @param nome
+     * imposta il nome per un utente
+     * */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * recupera il cognome di un utente
+     * @return il cognome dell'utente
+     * */
     public String getCognome() {
         return cognome;
     }
 
+    /**
+     * @param cognome
+     * imposta il cognome per un utente
+     * */
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
 
+    /**
+     * recupera le notifiche da una lista
+     * @return la lista delle notifiche
+     * */
     public List<Notifica> getNotifiche() {
         return notifiche;
     }
-
+    /**
+     * @param notifiche
+     * permette di impostare una lista di notifiche da inviare
+     * */
     public void setNotifiche(List<Notifica> notifiche) {
         this.notifiche = notifiche;
     }
 
+    /**
+     * recupera le info sul ruolo di un utente all'interno del sito
+     * @return il ruolo dell'utente
+     * */
     public Ruolo getRuolo() {
         return ruolo;
     }
 
+    /**
+     * @param ruolo
+     * imposta un ruolo per un determinato utente all'interno del sito
+     * */
     public void setRuolo(Ruolo ruolo) {
         this.ruolo = ruolo;
     }

@@ -21,10 +21,24 @@ public class PrenotazioneService {
     @Autowired
     private UtenteService utenteService;
 
+    /**
+     * @param dataPrenotazione
+     * recupera una lista di prenotazioni eseguite in una determinata data
+     * @return le prenotazioni eseguite in quella data
+     * */
     public List<Prenotazione> getPrenotazioneByData(List<SlotData> dataPrenotazione) {
        return this.repository.findAllByDataPrenotazione(dataPrenotazione);
     }
 
+    /**
+     * @param idPrenotazione
+     *
+     * conferma la prenotazione di un utente attraverso l'inserimento
+     * dell'identificativo della prenotazione
+     *
+     * @return true se la prenotazione è stata confermata
+     * @return false se la prenotazione non è andata a buon fine
+     * */
     public boolean confermaPrenotazione(String idPrenotazione) {
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
         if(prenotazioneFromMongo.isPresent()) {
@@ -39,13 +53,22 @@ public class PrenotazioneService {
 
     }
 
+    /**
+     * @param idPrenotazione
+     *
+     * Elimina una determinata prenotazione attraverso l'inserimento dell'identificativo della prenotazione
+     *
+     * @return true se la prenotazione è stata eliminata
+     * @return false se l'eliminazione della prenotazione non è andata a buon fine
+     * */
     public boolean eliminaPrenotazione(String idPrenotazione) {
+        this.repository.deleteById(idPrenotazione);
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
         if(prenotazioneFromMongo.isPresent()) {
-            Prenotazione prenotazioneDaEliminare = prenotazioneFromMongo.get();
-            utenteService.notificaUtente(prenotazioneDaEliminare.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
-            ombrelloneService.setDisponibilita(prenotazioneDaEliminare.getIdOmbrellone(), prenotazioneDaEliminare.getDataPrenotazione());
-            this.repository.deleteById(idPrenotazione);
+            Prenotazione prenotazioneEliminata = prenotazioneFromMongo.get();
+            utenteService.notificaUtente(prenotazioneEliminata.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
+
+          //  public boolean setDisponibilita(String idOmbrellone)
             return true;
 
         } else

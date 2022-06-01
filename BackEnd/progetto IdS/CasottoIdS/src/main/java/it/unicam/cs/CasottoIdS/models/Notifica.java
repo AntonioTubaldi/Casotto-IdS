@@ -10,19 +10,35 @@ public class Notifica {
         this.titolo = titolo;
         this.descrizione = descrizione;
     }
-
+    /**
+     * recupera il titolo della notifica
+     * @return il titolo della notifica
+     * */
     public String getTitolo() {
         return titolo;
     }
 
+    /**
+     * @param titolo
+     * imposta un titolo per la notifica da inviare
+     *
+     * */
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
 
+    /**
+     * recupera la descrizione della notifica
+     * @return la descrizione della notifica
+     * */
     public String getDescrizione() {
         return descrizione;
     }
 
+    /**
+     * @param descrizione
+     * imposta una descrizione per la notifica da inviare
+     * */
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }

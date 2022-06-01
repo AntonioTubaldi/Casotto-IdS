@@ -15,13 +15,22 @@ public class OmbrelloneService {
     @Autowired
     private OmbrelloneRepository repository;
 
+    /**
+     * recupera la lista degli ombrelloni presenti nel database
+     * @return la lista degli ombrelloni nel database
+     * */
     public List<Ombrellone> getAll() {
         return this.repository.findAll();
     }
 
-    public List<SlotData> getDisponibilita(String idOmbrellone) {
+    /**
+     * @param idOmbrellone
+     * recupera la disponibilità di un ombrellone dato il suo identificativo
+     * @return la disponibilità dell'ombrellone altrimenti ritorna <null>.
+     * */
+    public List<SlotData> getDisponibilita(String idOmbrellone)  {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
-        if (ombrelloneFromMongo.isPresent()) {
+        if(ombrelloneFromMongo.isPresent()) {
             Ombrellone ombrellone = ombrelloneFromMongo.get();
             return ombrellone.getDisponibilita();
         } else {
@@ -30,34 +39,35 @@ public class OmbrelloneService {
 
 
     }
-
-    public boolean setDisponibilita(String idOmbrellone, List<SlotData> disponibilitaToAdd) {
-        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
-        if (ombrelloneFromMongo.isPresent()) {
-            Ombrellone ombrelloneToUpdate = ombrelloneFromMongo.get();
-            ombrelloneToUpdate.addDisponibilita(disponibilitaToAdd);
-            this.repository.save(ombrelloneToUpdate);
-            return true;
-        } else
-            return false;
-    }
-
+    /**
+     * @param idOmbrellone
+     * @param dataPrenotazione
+     *
+     * permette di rimuovere la disponibilità di un ombrellone attraverso l'inserimento
+     * dell'identificativo dell'ombrellone e la data della prenotazione
+     *
+     * @return la disponibilità aggiornata per quel determinato ombrellone
+     * altrimenti ritorna false.
+     * */
     public boolean rimuoviDisponibilitaById(String idOmbrellone, List<SlotData> dataPrenotazione) {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
-        if (ombrelloneFromMongo.isPresent()) {
+        if(ombrelloneFromMongo.isPresent()) {
             Ombrellone toUpdate = ombrelloneFromMongo.get();
             boolean disponibilitaAggiornata = toUpdate.rimuoviDisponibilita(dataPrenotazione);
             this.repository.save(toUpdate);
             return disponibilitaAggiornata;
-        } else {
+           } else {
             return false;
         }
     }
 
+    /**
+     * aggiunge una lista di ombrelloni nel database
+     * @return la lista di ombrelloni inserite nel repository
+     * */
     public List<Ombrellone> addListOmbrellone(List<Ombrellone> newOmbrelloneList) {
         this.repository.saveAll(newOmbrelloneList);
         return this.repository.findAll();
     }
+
 }
-
-
