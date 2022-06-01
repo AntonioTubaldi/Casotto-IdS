@@ -40,13 +40,12 @@ public class PrenotazioneService {
     }
 
     public boolean eliminaPrenotazione(String idPrenotazione) {
-        this.repository.deleteById(idPrenotazione);
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
         if(prenotazioneFromMongo.isPresent()) {
-            Prenotazione prenotazioneEliminata = prenotazioneFromMongo.get();
-            utenteService.notificaUtente(prenotazioneEliminata.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
-
-            public boolean setDisponibilita(String idOmbrellone)
+            Prenotazione prenotazioneDaEliminare = prenotazioneFromMongo.get();
+            utenteService.notificaUtente(prenotazioneDaEliminare.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
+            ombrelloneService.setDisponibilita(prenotazioneDaEliminare.getIdOmbrellone(), prenotazioneDaEliminare.getDataPrenotazione());
+            this.repository.deleteById(idPrenotazione);
             return true;
 
         } else

@@ -19,10 +19,9 @@ public class OmbrelloneService {
         return this.repository.findAll();
     }
 
-    public List<SlotData> getDisponibilita(String idOmbrellone)  {
-
+    public List<SlotData> getDisponibilita(String idOmbrellone) {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
-        if(ombrelloneFromMongo.isPresent()) {
+        if (ombrelloneFromMongo.isPresent()) {
             Ombrellone ombrellone = ombrelloneFromMongo.get();
             return ombrellone.getDisponibilita();
         } else {
@@ -32,14 +31,25 @@ public class OmbrelloneService {
 
     }
 
+    public boolean setDisponibilita(String idOmbrellone, List<SlotData> disponibilitaToAdd) {
+        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
+        if (ombrelloneFromMongo.isPresent()) {
+            Ombrellone ombrelloneToUpdate = ombrelloneFromMongo.get();
+            ombrelloneToUpdate.addDisponibilita(disponibilitaToAdd);
+            this.repository.save(ombrelloneToUpdate);
+            return true;
+        } else
+            return false;
+    }
+
     public boolean rimuoviDisponibilitaById(String idOmbrellone, List<SlotData> dataPrenotazione) {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
-        if(ombrelloneFromMongo.isPresent()) {
+        if (ombrelloneFromMongo.isPresent()) {
             Ombrellone toUpdate = ombrelloneFromMongo.get();
             boolean disponibilitaAggiornata = toUpdate.rimuoviDisponibilita(dataPrenotazione);
             this.repository.save(toUpdate);
             return disponibilitaAggiornata;
-           } else {
+        } else {
             return false;
         }
     }
@@ -48,5 +58,6 @@ public class OmbrelloneService {
         this.repository.saveAll(newOmbrelloneList);
         return this.repository.findAll();
     }
-
 }
+
+

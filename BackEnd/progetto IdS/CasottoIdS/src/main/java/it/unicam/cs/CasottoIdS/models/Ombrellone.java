@@ -42,6 +42,10 @@ public class Ombrellone {
         this.disponibilita = disponibilita;
     }
 
+    public void addDisponibilita(List<SlotData> disponibilitaToAdd) {
+        disponibilita.add((SlotData) disponibilitaToAdd);
+    }
+
     public String getIdOmbrellone() {
         return idOmbrellone;
     }
