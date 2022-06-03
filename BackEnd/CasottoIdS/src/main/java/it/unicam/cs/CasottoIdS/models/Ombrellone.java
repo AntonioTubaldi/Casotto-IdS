@@ -14,11 +14,11 @@ public class Ombrellone {
 
     @Id
     public String idOmbrellone;
-    private float prezzo;
+    private double prezzo;
     private int posizione;
     private List<SlotData> disponibilita;
 
-    public Ombrellone(float prezzo, int posizione, List<SlotData> disponibilita) {
+    public Ombrellone(double prezzo, int posizione, List<SlotData> disponibilita) {
         this.prezzo = prezzo;
         this.posizione = posizione;
         this.disponibilita = disponibilita;
@@ -51,7 +51,7 @@ public class Ombrellone {
      * imposta il prezzo dell'ombrellone
      *
      * */
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
     /**

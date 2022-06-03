@@ -32,13 +32,7 @@ public class Prenotazione {
         return idPrenotazione;
     }
 
-    /**
-     * @param idPrenotazione
-     * imposta un id per la prenotazione
-     * */
-    public void setIdPrenotazione(String idPrenotazione) {
-        this.idPrenotazione = idPrenotazione;
-    }
+
     /**
      * recupera l'id di un utente
      * @return id dell'utente
