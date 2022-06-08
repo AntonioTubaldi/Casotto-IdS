@@ -28,7 +28,7 @@ public class UtenteService {
         Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
         if(utenteFromMongo.isPresent()) {
             Utente utenteDaNotificare = utenteFromMongo.get();
-            utenteDaNotificare.addNotificaById(idUtente,nuovaNotifica);
+            utenteDaNotificare.addNotificaById(nuovaNotifica);
             this.repository.save(utenteDaNotificare);
             return utenteNotificato = true;
         } else

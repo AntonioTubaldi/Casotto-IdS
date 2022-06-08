@@ -2,6 +2,7 @@ package it.unicam.cs.CasottoIdS.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,15 +15,15 @@ public class Utente {
     private List<Notifica> notifiche;
     private Ruolo ruolo;
 
-    public void addNotificaById(String idUtente, Notifica nuovaNotifica) {
+    public void addNotificaById(Notifica nuovaNotifica) {
         notifiche.add(nuovaNotifica);
 
     }
 
-    public Utente(String nome, String cognome, List<Notifica> notifiche, Ruolo ruolo) {
+    public Utente(String nome, String cognome, Ruolo ruolo) {
         this.nome = nome;
         this.cognome = cognome;
-        this.notifiche = notifiche;
+        this.notifiche = new ArrayList<>();
         this.ruolo = ruolo;
     }
 

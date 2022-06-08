@@ -1,15 +1,14 @@
 package it.unicam.cs.CasottoIdS.services;
 
-import it.unicam.cs.CasottoIdS.models.Notifica;
-import it.unicam.cs.CasottoIdS.models.Prenotazione;
-import it.unicam.cs.CasottoIdS.models.SlotData;
-import it.unicam.cs.CasottoIdS.models.StatoPrenotazione;
+import it.unicam.cs.CasottoIdS.models.*;
 import it.unicam.cs.CasottoIdS.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PrenotazioneService {
@@ -24,12 +23,16 @@ public class PrenotazioneService {
     private UtenteService utenteService;
 
     /**
-     * @param dataPrenotazione
+     * @param data
      * recupera una lista di prenotazioni eseguite in una determinata data
      * @return le prenotazioni eseguite in quella data
      * */
-    public List<Prenotazione> getPrenotazioneByData(List<SlotData> dataPrenotazione) {
-       return this.repository.findAllByDataPrenotazione(dataPrenotazione);
+    public List<Prenotazione> getPrenotazioneByData(Date data) {
+       List<Prenotazione> tutte=  this.repository.findAll();
+       List<Prenotazione> daRitornare = tutte.stream().filter(prenotazione -> {
+          return prenotazione.getDataPrenotazione().contains(new SlotData(Giorno.MATTINA, data)) || prenotazione.getDataPrenotazione().contains(new SlotData(Giorno.POMERIGGIO, data));
+          } ).collect(Collectors.toList());
+       return daRitornare;
     }
 
     /**
@@ -43,12 +46,13 @@ public class PrenotazioneService {
      * */
     public boolean confermaPrenotazione(String idPrenotazione) {
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
+        boolean modificaStato;
         if(prenotazioneFromMongo.isPresent()) {
             Prenotazione prenotazioneToUpdate = prenotazioneFromMongo.get();
             prenotazioneToUpdate.setStatoPrenotazione(StatoPrenotazione.CONFERMATA);
             this.repository.save(prenotazioneToUpdate);
             utenteService.notificaUtente(prenotazioneToUpdate.getIdUtente(), new Notifica("Prenotazione Confermata", "La tua prenotazione è stata confermata"));
-            return true;
+            return modificaStato = true;
 
         } else
             return false;
@@ -64,21 +68,22 @@ public class PrenotazioneService {
      * @return false se l'eliminazione della prenotazione non è andata a buon fine
      * */
     public boolean eliminaPrenotazione(String idPrenotazione) {
+        boolean prenotazioneEliminata;
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
         if(prenotazioneFromMongo.isPresent()) {
             Prenotazione prenotazioneDaEliminare = prenotazioneFromMongo.get();
             this.repository.deleteById(idPrenotazione);
             utenteService.notificaUtente(prenotazioneDaEliminare.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
             ombrelloneService.addDisponibilita(prenotazioneDaEliminare.getIdOmbrellone(), prenotazioneDaEliminare.getDataPrenotazione());
-            return true;
+            return prenotazioneEliminata = true;
 
         } else
             return false;
 
     }
 
-    public boolean addPrenotazione(String idOmbrellone, String idUtente, double costoTotale, List<SlotData> dataPrenotazione) {
-        Prenotazione newPrenotazione = new Prenotazione(idOmbrellone,idUtente,costoTotale,dataPrenotazione);
+    public boolean addPrenotazione(String idUtente, String idOmbrellone,double costoTotale, List<SlotData> dataPrenotazione) {
+        Prenotazione newPrenotazione = new Prenotazione(idUtente,idOmbrellone,costoTotale,dataPrenotazione);
         this.repository.save(newPrenotazione);
         boolean prenotazioneConfermata = ombrelloneService.rimuoviDisponibilita(newPrenotazione.getIdOmbrellone(), newPrenotazione.getDataPrenotazione());
         return prenotazioneConfermata;

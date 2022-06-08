@@ -12,10 +12,12 @@ public class UtenteController {
 
     @Autowired
     private UtenteService service;
-
-    @PutMapping("/addNotifica")
-    public boolean notificaUtente(@RequestParam String idUtente, @RequestBody Notifica nuovaNotifica) {
+/*
+    @PutMapping("/addNotifica/{id}")
+    public boolean notificaUtente(@PathVariable("id)") String idUtente, @RequestBody Notifica nuovaNotifica) {
         return this.service.notificaUtente(idUtente,nuovaNotifica);
 
     }
+    */
+
 }

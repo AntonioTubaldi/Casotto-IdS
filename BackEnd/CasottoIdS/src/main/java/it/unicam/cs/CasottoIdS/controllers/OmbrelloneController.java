@@ -21,20 +21,21 @@ public class OmbrelloneController {
         return this.service.getAll();
     }
 
-    // GET localhost:8080/ombrellone/disponibilita
-    @GetMapping("/disponibilita")
-    public List<SlotData> getDisponibilita(String idOmbrellone) {
+    // GET localhost:8080/ombrellone/disponibilita/{id}
+    @GetMapping("/disponibilita/{id}")
+    public List<SlotData> getDisponibilita(@PathVariable("id") String idOmbrellone) {
         return this.service.getDisponibilita(idOmbrellone);
     }
 
     // PUT localhost:8080/ombrellone/{id}
     @PutMapping("/{id}")
-    public boolean addDisponibilita(String idOmbrellone, List<SlotData> disponibilitaToAdd) {
+    public boolean addDisponibilita(@PathVariable("id") String idOmbrellone, @RequestBody List<SlotData> disponibilitaToAdd) {
         return this.service.addDisponibilita(idOmbrellone, disponibilitaToAdd);
     }
 
-    @PutMapping("/{id}")
-    public boolean rimuoviDisponibilita(String idOmbrellone, List<SlotData> dataPrenotazione) {
+    // DELETE localhost:8080/ombrellone/{id}
+    @DeleteMapping("/{id}")
+    public boolean rimuoviDisponibilita(@PathVariable("id") String idOmbrellone, @RequestBody List<SlotData> dataPrenotazione) {
         return this.service.rimuoviDisponibilita(idOmbrellone, dataPrenotazione);
     }
 

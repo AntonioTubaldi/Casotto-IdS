@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface PrenotazioneRepository extends MongoRepository<Prenotazione, String> {
 
-    public List<Prenotazione> findAllByDataPrenotazione(List<SlotData> dataPrenotazione);
+
 
 }
