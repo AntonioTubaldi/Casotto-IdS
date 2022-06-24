@@ -1,0 +1,1 @@
+enum Giorno { MATTINA, POMERIGGIO }
