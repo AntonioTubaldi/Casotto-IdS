@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
+import 'package:casotto/models/Giorno.dart';
 import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/models/SlotData.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -19,13 +20,22 @@ class OmbrelloneService {
     List<Ombrellone> toReturn = [];
 
     for (var ombrelloneObject in responseBody) {
-      String? idOmbrellone = ombrelloneObject["idOmbrellone"];
-      double? prezzo = ombrelloneObject["prezzo"];
-      int? posizione = ombrelloneObject["posizione"];
-      List<SlotData>? disponibilita = ombrelloneObject["disponibilita"];
+      String idOmbrellone = ombrelloneObject["idOmbrellone"];
+      double prezzo = ombrelloneObject["prezzo"];
+      int posizione = ombrelloneObject["posizione"];
+      List<SlotData> dataToReturn = [];
+      for (var dataObject in ombrelloneObject["disponibilita"]) {
+        Giorno durata = Giorno.values.firstWhere(
+            (e) => e.toString() == "Giorno." + dataObject["durata"]);
+        DateTime data = DateTime.parse(dataObject["data"]);
+        print(data);
+        print(dataObject["data"]);
+        SlotData slotDataToAdd = SlotData(durata, data);
+        dataToReturn.add(slotDataToAdd);
+      }
 
       Ombrellone ombrelloneToAdd =
-          Ombrellone(idOmbrellone!, prezzo!, posizione!, disponibilita!);
+          Ombrellone(idOmbrellone, prezzo, posizione, dataToReturn);
       toReturn.add(ombrelloneToAdd);
     }
 

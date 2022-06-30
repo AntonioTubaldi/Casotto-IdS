@@ -23,15 +23,11 @@ class OmbrelloniTab extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              child.getPosizione.toString(),
+              "Fila: ${child.getPosizione().toString()}",
               style: const TextStyle(fontSize: 20),
             ),
             Text(
-              child.getDisponibilita.toString(),
-              style: const TextStyle(fontSize: 20),
-            ),
-            Text(
-              child.getPrezzo.toString(),
+              "Prezzo: ${child.getPrezzo().toString()}",
               style: const TextStyle(fontSize: 20),
             ),
           ],
