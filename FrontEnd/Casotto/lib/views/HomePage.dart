@@ -12,19 +12,27 @@ class HomePage extends StatelessWidget {
         title: const Text('HomePage'),
       ),
       body: Center(
-        child: ButtonTheme(
-          minWidth: 300.0,
-          height: 100.0,
-          child: ElevatedButton(
-            onPressed: () => {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllOmbrelloniView()))
-            },
-            child: Text(
-              "VISUALIZZA SPIAGGIA",
-              style: TextStyle(fontSize: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+              onPressed: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AllOmbrelloniView()))
+              },
+              child: Text(
+                "VISUALIZZA SPIAGGIA",
+                style: TextStyle(fontSize: 30),
+              ),
             ),
-          ),
+            ElevatedButton(
+              onPressed: () => {},
+              child: Text("VISUALIZZA PRENOTAZIONI",
+                  style: TextStyle(fontSize: 25)),
+            ),
+          ],
         ),
       ),
     );

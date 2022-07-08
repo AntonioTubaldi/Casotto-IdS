@@ -34,6 +34,10 @@ class SlotData {
     }
   }
 
+  String getDataString() {
+    return "${this._data.day}/${this._data.month}/${this._data.year}";
+  }
+
   @override
   String toString() {
     return "SlotData{" +
