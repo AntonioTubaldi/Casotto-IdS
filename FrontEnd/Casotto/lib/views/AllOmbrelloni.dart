@@ -54,7 +54,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                 body: _getScrollableView(list),
                 floatingActionButton: FloatingActionButton(
                   onPressed: () => {setState(() {})},
-                  tooltip: 'Increment Counter',
+                  tooltip: 'Refresh',
                   child: const Icon(Icons.refresh),
                 ),
               );
