@@ -56,11 +56,6 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                   title: const Text('Visualizza Prenotazioni'),
                 ),
                 body: _getScrollableView(list),
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () => {setState(() {})},
-                  tooltip: 'Refresh',
-                  child: const Icon(Icons.refresh),
-                ),
               );
             }
         }
