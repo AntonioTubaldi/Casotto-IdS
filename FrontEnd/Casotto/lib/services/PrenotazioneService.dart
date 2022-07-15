@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:casotto/models/ParametriPrenotazione.dart';
 import 'package:casotto/models/Prenotazione.dart';
+import 'package:casotto/models/StatoPrenotazione.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/Giorno.dart';
 import '../models/SlotData.dart';
 
 class PrenotazioneService {
@@ -15,8 +17,16 @@ class PrenotazioneService {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/data");
-    Response response = await http.get(url);
+    print("data to string:" + data.toIso8601String());
+    Response response = await http.post(
+      url,
+      body: jsonEncode({"data": data.toIso8601String()}),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
     dynamic responseBody = jsonDecode(response.body);
+    print("responsebody: " + response.body);
 
     List<Prenotazione> toReturn = [];
 
@@ -25,13 +35,25 @@ class PrenotazioneService {
       String? idUtente = prenotazioneObject["idUtente"];
       String? idOmbrellone = prenotazioneObject["idOmbrellone"];
       double? costoTotale = prenotazioneObject["costoTotale"];
-      List<SlotData>? dataPrenotazione = prenotazioneObject["dataPrenotazione"];
+      List<SlotData> dataToReturn = [];
+      for (var dataObject in prenotazioneObject["dataPrenotazione"]) {
+        Giorno durata = Giorno.values.firstWhere(
+            (e) => e.toString() == "Giorno." + dataObject["durata"]);
+        DateTime data = DateTime.parse(dataObject["data"]);
+
+        SlotData slotDataToAdd = SlotData(durata, data);
+        dataToReturn.add(slotDataToAdd);
+      }
+      StatoPrenotazione stato = StatoPrenotazione.values.firstWhere((e) =>
+          e.toString() ==
+          "StatoPrenotazione." + prenotazioneObject["statoPrenotazione"]);
 
       Prenotazione prenotazioneToAdd = Prenotazione(idPrenotazione!, idUtente!,
-          idOmbrellone!, costoTotale!, dataPrenotazione!);
+          idOmbrellone!, costoTotale!, dataToReturn, stato);
+
       toReturn.add(prenotazioneToAdd);
     }
-
+    print("dati formattati: " + toReturn.toString());
     return toReturn;
   }
 

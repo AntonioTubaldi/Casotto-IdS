@@ -11,20 +11,31 @@ class Prenotazione {
   late List<SlotData> _dataPrenotazione;
   late StatoPrenotazione _statoPrenotazione;
 
-  Prenotazione(String idPrenotazione, String idUtente, String idOmbrellone,
-      double costoTotale, List<SlotData> dataPrenotazione) {
+  Prenotazione(
+      String idPrenotazione,
+      String idUtente,
+      String idOmbrellone,
+      double costoTotale,
+      List<SlotData> dataPrenotazione,
+      StatoPrenotazione statoPrenotazione) {
     this.idPrenotazione = idPrenotazione;
     this._idUtente = idUtente;
     this._idOmbrellone = idOmbrellone;
     this._costoTotale = costoTotale;
     this._dataPrenotazione = dataPrenotazione;
+    this._statoPrenotazione = statoPrenotazione;
   }
-  Prenotazione.nienteId(String idUtente, String idOmbrellone,
-      double costoTotale, List<SlotData> dataPrenotazione) {
+  Prenotazione.nienteId(
+      String idUtente,
+      String idOmbrellone,
+      double costoTotale,
+      List<SlotData> dataPrenotazione,
+      StatoPrenotazione statoPrenotazione) {
     this._idUtente = idUtente;
     this._idOmbrellone = idOmbrellone;
     this._costoTotale = costoTotale;
     this._dataPrenotazione = dataPrenotazione;
+    this._statoPrenotazione = statoPrenotazione;
   }
 
   String getIdPrenotazione() {

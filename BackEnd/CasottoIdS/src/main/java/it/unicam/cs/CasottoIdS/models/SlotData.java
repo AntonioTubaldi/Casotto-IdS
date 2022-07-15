@@ -1,14 +1,15 @@
 package it.unicam.cs.CasottoIdS.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
 public class SlotData {
 
     private Giorno durata;
-    private Date data;
+    private LocalDate data;
 
-    public SlotData(Giorno durata, Date data) {
+    public SlotData(Giorno durata, LocalDate data) {
         this.durata = durata;
         this.data = data;
     }
@@ -34,7 +35,7 @@ public class SlotData {
      * recupera la data della prenotazione di un dato ombrellone
      * @return la data della prenotazione dell'ombrellone
      * */
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
@@ -42,7 +43,7 @@ public class SlotData {
      * @param data
      * imposta una data per la prenotazione dell'ombrellone
      * */
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

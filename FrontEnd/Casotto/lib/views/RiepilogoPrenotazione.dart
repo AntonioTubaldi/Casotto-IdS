@@ -12,7 +12,29 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
 
   final List<SlotData> selezionati;
 
-  List<Widget> _getSlotDataTabs(List<SlotData> selezionati) {
+  Widget _getRiepilogoData(List<SlotData> selezionati1) {
+    List<SlotData> dataToReturn = [];
+    for (var dataObject in selezionati1) {
+      Giorno durata = Giorno.values.firstWhere(
+          (e) => e.toString() == "Giorno." + dataObject.getDurataString());
+      DateTime data = dataObject.getData();
+      SlotData slotDataToAdd = SlotData(durata, data);
+      dataToReturn.add(slotDataToAdd);
+    }
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(20),
+      child: ElevatedButton(
+        onPressed: () => {},
+        child: Text(
+          "Riepilogo prenotazione:  + $dataToReturn",
+        ),
+      ),
+    );
+  }
+
+  /* List<Widget> _getSlotDataTabs(List<SlotData> selezionati) {
     return selezionati.map(SlotData daRitornare) {
       return Container(
       width: double.infinity,
@@ -29,17 +51,10 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
       );
     };
   }
+  */
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          selezionati.toString(),
-          maxLines: 2,
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+    return _getRiepilogoData(selezionati);
   }
 }

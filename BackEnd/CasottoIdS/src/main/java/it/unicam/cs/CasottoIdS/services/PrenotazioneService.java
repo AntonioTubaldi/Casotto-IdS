@@ -5,6 +5,7 @@ import it.unicam.cs.CasottoIdS.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class PrenotazioneService {
      * recupera una lista di prenotazioni eseguite in una determinata data
      * @return le prenotazioni eseguite in quella data
      * */
-    public List<Prenotazione> getPrenotazioneByData(Date data) {
+    public List<Prenotazione> getPrenotazioneByData(LocalDate data) {
        List<Prenotazione> tutte=  this.repository.findAll();
        List<Prenotazione> daRitornare = tutte.stream().filter(prenotazione -> {
           return prenotazione.getDataPrenotazione().contains(new SlotData(Giorno.MATTINA, data)) || prenotazione.getDataPrenotazione().contains(new SlotData(Giorno.POMERIGGIO, data));

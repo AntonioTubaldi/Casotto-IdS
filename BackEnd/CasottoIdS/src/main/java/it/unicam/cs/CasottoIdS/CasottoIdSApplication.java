@@ -2,12 +2,14 @@ package it.unicam.cs.CasottoIdS;
 
 import it.unicam.cs.CasottoIdS.models.*;
 import it.unicam.cs.CasottoIdS.repositories.OmbrelloneRepository;
+import it.unicam.cs.CasottoIdS.repositories.PrenotazioneRepository;
 import it.unicam.cs.CasottoIdS.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.ZoneId;
 import java.util.*;
 
 import static it.unicam.cs.CasottoIdS.models.Giorno.MATTINA;
@@ -22,6 +24,9 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	@Autowired
 	private UtenteRepository utenteRepository;
 
+	@Autowired
+	private PrenotazioneRepository prenotazioneRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoIdSApplication.class, args);
 	}
@@ -30,22 +35,34 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		ombrelloneRepository.deleteAll();
 		utenteRepository.deleteAll();
-		Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY);
+		prenotazioneRepository.deleteAll();
+
+		Calendar calendario = Calendar.getInstance();
 
 
 		calendario.set(2022, 8, 1, 0, 0, 0);
-		SlotData iniziale = new SlotData(Giorno.MATTINA, calendario.getTime());
+		SlotData iniziale = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
 		calendario.add(Calendar.DAY_OF_YEAR, 1);
-		SlotData iniziale2 = new SlotData(POMERIGGIO, calendario.getTime());
+		SlotData iniziale2 = new SlotData(POMERIGGIO, calendario.getTime().toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
 		List<SlotData> lista = new ArrayList<>(
 				List.of(iniziale, iniziale2)
 		);
 
 		calendario.set(2022, 7, 1, 0, 0, 0);
-		SlotData iniziale3 = new SlotData(Giorno.MATTINA, calendario.getTime());
-		SlotData iniziale4 = new SlotData(POMERIGGIO, calendario.getTime());
+		SlotData iniziale3 = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
+		SlotData iniziale4 = new SlotData(POMERIGGIO, calendario.getTime().toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
 		calendario.set(2022, 7, 2, 0, 0, 0);
-		SlotData iniziale5 = new SlotData(POMERIGGIO, calendario.getTime());
+		SlotData iniziale5 = new SlotData(POMERIGGIO, calendario.getTime().toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate());
 		List<SlotData> lista1 = new ArrayList<>(
 				List.of(iniziale3, iniziale4,iniziale5)
 		);
@@ -58,6 +75,9 @@ public class CasottoIdSApplication implements CommandLineRunner {
 
 		Utente utente1 = new Utente("Antonio", "Tubaldi", Ruolo.REGISTRATO);
 		utenteRepository.save(utente1);
+
+		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), toAddOne.getIdOmbrellone(), 200, lista);
+		prenotazioneRepository.save(prenotazione1);
 
 	}
 

@@ -1,6 +1,7 @@
 package it.unicam.cs.CasottoIdS.controllers;
 
 
+import it.unicam.cs.CasottoIdS.DTO.GetPrenotazioneByDataBody;
 import it.unicam.cs.CasottoIdS.models.ParametriPrenotazione;
 import it.unicam.cs.CasottoIdS.models.Prenotazione;
 import it.unicam.cs.CasottoIdS.models.SlotData;
@@ -18,9 +19,11 @@ public class PrenotazioneController {
     @Autowired
     private PrenotazioneService service;
 
-    @GetMapping("/data")
-    public List<Prenotazione> getPrenotazioneByData(@RequestBody Date data) {
-        return this.service.getPrenotazioneByData(data);
+    @PostMapping("/data")
+    public List<Prenotazione> getPrenotazioneByData(@RequestBody GetPrenotazioneByDataBody bodyData) {
+        System.out.println("Data ritornata: " + bodyData.data);
+        return this.service.getPrenotazioneByData(bodyData.data);
+
     }
 
     @PutMapping("/conferma/{id}")

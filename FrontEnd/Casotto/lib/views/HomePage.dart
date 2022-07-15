@@ -1,4 +1,5 @@
 import 'package:casotto/views/AllOmbrelloni.dart';
+import 'package:casotto/views/Calendar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,10 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => (CalendarView())))
+              },
               child: Text("VISUALIZZA PRENOTAZIONI",
                   style: TextStyle(fontSize: 25)),
             ),
