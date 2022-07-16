@@ -40,11 +40,7 @@ class SlotData {
 
   @override
   String toString() {
-    return "SlotData{" +
-        " durata= " +
-        _durata.toString() +
-        ", data= " +
-        _data.toString() +
-        "}";
+    // ignore: prefer_interpolation_to_compose_strings
+    return " durata: ${_durata.toString()}, data: ${_data.toString()}";
   }
 }
