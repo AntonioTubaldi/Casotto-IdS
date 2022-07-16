@@ -68,16 +68,22 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		);
 
 
-		Ombrellone toAddOne = new Ombrellone(50, 1, lista);
-		ombrelloneRepository.save(toAddOne);
-		Ombrellone toAddTwo = new Ombrellone(50, 2, lista1);
-		ombrelloneRepository.save(toAddTwo);
+		Ombrellone One = new Ombrellone(10, 1, lista);
+		ombrelloneRepository.save(One);
+		Ombrellone Two = new Ombrellone(10, 2, lista1);
+		ombrelloneRepository.save(Two);
+		Ombrellone Three = new Ombrellone(8, 3, lista1);
+		ombrelloneRepository.save(Three);
 
 		Utente utente1 = new Utente("Antonio", "Tubaldi", Ruolo.REGISTRATO);
 		utenteRepository.save(utente1);
+		Utente utente2 = new Utente("Tiziano", "Tacconi", Ruolo.REGISTRATO);
+		utenteRepository.save(utente1);
 
-		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), toAddOne.getIdOmbrellone(), 200, lista);
+		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), One.getIdOmbrellone(), 10, lista);
 		prenotazioneRepository.save(prenotazione1);
+		Prenotazione prenotazione2 = new Prenotazione(utente2.getIdUtente(), Two.getIdOmbrellone(), 10, lista);
+		prenotazioneRepository.save(prenotazione2);
 
 	}
 
