@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // ignore: constant_identifier_names
 enum MessageScreenStatus { LOADING, ERROR }
@@ -17,19 +18,22 @@ class MessageScreen extends StatelessWidget {
           ),
           const Icon(
             Icons.warning_amber,
-            size: 150,
+            size: 100,
           )
         ];
       case MessageScreenStatus.LOADING:
         return [
-          const Text(
-            "Caricamento. Attendere prego.",
-            style: TextStyle(fontSize: 30),
+          Center(
+            child: LoadingAnimationWidget.staggeredDotsWave(
+                color: Colors.black, size: 40),
           ),
-          const Icon(
-            Icons.loop,
-            size: 150,
-          )
+          const SizedBox(
+            height: 12,
+          ),
+          const Text('Caricamento...',
+              style: TextStyle(
+                color: Colors.black87,
+              )),
         ];
     }
   }

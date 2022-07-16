@@ -13,22 +13,26 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
   final List<SlotData> selezionati;
 
   Widget _getRiepilogoData(List<SlotData> selezionati1) {
-    List<SlotData> dataToReturn = [];
+    List<SlotData> dateToReturn = [];
     for (var dataObject in selezionati1) {
       Giorno durata = Giorno.values.firstWhere(
           (e) => e.toString() == "Giorno." + dataObject.getDurataString());
       DateTime data = dataObject.getData();
       SlotData slotDataToAdd = SlotData(durata, data);
-      dataToReturn.add(slotDataToAdd);
+      dateToReturn.add(slotDataToAdd);
     }
-    return Container(
-      width: double.infinity,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(20),
-      child: ElevatedButton(
-        onPressed: () => {},
-        child: Text(
-          "Riepilogo prenotazione:  + $dataToReturn",
+    return Scaffold(
+      appBar: AppBar(
+          centerTitle: true, title: const Text("Riepilogo Prenotazione")),
+      body: Container(
+        width: double.infinity,
+        alignment: Alignment.topCenter,
+        padding: const EdgeInsets.all(20),
+        child: ElevatedButton(
+          onPressed: () => {},
+          child: Text(
+            "Riepilogo prenotazione: $dateToReturn",
+          ),
         ),
       ),
     );

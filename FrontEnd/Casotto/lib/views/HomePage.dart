@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => (CalendarView())))
               },
-              child: Text("VISUALIZZA PRENOTAZIONI",
+              child: Text("PRENOTAZIONI DISPONIBILI",
                   style: TextStyle(fontSize: 25)),
             ),
           ],
