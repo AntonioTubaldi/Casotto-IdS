@@ -21,6 +21,11 @@ public class OmbrelloneController {
         return this.service.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Ombrellone getOmbrelloneById(@PathVariable("id") String idOmbrellone) {
+        return this.service.getById(idOmbrellone);
+    }
+
     // GET localhost:8080/ombrellone/disponibilita/{id}
     @GetMapping("/disponibilita/{id}")
     public List<SlotData> getDisponibilita(@PathVariable("id") String idOmbrellone) {

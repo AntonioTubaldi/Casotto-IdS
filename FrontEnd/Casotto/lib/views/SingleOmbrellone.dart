@@ -58,6 +58,7 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                     MaterialPageRoute(
                         builder: (context) => RiepilogoPrenotazioneView(
                               selezionati: _datiSelezionati.toList(),
+                              singleOmbrellone: widget.ombrellone,
                             )))
               },
           child: Text(

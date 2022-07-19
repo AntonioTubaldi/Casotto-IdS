@@ -39,6 +39,6 @@ public class PrenotazioneController {
 
     @PostMapping("new")
     public boolean addPrenotazione(@RequestBody ParametriPrenotazione p) {
-        return this.service.addPrenotazione( p.idUtente, p.idOmbrellone, p.costoTotale, p.dataPrenotazione);
+        return this.service.addPrenotazione( p.idUtente, p.idOmbrellone, p.dataPrenotazione);
     }
 }

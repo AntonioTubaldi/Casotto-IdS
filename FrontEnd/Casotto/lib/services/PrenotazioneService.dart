@@ -17,7 +17,7 @@ class PrenotazioneService {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/data");
-    print("data to string:" + data.toIso8601String());
+
     Response response = await http.post(
       url,
       body: jsonEncode({"data": data.toIso8601String()}),
@@ -26,7 +26,6 @@ class PrenotazioneService {
       },
     );
     dynamic responseBody = jsonDecode(response.body);
-    print("responsebody: " + response.body);
 
     List<Prenotazione> toReturn = [];
 
@@ -53,7 +52,7 @@ class PrenotazioneService {
 
       toReturn.add(prenotazioneToAdd);
     }
-    print("dati formattati: " + toReturn.toString());
+
     return toReturn;
   }
 
@@ -62,7 +61,7 @@ class PrenotazioneService {
 
     Uri url = Uri.parse(_baseUrl + "/conferma/" + idPrenotazione);
     Response response = await http.put(url);
-    dynamic responseBody = response.body;
+    bool responseBody = response.body as bool;
     return responseBody;
   }
 

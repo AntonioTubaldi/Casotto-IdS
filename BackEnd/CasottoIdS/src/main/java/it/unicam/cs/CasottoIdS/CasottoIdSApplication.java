@@ -78,7 +78,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		Utente utente1 = new Utente("Antonio", "Tubaldi", Ruolo.REGISTRATO);
 		utenteRepository.save(utente1);
 		Utente utente2 = new Utente("Tiziano", "Tacconi", Ruolo.REGISTRATO);
-		utenteRepository.save(utente1);
+		utenteRepository.save(utente2);
 
 		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), One.getIdOmbrellone(), 10, lista);
 		prenotazioneRepository.save(prenotazione1);

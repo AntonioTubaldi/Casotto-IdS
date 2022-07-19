@@ -1,38 +1,26 @@
 import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/models/SlotData.dart';
+import 'package:casotto/views/HomePage.dart';
+import 'package:casotto/views/PrenotazioneConfermata.dart';
+import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/widgets/SelectableSlotDataTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'RiepilogoPrenotazione.dart';
 
-class SinglePrenotazioneView extends StatefulWidget {
-  const SinglePrenotazioneView({Key? key, required this.prenotazione})
+class SinglePrenotazioneView extends StatelessWidget {
+  const SinglePrenotazioneView({Key? key, required this.singlePrenotazione})
       : super(key: key);
-  final Prenotazione prenotazione;
 
-  @override
-  State<SinglePrenotazioneView> createState() => _SinglePrenotazioneViewState();
-}
-
-class _SinglePrenotazioneViewState extends State<SinglePrenotazioneView> {
-  Set<SlotData> _datiSelezionati = Set();
+  final Prenotazione singlePrenotazione;
 
   List<Widget> _getSlotDataTabs(List<SlotData> disponibilita) {
     return disponibilita.map((SlotData dateTime) {
       return SelectableSlotDataTab(
         child: dateTime,
-        isActivated: _datiSelezionati.contains(dateTime),
-        onPressed: () => {
-          setState(
-            () => {
-              if (_datiSelezionati.contains(dateTime))
-                {_datiSelezionati.remove(dateTime)}
-              else
-                {_datiSelezionati.add(dateTime)}
-            },
-          )
-        },
+        isActivated: true,
+        onPressed: null,
       );
     }).toList();
   }
@@ -47,35 +35,82 @@ class _SinglePrenotazioneViewState extends State<SinglePrenotazioneView> {
     );
   }
 
-  Widget? _confermaPrenotazione() {
-    if (_datiSelezionati.isNotEmpty) {
-      return Column(children: [
-        ElevatedButton(
-            onPressed: () => {},
-            child: Text(
-              "CONFERMA",
-              style: TextStyle(fontSize: 30),
-            )),
-        ElevatedButton(
-            onPressed: () => {},
-            child: Text(
-              "ELIMINA",
-              style: TextStyle(fontSize: 30),
-            ))
-      ]);
-    } else {
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> _confermaOEliminaButton() {
+      if (singlePrenotazione.getStatoPrenotazioneString() == "APERTA") {
+        return <Widget>[
+          ElevatedButton(
+            onPressed: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PrenotazioneConfermataView(
+                            child: singlePrenotazione,
+                          )))
+            },
+            child: Text("CONFERMA"),
+          ),
+          ElevatedButton(
+            onPressed: () => {},
+            child: Text("ANNULLA"),
+          )
+        ];
+      } else
+        return <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PrenotazioneEliminataView(
+                            child: singlePrenotazione,
+                          )));
+            },
+            child: Text("ELIMINA"),
+          ),
+          ElevatedButton(
+            onPressed: () => {},
+            child: Text("ANNULLA"),
+          )
+        ];
+    }
+
     return Scaffold(
-      floatingActionButton: _confermaPrenotazione(),
-      appBar: AppBar(title: Text("Schermata Prenotazione")),
-      body: Center(
-        child: _getScrollableView(widget.prenotazione.getDataPrenotazione()),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: _confermaOEliminaButton()),
       ),
+      appBar: AppBar(title: Text("La prenotazione nel dettaglio")),
+      body: Center(
+          child: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {},
+              child: Text("Ombrellone prenotato: " +
+                  singlePrenotazione.getIdOmbrellone())),
+          ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                  "Prenotazione: " + singlePrenotazione.getIdPrenotazione())),
+          ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                  "Utente associato: " + singlePrenotazione.getIdUtente())),
+          ElevatedButton(
+              onPressed: () {},
+              child: Text("CostoTotale: " +
+                  singlePrenotazione.getCostoTotale().toString())),
+          ElevatedButton(
+              onPressed: () {},
+              child: Text("Stato Prenotazione: " +
+                  singlePrenotazione.getStatoPrenotazioneString())),
+          _getScrollableView(singlePrenotazione.getDataPrenotazione()),
+        ],
+      )),
     );
   }
 }

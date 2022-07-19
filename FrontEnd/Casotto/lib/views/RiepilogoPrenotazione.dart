@@ -1,3 +1,4 @@
+import 'package:casotto/widgets/SelectableSlotDataTab.dart';
 import 'package:flutter/material.dart';
 
 import '../models/Giorno.dart';
@@ -5,12 +6,52 @@ import '../models/Ombrellone.dart';
 import '../models/SlotData.dart';
 
 class RiepilogoPrenotazioneView extends StatelessWidget {
-  const RiepilogoPrenotazioneView({
-    Key? key,
-    required this.selezionati,
-  }) : super(key: key);
+  const RiepilogoPrenotazioneView(
+      {Key? key, required this.selezionati, required this.singleOmbrellone})
+      : super(key: key);
 
   final List<SlotData> selezionati;
+  final Ombrellone singleOmbrellone;
+
+  Widget _getRiepilogoPrenotazione(Ombrellone ombrellone) {
+    return Scaffold(
+        appBar: AppBar(
+            centerTitle: true, title: const Text("Riepilogo Prenotazione")),
+        body: Container(
+            width: double.infinity,
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Costo prenotazione: " +
+                        (ombrellone.getPrezzo() * selezionati.length)
+                            .toString())),
+                _getScrollableView(selezionati)
+              ],
+            )));
+  }
+
+  List<Widget> _getSlotDataTabs(List<SlotData> disponibilita) {
+    return disponibilita.map((SlotData dateTime) {
+      return SelectableSlotDataTab(
+        child: dateTime,
+        isActivated: true,
+        onPressed: null,
+      );
+    }).toList();
+  }
+
+  Widget _getScrollableView(List<SlotData> disponibilita) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: _getSlotDataTabs(disponibilita),
+      ),
+    );
+  }
 
   Widget _getRiepilogoData(List<SlotData> selezionati1) {
     List<SlotData> dateToReturn = [];
@@ -21,20 +62,8 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
       SlotData slotDataToAdd = SlotData(durata, data);
       dateToReturn.add(slotDataToAdd);
     }
-    return Scaffold(
-      appBar: AppBar(
-          centerTitle: true, title: const Text("Riepilogo Prenotazione")),
-      body: Container(
-        width: double.infinity,
-        alignment: Alignment.topCenter,
-        padding: const EdgeInsets.all(20),
-        child: ElevatedButton(
-          onPressed: () => {},
-          child: Text(
-            "Riepilogo prenotazione: $dateToReturn",
-          ),
-        ),
-      ),
+    return Text(
+      "Riepilogo prenotazione: $dateToReturn",
     );
   }
 
@@ -59,6 +88,6 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _getRiepilogoData(selezionati);
+    return _getRiepilogoPrenotazione(singleOmbrellone);
   }
 }

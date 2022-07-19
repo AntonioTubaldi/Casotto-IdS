@@ -24,6 +24,16 @@ public class OmbrelloneService {
         return this.repository.findAll();
     }
 
+    public Ombrellone getById(String idOmbrellone) {
+        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
+        if(ombrelloneFromMongo.isPresent()) {
+            Ombrellone ombrellone = ombrelloneFromMongo.get();
+            return ombrellone;
+        } else {
+            return null;
+        }
+    }
+
     /**
      * @param idOmbrellone
      * recupera la disponibilità di un ombrellone dato il suo identificativo

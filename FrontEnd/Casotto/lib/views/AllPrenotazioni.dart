@@ -2,6 +2,7 @@ import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/services/PrenotazioneService.dart';
 import 'package:casotto/views/MessageScreen.dart';
 import 'package:casotto/widgets/PrenotazioniTab.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
 
   List<Widget> _getPrenotazioniTabs(List<Prenotazione> prenotazioni) {
     return prenotazioni.map((Prenotazione singlePrenotazione) {
-      return PrenotazioniTab(prenotazione: singlePrenotazione);
+      return PrenotazioniTab(child: singlePrenotazione);
     }).toList();
   }
 
@@ -50,6 +51,7 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               List<Prenotazione> list = snapshot.data!;
+              print("Lista: " + list.toString());
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
