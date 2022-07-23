@@ -49,6 +49,7 @@ class _CalendarViewState extends State<CalendarView> {
     return Scaffold(
         floatingActionButton: mostraPrenotazioni(),
         appBar: AppBar(
+          backgroundColor: Colors.lightBlue,
           title: Text('Calendario'),
         ),
         body: TableCalendar(

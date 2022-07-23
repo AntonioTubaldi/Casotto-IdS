@@ -11,33 +11,47 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Colors.lightBlue,
         title: const Text('HomePage'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
           children: [
-            ElevatedButton(
+            RawMaterialButton(
               onPressed: () => {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => AllOmbrelloniView()))
               },
-              child: Text(
+              child: const Text(
                 "VISUALIZZA SPIAGGIA",
-                style: TextStyle(fontSize: 30),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.white),
               ),
+              fillColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 50.0, width: 350),
             ),
-            ElevatedButton(
+            RawMaterialButton(
               onPressed: () => {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => (CalendarView())))
               },
               child: Text("PRENOTAZIONI DISPONIBILI",
-                  style: TextStyle(fontSize: 25)),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25, color: Colors.white)),
+              fillColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 50.0, width: 350),
             ),
-          ],
+          ], // children
         ),
       ),
     );
