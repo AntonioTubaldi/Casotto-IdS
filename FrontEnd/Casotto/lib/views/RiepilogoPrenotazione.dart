@@ -1,5 +1,6 @@
 import 'package:casotto/models/ParametriPrenotazione.dart';
 import 'package:casotto/views/AddPrenotazione.dart';
+import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/widgets/SelectableSlotDataTab.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,10 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
               child: Text("CONFERMA PRENOTAZIONE"),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
               child: Text("TORNA ALLA HOME"),
             ),
           ],
