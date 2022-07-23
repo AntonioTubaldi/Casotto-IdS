@@ -47,13 +47,13 @@ public class PrenotazioneService {
      * */
     public boolean confermaPrenotazione(String idPrenotazione) {
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
-        boolean modificaStato;
+
         if(prenotazioneFromMongo.isPresent()) {
             Prenotazione prenotazioneToUpdate = prenotazioneFromMongo.get();
             prenotazioneToUpdate.setStatoPrenotazione(StatoPrenotazione.CONFERMATA);
             this.repository.save(prenotazioneToUpdate);
             utenteService.notificaUtente(prenotazioneToUpdate.getIdUtente(), new Notifica("Prenotazione Confermata", "La tua prenotazione è stata confermata"));
-            return modificaStato = true;
+            return true;
 
         } else
             return false;
@@ -69,14 +69,18 @@ public class PrenotazioneService {
      * @return false se l'eliminazione della prenotazione non è andata a buon fine
      * */
     public boolean eliminaPrenotazione(String idPrenotazione) {
-        boolean prenotazioneEliminata;
+
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
         if(prenotazioneFromMongo.isPresent()) {
             Prenotazione prenotazioneDaEliminare = prenotazioneFromMongo.get();
-            this.repository.deleteById(idPrenotazione);
-            utenteService.notificaUtente(prenotazioneDaEliminare.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
-            ombrelloneService.addDisponibilita(prenotazioneDaEliminare.getIdOmbrellone(), prenotazioneDaEliminare.getDataPrenotazione());
-            return prenotazioneEliminata = true;
+            boolean esito = ombrelloneService.addDisponibilita(prenotazioneDaEliminare.getIdOmbrellone(), prenotazioneDaEliminare.getDataPrenotazione());
+            if(esito) {
+                this.repository.deleteById(idPrenotazione);
+                utenteService.notificaUtente(prenotazioneDaEliminare.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
+
+            }
+
+            return esito;
 
         } else
             return false;
@@ -84,10 +88,12 @@ public class PrenotazioneService {
     }
 
     public boolean addPrenotazione(String idUtente, String idOmbrellone, List<SlotData> dataPrenotazione) {
-        Ombrellone ombrelloneDB =ombrelloneService.getById(idOmbrellone);
-        Prenotazione newPrenotazione = new Prenotazione(idUtente,idOmbrellone,ombrelloneDB.getPrezzo()*dataPrenotazione.size(),dataPrenotazione);
-        this.repository.save(newPrenotazione);
-        boolean prenotazioneConfermata = ombrelloneService.rimuoviDisponibilita(newPrenotazione.getIdOmbrellone(), newPrenotazione.getDataPrenotazione());
+        boolean prenotazioneConfermata = ombrelloneService.rimuoviDisponibilita(idOmbrellone, dataPrenotazione);
+        if(prenotazioneConfermata) {
+            Ombrellone ombrelloneDB =ombrelloneService.getById(idOmbrellone);
+            Prenotazione newPrenotazione = new Prenotazione(idUtente,idOmbrellone,ombrelloneDB.getPrezzo()*dataPrenotazione.size(),dataPrenotazione);
+            this.repository.save(newPrenotazione);
+       }
         return prenotazioneConfermata;
     }
 

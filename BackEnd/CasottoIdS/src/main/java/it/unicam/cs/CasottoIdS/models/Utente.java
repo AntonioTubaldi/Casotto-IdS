@@ -8,6 +8,10 @@ import java.util.Objects;
 
 public class Utente {
 
+    public void setIdUtente(String idUtente) {
+        this.idUtente = idUtente;
+    }
+
     @Id
     public String idUtente;
     private String nome;
@@ -26,6 +30,7 @@ public class Utente {
         this.notifiche = new ArrayList<>();
         this.ruolo = ruolo;
     }
+
 
     /**
      * recupera l'identificativo dell'utente

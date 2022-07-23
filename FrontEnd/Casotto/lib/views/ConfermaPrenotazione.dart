@@ -27,7 +27,7 @@ class _ConfermaPrenotazioniState extends State<ConfermaPrenotazione> {
             case ConnectionState.done:
               if (snapshot.hasError) {
                 return const MessageScreen(status: MessageScreenStatus.ERROR);
-              } else if (snapshot.hasData & snapshot.hasData == true) {
+              } else if (snapshot.hasData) {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,

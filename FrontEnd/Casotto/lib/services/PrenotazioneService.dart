@@ -61,7 +61,7 @@ class PrenotazioneService {
 
     Uri url = Uri.parse(_baseUrl + "/conferma/" + idPrenotazione);
     Response response = await http.put(url);
-    bool responseBody = response.body as bool;
+    bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }
 
@@ -70,7 +70,7 @@ class PrenotazioneService {
 
     Uri url = Uri.parse(_baseUrl + "/delete/" + idPrenotazione);
     Response response = await http.delete(url);
-    dynamic responseBody = response.body;
+    bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }
 
@@ -78,8 +78,21 @@ class PrenotazioneService {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
-    Response response = await http.post(url);
-    dynamic responseBody = response.body;
+    Response response = await http.post(
+      url,
+      body: jsonEncode({
+        "idUtente": p.idUtente,
+        "idOmbrellone": p.idOmbrellone,
+        "dataPrenotazione": p.dataPrenotazione.map((slotData) => {
+              "durata": slotData.getDurataString(),
+              "data": slotData.getData().toIso8601String()
+            })
+      }),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }
 }

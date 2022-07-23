@@ -35,54 +35,54 @@ class SinglePrenotazioneView extends StatelessWidget {
     );
   }
 
+  List<Widget> _confermaOEliminaButton(BuildContext context) {
+    if (singlePrenotazione.getStatoPrenotazioneString() == "APERTA") {
+      return <Widget>[
+        ElevatedButton(
+          onPressed: () => {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PrenotazioneConfermataView(
+                          child: singlePrenotazione,
+                        )))
+          },
+          child: Text("CONFERMA"),
+        ),
+        ElevatedButton(
+          onPressed: () => {},
+          child: Text("ANNULLA"),
+        )
+      ];
+    } else
+      return <Widget>[
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PrenotazioneEliminataView(
+                          child: singlePrenotazione,
+                        )));
+          },
+          child: Text("ELIMINA"),
+        ),
+        ElevatedButton(
+          onPressed: () => {},
+          child: Text("ANNULLA"),
+        )
+      ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> _confermaOEliminaButton() {
-      if (singlePrenotazione.getStatoPrenotazioneString() == "APERTA") {
-        return <Widget>[
-          ElevatedButton(
-            onPressed: () => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PrenotazioneConfermataView(
-                            child: singlePrenotazione,
-                          )))
-            },
-            child: Text("CONFERMA"),
-          ),
-          ElevatedButton(
-            onPressed: () => {},
-            child: Text("ANNULLA"),
-          )
-        ];
-      } else
-        return <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PrenotazioneEliminataView(
-                            child: singlePrenotazione,
-                          )));
-            },
-            child: Text("ELIMINA"),
-          ),
-          ElevatedButton(
-            onPressed: () => {},
-            child: Text("ANNULLA"),
-          )
-        ];
-    }
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: _confermaOEliminaButton()),
+            children: _confermaOEliminaButton(context)),
       ),
       appBar: AppBar(title: Text("La prenotazione nel dettaglio")),
       body: Center(
