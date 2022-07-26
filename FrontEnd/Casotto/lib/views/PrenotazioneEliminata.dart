@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'HomePage.dart';
+
 class PrenotazioneEliminataView extends StatefulWidget {
   const PrenotazioneEliminataView({Key? key, required this.child})
       : super(key: key);
@@ -37,19 +39,45 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
               bool risposta = snapshot.data!;
               if (risposta) {
                 return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()))
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text('Esito Prenotazione'),
+                    title: const Text('Esito Eliminazione'),
                   ),
-                  body: Text("Prenotazione Eliminata"),
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Prenotazione Eliminata",
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    ),
+                  ),
                 );
               } else
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text('Esito Prenotazione'),
+                    title: const Text('Esito Eliminazione'),
                   ),
-                  body: Text("Qualcosa è andato storto"),
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Qualcosa è andato storto!",
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    ),
+                  ),
                 );
             }
         }
