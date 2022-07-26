@@ -78,15 +78,27 @@ class PrenotazioneService {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
+    print(jsonEncode({
+      "idUtente": p.idUtente,
+      "idOmbrellone": p.idOmbrellone,
+      "dataPrenotazione": p.dataPrenotazione
+          .map((slotData) => {
+                "durata": slotData.getDurataString(),
+                "data": slotData.getData().toIso8601String()
+              })
+          .toList()
+    }));
     Response response = await http.post(
       url,
       body: jsonEncode({
         "idUtente": p.idUtente,
         "idOmbrellone": p.idOmbrellone,
-        "dataPrenotazione": p.dataPrenotazione.map((slotData) => {
-              "durata": slotData.getDurataString(),
-              "data": slotData.getData().toIso8601String()
-            })
+        "dataPrenotazione": p.dataPrenotazione
+            .map((slotData) => {
+                  "durata": slotData.getDurataString(),
+                  "data": slotData.getData().toIso8601String()
+                })
+            .toList()
       }),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

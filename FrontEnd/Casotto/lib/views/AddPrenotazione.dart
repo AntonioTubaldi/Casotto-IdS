@@ -37,10 +37,14 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
                   title: const Text('Prenotazione Confermata'),
                 ),
                 body: Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
                     child: Text(
-                  "PRENOTAZIONE CONFERMATA",
-                  style: TextStyle(fontSize: 30.0),
-                )),
+                      "PRENOTAZIONE CONFERMATA",
+                      style: TextStyle(fontSize: 25.0),
+                    ),
+                  ),
+                ),
               );
             } else {
               return Scaffold(
@@ -49,10 +53,14 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
                   title: const Text('Ops! Qualcosa è andato storto!'),
                 ),
                 body: Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
                     child: Text(
-                  "La prenotazione non è stata confermata!",
-                  style: TextStyle(fontSize: 30.0),
-                )),
+                      "Qualcosa è andato storto",
+                      style: TextStyle(fontSize: 25.0),
+                    ),
+                  ),
+                ),
               );
             }
         }
