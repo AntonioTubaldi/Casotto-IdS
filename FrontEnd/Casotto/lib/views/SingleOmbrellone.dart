@@ -1,3 +1,5 @@
+import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
+import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,6 +14,8 @@ class SingleOmbrelloneView extends StatefulWidget {
   const SingleOmbrelloneView({Key? key, required this.ombrellone})
       : super(key: key);
   final Ombrellone ombrellone;
+
+  static const String routeName = "SingleOmbrellone";
 
   @override
   State<SingleOmbrelloneView> createState() => _SingleOmbrelloneViewState();
@@ -53,13 +57,12 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
     if (_datiSelezionati.isNotEmpty) {
       return ElevatedButton(
           onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RiepilogoPrenotazioneView(
-                              selezionati: _datiSelezionati.toList(),
-                              singleOmbrellone: widget.ombrellone,
-                            )))
+                Navigator.pushNamed(
+                  context,
+                  RiepilogoPrenotazioneView.routeName,
+                  arguments: RiepilogoPrenotazioneViewArgs(
+                      widget.ombrellone, _datiSelezionati.toList()),
+                ),
               },
           child: Text(
             "PRENOTA",

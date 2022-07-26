@@ -1,4 +1,4 @@
-import 'package:casotto/models/ParametriPrenotazione.dart';
+import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
 import 'package:casotto/views/AddPrenotazione.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/widgets/SelectableSlotDataTab.dart';
@@ -12,6 +12,8 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
   const RiepilogoPrenotazioneView(
       {Key? key, required this.selezionati, required this.singleOmbrellone})
       : super(key: key);
+
+  static const String routeName = "RiepilogoPrenotazione";
 
   final List<SlotData> selezionati;
   final Ombrellone singleOmbrellone;
@@ -43,22 +45,22 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () => {
-                Navigator.push(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => AddPrenotazioneView(
-                      parametri: ParametriPrenotazione("123",
-                          singleOmbrellone.getIdOmbrellone(), selezionati),
-                    ),
-                  ),
-                )
+                  AddPrenotazioneView.routeName,
+                  arguments: AddPrenotazioneViewArgs(
+                      "123", singleOmbrellone.getIdOmbrellone(), selezionati),
+                  ModalRoute.withName(HomePage.routeName),
+                ),
               },
               child: Text("CONFERMA PRENOTAZIONE"),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName(HomePage.routeName),
+                );
               },
               child: Text("TORNA ALLA HOME"),
             ),
@@ -87,25 +89,6 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
       ),
     );
   }
-
-  /* List<Widget> _getSlotDataTabs(List<SlotData> selezionati) {
-    return selezionati.map(SlotData daRitornare) {
-      return Container(
-      width: double.infinity,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-         ElevatedButton(onPressed: () => {}, child: Text("Riepilogo prenotazione: " +  daRitornare.getDataString() + daRitornare.getDurataString()),),
-         ElevatedButton(onPressed: () => {}, child: Text("Costo totale: 50")),
-         ],
-         ),
-
-      );
-    };
-  }
-  */
 
   @override
   Widget build(BuildContext context) {

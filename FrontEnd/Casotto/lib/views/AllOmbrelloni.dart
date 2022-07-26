@@ -7,6 +7,8 @@ import 'MessageScreen.dart';
 class AllOmbrelloniView extends StatefulWidget {
   const AllOmbrelloniView({Key? key}) : super(key: key);
 
+  static const String routeName = "AllOmbrelloni";
+
   @override
   State<AllOmbrelloniView> createState() => _AllOmbrelloniViewState();
 }

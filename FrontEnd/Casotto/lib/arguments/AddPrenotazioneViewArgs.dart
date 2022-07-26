@@ -1,12 +1,12 @@
-import 'SlotData.dart';
+import '../models/SlotData.dart';
 
-class ParametriPrenotazione {
+class AddPrenotazioneViewArgs {
   late String idUtente;
   late String idOmbrellone;
 
   late List<SlotData> dataPrenotazione;
 
-  ParametriPrenotazione(
+  AddPrenotazioneViewArgs(
       String idUtente, String idOmbrellone, List<SlotData> dataPrenotazione) {
     this.idUtente = idUtente;
     this.idOmbrellone = idOmbrellone;

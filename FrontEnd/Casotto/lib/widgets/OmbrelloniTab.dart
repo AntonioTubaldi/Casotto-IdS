@@ -1,3 +1,4 @@
+import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +17,11 @@ class OmbrelloniTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: ElevatedButton.icon(
         onPressed: () => {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      SingleOmbrelloneView(ombrellone: child)))
+          Navigator.pushNamed(
+            context,
+            SingleOmbrelloneView.routeName,
+            arguments: SingleOmbrelloneViewArgs(child),
+          ),
         },
         icon: Icon(
           Icons.beach_access,

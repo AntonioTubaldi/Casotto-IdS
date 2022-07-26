@@ -1,14 +1,25 @@
-import 'package:casotto/models/ParametriPrenotazione.dart';
+import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
+import 'package:casotto/models/SlotData.dart';
 import 'package:casotto/services/PrenotazioneService.dart';
+import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/MessageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class AddPrenotazioneView extends StatefulWidget {
-  const AddPrenotazioneView({Key? key, required this.parametri})
+  const AddPrenotazioneView(
+      {Key? key,
+      required this.idUtente,
+      required this.dataPrenotazione,
+      required this.idOmbrellone})
       : super(key: key);
-  final ParametriPrenotazione parametri;
+  final String idUtente;
+  final String idOmbrellone;
+
+  final List<SlotData> dataPrenotazione;
+
+  static const String routeName = "AddPrenotazione";
 
   @override
   State<AddPrenotazioneView> createState() => _AddPrenotazioneViewState();
@@ -19,7 +30,8 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: prenotazioneService.addPrenotazione(widget.parametri),
+      future: prenotazioneService.addPrenotazione(
+          widget.idUtente, widget.idOmbrellone, widget.dataPrenotazione),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
@@ -32,6 +44,16 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               return Scaffold(
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () => {
+                    Navigator.popUntil(
+                        context, ModalRoute.withName(HomePage.routeName)),
+                  },
+                  child: Text(
+                    "H",
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ),
                 appBar: AppBar(
                   centerTitle: true,
                   title: const Text('Prenotazione Confermata'),
@@ -48,6 +70,16 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
               );
             } else {
               return Scaffold(
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () => {
+                    Navigator.popUntil(
+                        context, ModalRoute.withName(HomePage.routeName)),
+                  },
+                  child: Text(
+                    "H",
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ),
                 appBar: AppBar(
                   centerTitle: true,
                   title: const Text('Ops! Qualcosa è andato storto!'),

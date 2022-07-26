@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
+  static const String routeName = "Homepage";
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,10 @@ class HomePage extends StatelessWidget {
           children: [
             RawMaterialButton(
               onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AllOmbrelloniView()))
+                Navigator.pushNamed(
+                  context,
+                  AllOmbrelloniView.routeName,
+                ),
               },
               child: const Text(
                 "VISUALIZZA SPIAGGIA",

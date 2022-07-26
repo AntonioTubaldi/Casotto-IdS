@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:casotto/models/ParametriPrenotazione.dart';
+import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
 import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/models/StatoPrenotazione.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -74,14 +74,15 @@ class PrenotazioneService {
     return responseBody;
   }
 
-  Future<bool> addPrenotazione(ParametriPrenotazione p) async {
+  Future<bool> addPrenotazione(String idUtente, String idOmbrellone,
+      List<SlotData> dataPrenotazione) async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
     print(jsonEncode({
-      "idUtente": p.idUtente,
-      "idOmbrellone": p.idOmbrellone,
-      "dataPrenotazione": p.dataPrenotazione
+      "idUtente": idUtente,
+      "idOmbrellone": idOmbrellone,
+      "dataPrenotazione": dataPrenotazione
           .map((slotData) => {
                 "durata": slotData.getDurataString(),
                 "data": slotData.getData().toIso8601String()
@@ -91,9 +92,9 @@ class PrenotazioneService {
     Response response = await http.post(
       url,
       body: jsonEncode({
-        "idUtente": p.idUtente,
-        "idOmbrellone": p.idOmbrellone,
-        "dataPrenotazione": p.dataPrenotazione
+        "idUtente": idUtente,
+        "idOmbrellone": idOmbrellone,
+        "dataPrenotazione": dataPrenotazione
             .map((slotData) => {
                   "durata": slotData.getDurataString(),
                   "data": slotData.getData().toIso8601String()
