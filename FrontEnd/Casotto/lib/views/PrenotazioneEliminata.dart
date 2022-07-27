@@ -11,6 +11,7 @@ class PrenotazioneEliminataView extends StatefulWidget {
   const PrenotazioneEliminataView({Key? key, required this.child})
       : super(key: key);
   final Prenotazione child;
+  static const String routeName = "PrenotazioneEliminata";
 
   @override
   State<PrenotazioneEliminataView> createState() =>
@@ -41,8 +42,10 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()))
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
                     },
                     child: Text(
                       "H",
@@ -65,6 +68,18 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                 );
               } else
                 return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text('Esito Eliminazione'),

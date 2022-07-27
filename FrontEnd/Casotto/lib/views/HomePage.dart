@@ -40,10 +40,12 @@ class HomePage extends StatelessWidget {
             ),
             RawMaterialButton(
               onPressed: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => (CalendarView())))
+                Navigator.pushNamed(
+                  context,
+                  CalendarView.routeName,
+                ),
               },
-              child: Text("PRENOTAZIONI DISPONIBILI",
+              child: Text("VISUALIZZA PRENOTAZIONI",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, color: Colors.white)),
               fillColor: Colors.blue,

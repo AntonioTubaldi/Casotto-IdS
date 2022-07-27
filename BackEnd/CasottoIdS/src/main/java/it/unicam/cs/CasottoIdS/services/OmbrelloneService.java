@@ -52,13 +52,12 @@ public class OmbrelloneService {
     }
 
     public boolean addDisponibilita(String idOmbrellone, List<SlotData> disponibilitaToAdd) {
-        boolean aggiornaDisponibilita;
-        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
+       Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
         if (ombrelloneFromMongo.isPresent()) {
             Ombrellone ombrelloneToUpdate = ombrelloneFromMongo.get();
             ombrelloneToUpdate.addDisponibilita(disponibilitaToAdd);
             this.repository.save(ombrelloneToUpdate);
-            return aggiornaDisponibilita = true;
+            return true;
         } else
             return false;
     }

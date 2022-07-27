@@ -2,6 +2,7 @@ import 'package:casotto/models/Ombrellone.dart';
 import 'package:flutter/material.dart';
 import '../services/OmbrelloneService.dart';
 import '../widgets/OmbrelloniTab.dart';
+import 'HomePage.dart';
 import 'MessageScreen.dart';
 
 class AllOmbrelloniView extends StatefulWidget {
@@ -47,23 +48,55 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
             if (snapshot.hasError) {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
-              List<Ombrellone> list = snapshot.data!;
-              return Scaffold(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: const Text('Visualizza Spiaggia'),
-                ),
-                body: _getScrollableView(list),
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () => {setState(() {})},
-                  tooltip: 'Refresh',
-                  child: const Icon(Icons.refresh),
-                ),
-              );
+              if (snapshot.data!.isNotEmpty) {
+                List<Ombrellone> list = snapshot.data!;
+                return Scaffold(
+                  appBar: AppBar(
+                    centerTitle: true,
+                    title: const Text('Visualizza Spiaggia'),
+                  ),
+                  body: _getScrollableView(list),
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                );
+              } else
+                return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  appBar: AppBar(
+                    centerTitle: true,
+                    title: const Text("Visualizza Spiaggia"),
+                  ),
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text("Non ci sono ombrelloni disponibili!"),
+                    ),
+                  ),
+                );
             }
+            return const MessageScreen(status: MessageScreenStatus.ERROR);
         }
-
-        return const MessageScreen(status: MessageScreenStatus.ERROR);
       },
     );
   }

@@ -12,6 +12,7 @@ class PrenotazioneConfermataView extends StatefulWidget {
   const PrenotazioneConfermataView({Key? key, required this.child})
       : super(key: key);
   final Prenotazione child;
+  static const String routeName = "PrenotazioneConfermata";
 
   @override
   State<PrenotazioneConfermataView> createState() =>
@@ -43,8 +44,10 @@ class _PrenotazioneConfermataViewState
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()))
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
                     },
                     child: Text(
                       "H",
@@ -67,6 +70,18 @@ class _PrenotazioneConfermataViewState
                 );
               } else
                 return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text('Esito Operazione'),

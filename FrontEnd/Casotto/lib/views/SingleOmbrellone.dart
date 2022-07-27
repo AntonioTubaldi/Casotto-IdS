@@ -75,12 +75,39 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: _showPrenotazione(),
-      appBar: AppBar(title: Text("Schermata Prenotazione")),
-      body: Center(
-        child: _getScrollableView(widget.ombrellone.getDisponibilita()),
-      ),
-    );
+    if (widget.ombrellone.getDisponibilita().isNotEmpty) {
+      return Scaffold(
+        floatingActionButton: _showPrenotazione(),
+        appBar: AppBar(title: Text("Schermata Prenotazione")),
+        body: Center(
+          child: _getScrollableView(widget.ombrellone.getDisponibilita()),
+        ),
+      );
+    } else
+      return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(HomePage.routeName),
+            ),
+          },
+          child: Text(
+            "H",
+            style: TextStyle(fontSize: 30),
+          ),
+        ),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Schermata Prenotazione"),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text(
+                "Non ci sono date disponibili per l'ombrellone selezionato"),
+          ),
+        ),
+      );
   }
 }

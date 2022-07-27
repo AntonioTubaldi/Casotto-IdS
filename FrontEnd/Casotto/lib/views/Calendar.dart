@@ -1,3 +1,4 @@
+import 'package:casotto/arguments/AllPrenotazioniViewArgs.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'dart:async';
 
 class CalendarView extends StatefulWidget {
+  static const String routeName = "Calendar";
   @override
   _CalendarViewState createState() => _CalendarViewState();
 }
@@ -27,12 +29,11 @@ class _CalendarViewState extends State<CalendarView> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
           child: ElevatedButton(
               onPressed: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AllPrenotazioniView(
-                                  dataSelezionata: _selectedDate!,
-                                )))
+                    Navigator.pushNamed(
+                      context,
+                      AllPrenotazioniView.routeName,
+                      arguments: AllPrenotazioniViewArgs(_selectedDate!),
+                    ),
                   },
               child: const Text(
                 "VISUALIZZA PRENOTAZIONI",

@@ -1,3 +1,4 @@
+import 'package:casotto/arguments/SinglePrenotazioneViewArgs.dart';
 import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,11 @@ class PrenotazioniTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: ElevatedButton(
         onPressed: () => {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      SinglePrenotazioneView(singlePrenotazione: child)))
+          Navigator.pushNamed(
+            context,
+            SinglePrenotazioneView.routeName,
+            arguments: SinglePrenotazioneViewArgs(child),
+          ),
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

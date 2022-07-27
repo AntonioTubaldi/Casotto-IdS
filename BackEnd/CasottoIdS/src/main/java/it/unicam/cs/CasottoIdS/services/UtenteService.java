@@ -24,13 +24,12 @@ public class UtenteService {
      * @return false se l'utente non ha ricevuto la notifica
      * */
     public boolean notificaUtente(String idUtente, Notifica nuovaNotifica) {
-        boolean utenteNotificato;
         Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
         if(utenteFromMongo.isPresent()) {
             Utente utenteDaNotificare = utenteFromMongo.get();
             utenteDaNotificare.addNotificaById(nuovaNotifica);
             this.repository.save(utenteDaNotificare);
-            return utenteNotificato = true;
+            return true;
         } else
             return false;
 

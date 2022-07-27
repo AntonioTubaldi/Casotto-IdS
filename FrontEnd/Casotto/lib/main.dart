@@ -2,12 +2,18 @@ import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
+import 'package:casotto/views/AllPrenotazioni.dart';
+import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/HomePage.dart';
+import 'package:casotto/views/PrenotazioneConfermata.dart';
+import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
+import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'arguments/AllPrenotazioniViewArgs.dart';
+import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'views/AddPrenotazione.dart';
 
 Future main() async {
@@ -77,6 +83,57 @@ class MyApp extends StatelessWidget {
                     idUtente: argomenti.idUtente,
                     idOmbrellone: argomenti.idOmbrellone,
                     dataPrenotazione: argomenti.dataPrenotazione),
+              );
+            }
+            break;
+
+          case CalendarView.routeName:
+            return MaterialPageRoute(
+                settings: const RouteSettings(name: CalendarView.routeName),
+                builder: (_) => CalendarView());
+
+            break;
+
+          case AllPrenotazioniView.routeName:
+            if (argomenti is AllPrenotazioniViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: AllPrenotazioniView.routeName),
+                builder: (_) =>
+                    AllPrenotazioniView(dataSelezionata: argomenti.data),
+              );
+            }
+            break;
+
+          case SinglePrenotazioneView.routeName:
+            if (argomenti is SinglePrenotazioneViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SinglePrenotazioneView.routeName),
+                builder: (_) => SinglePrenotazioneView(
+                    singlePrenotazione: argomenti.prenotazione1),
+              );
+            }
+            break;
+
+          case PrenotazioneConfermataView.routeName:
+            if (argomenti is SinglePrenotazioneViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: PrenotazioneConfermataView.routeName),
+                builder: (_) =>
+                    PrenotazioneConfermataView(child: argomenti.prenotazione1),
+              );
+            }
+            break;
+
+          case PrenotazioneEliminataView.routeName:
+            if (argomenti is SinglePrenotazioneViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: PrenotazioneEliminataView.routeName),
+                builder: (_) =>
+                    PrenotazioneEliminataView(child: argomenti.prenotazione1),
               );
             }
             break;

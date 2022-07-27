@@ -1,3 +1,4 @@
+import 'package:casotto/arguments/SinglePrenotazioneViewArgs.dart';
 import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/models/SlotData.dart';
 import 'package:casotto/views/HomePage.dart';
@@ -14,6 +15,7 @@ class SinglePrenotazioneView extends StatelessWidget {
       : super(key: key);
 
   final Prenotazione singlePrenotazione;
+  static const String routeName = "SinglePrenotazione";
 
   List<Widget> _getSlotDataTabs(List<SlotData> disponibilita) {
     return disponibilita.map((SlotData dateTime) {
@@ -40,17 +42,22 @@ class SinglePrenotazioneView extends StatelessWidget {
       return <Widget>[
         ElevatedButton(
           onPressed: () => {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PrenotazioneConfermataView(
-                          child: singlePrenotazione,
-                        )))
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              PrenotazioneConfermataView.routeName,
+              arguments: SinglePrenotazioneViewArgs(singlePrenotazione),
+              ModalRoute.withName(HomePage.routeName),
+            ),
           },
           child: Text("CONFERMA"),
         ),
         ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(HomePage.routeName),
+            ),
+          },
           child: Text("ANNULLA"),
         )
       ];
@@ -58,17 +65,22 @@ class SinglePrenotazioneView extends StatelessWidget {
       return <Widget>[
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PrenotazioneEliminataView(
-                          child: singlePrenotazione,
-                        )));
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              PrenotazioneEliminataView.routeName,
+              arguments: SinglePrenotazioneViewArgs(singlePrenotazione),
+              ModalRoute.withName(HomePage.routeName),
+            );
           },
           child: Text("ELIMINA"),
         ),
         ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(HomePage.routeName),
+            ),
+          },
           child: Text("ANNULLA"),
         )
       ];
