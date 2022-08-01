@@ -87,9 +87,9 @@ public class OmbrelloneService {
      * aggiunge una lista di ombrelloni nel database
      * @return la lista di ombrelloni inserite nel repository
      * */
-    public List<Ombrellone> addListOmbrellone(List<Ombrellone> newOmbrelloneList) {
-        this.repository.saveAll(newOmbrelloneList);
-        return this.repository.findAll();
+    public Ombrellone addOmbrellone(Ombrellone newOmbrellone) {
+        this.repository.save(newOmbrellone);
+        return newOmbrellone;
     }
 
 }
