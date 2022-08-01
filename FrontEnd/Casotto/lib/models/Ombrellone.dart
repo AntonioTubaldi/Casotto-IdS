@@ -5,20 +5,26 @@ class Ombrellone {
   late double _prezzo;
   late int _posizione;
   late List<SlotData> _disponibilita;
+  late double prezzoLettini;
+  late double prezzoSdraio;
 
   Ombrellone(String idOmbrellone, double prezzo, int posizione,
-      List<SlotData> disponibilita) {
+      List<SlotData> disponibilita, double prezzoLettini, double prezzoSdraio) {
     this.idOmbrellone = idOmbrellone;
     this._prezzo = prezzo;
     this._posizione = posizione;
     this._disponibilita = disponibilita;
+    this.prezzoLettini = prezzoLettini;
+    this.prezzoSdraio = prezzoSdraio;
   }
 
-  Ombrellone.nienteId(
-      double prezzo, int posizione, List<SlotData> disponibilita) {
+  Ombrellone.nienteId(double prezzo, int posizione,
+      List<SlotData> disponibilita, double prezzoLettini, double prezzoSraio) {
     this._prezzo = prezzo;
     this._posizione = posizione;
     this._disponibilita = disponibilita;
+    this.prezzoLettini = prezzoLettini;
+    this.prezzoSdraio = prezzoSdraio;
   }
 
   String getIdOmbrellone() {
@@ -53,6 +59,22 @@ class Ombrellone {
     this._disponibilita = disponibilita;
   }
 
+  double getPrezzoLettini() {
+    return this.prezzoLettini;
+  }
+
+  void setPrezzoLettini(double prezzoLettini) {
+    this.prezzoLettini = prezzoLettini;
+  }
+
+  double getPrezzoSdraio() {
+    return this.prezzoSdraio;
+  }
+
+  void setPrezzoSdraio(double prezzoSdraio) {
+    this.prezzoSdraio = prezzoSdraio;
+  }
+
   @override
   String toString() {
     return "Ombrellone{" +
@@ -65,6 +87,10 @@ class Ombrellone {
         _posizione.toString() +
         ", disponibilita=" +
         _disponibilita.toString() +
+        ", prezzo lettini: " +
+        prezzoLettini.toString() +
+        ", prezzo Sdraio: " +
+        prezzoSdraio.toString() +
         '}';
   }
 }
