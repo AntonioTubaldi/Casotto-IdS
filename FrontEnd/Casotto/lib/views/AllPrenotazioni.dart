@@ -57,6 +57,18 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                 List<Prenotazione> list = snapshot.data!;
                 print("Lista: " + list.toString());
                 return Scaffold(
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () => {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
+                    },
+                    child: Text(
+                      "H",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text('Visualizza Prenotazioni'),
