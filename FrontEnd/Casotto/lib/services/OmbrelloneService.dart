@@ -34,8 +34,11 @@ class OmbrelloneService {
         dataToReturn.add(slotDataToAdd);
       }
 
-      Ombrellone ombrelloneToAdd =
-          Ombrellone(idOmbrellone, prezzo, posizione, dataToReturn);
+      double prezzoLettini = ombrelloneObject["prezzoLettini"];
+      double prezzoSdraio = ombrelloneObject["prezzoSdraio"];
+
+      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone, prezzo, posizione,
+          dataToReturn, prezzoLettini, prezzoSdraio);
       toReturn.add(ombrelloneToAdd);
     }
 
@@ -85,9 +88,11 @@ class OmbrelloneService {
       double? prezzo = ombrelloneObject["prezzo"];
       int? posizione = ombrelloneObject["posizione"];
       List<SlotData>? disponibilita = ombrelloneObject["disponibilita"];
+      double prezzoLettini = ombrelloneObject["prezzoLettini"];
+      double prezzoSdraio = ombrelloneObject["prezzoSdraio"];
 
-      Ombrellone ombrelloneToAdd =
-          Ombrellone(idOmbrellone!, prezzo!, posizione!, disponibilita!);
+      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone!, prezzo!,
+          posizione!, disponibilita!, prezzoLettini, prezzoSdraio);
       toReturn.add(ombrelloneToAdd);
     }
 

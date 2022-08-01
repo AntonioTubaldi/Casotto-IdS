@@ -48,6 +48,7 @@ class _CalendarViewState extends State<CalendarView> {
     print("Giorno selezionato: ${_selectedDate.toString()}");
     print("Giorno individuato: ${_focusedDate.toString()}");
     return Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButton: mostraPrenotazioni(),
         appBar: AppBar(
           backgroundColor: Colors.lightBlue,

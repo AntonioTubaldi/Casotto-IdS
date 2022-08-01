@@ -51,24 +51,27 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
               if (snapshot.data!.isNotEmpty) {
                 List<Ombrellone> list = snapshot.data!;
                 return Scaffold(
-                  appBar: AppBar(
-                    centerTitle: true,
-                    title: const Text('Visualizza Spiaggia'),
-                  ),
-                  body: _getScrollableView(list),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: Text(
-                      "H",
-                      style: TextStyle(fontSize: 30),
+                    appBar: AppBar(
+                      centerTitle: true,
+                      title: const Text('Visualizza Spiaggia'),
                     ),
-                  ),
-                );
+                    body: _getScrollableView(list),
+                    floatingActionButton: RawMaterialButton(
+                      onPressed: () => {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(HomePage.routeName),
+                        ),
+                      },
+                      child: Text("Home",
+                          style: TextStyle(fontSize: 30, color: Colors.white)),
+                      fillColor: Colors.blueGrey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      constraints:
+                          BoxConstraints.tightFor(height: 50.0, width: 130),
+                    ));
               } else
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
@@ -79,7 +82,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       ),
                     },
                     child: Text(
-                      "H",
+                      "Home",
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
