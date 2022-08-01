@@ -46,8 +46,8 @@ public class OmbrelloneController {
 
     // POST localhost:8080/ombrellone/new
     @PostMapping("/new")
-    public Ombrellone addOmbrellone(@RequestBody Ombrellone newOmbrellone) {
-        return this.service.addOmbrellone(newOmbrellone);
+    public List<Ombrellone> addListOmbrellone(@RequestBody List<Ombrellone> newOmbrelloneList) {
+        return this.service.addListOmbrellone(newOmbrelloneList);
     }
 
 }

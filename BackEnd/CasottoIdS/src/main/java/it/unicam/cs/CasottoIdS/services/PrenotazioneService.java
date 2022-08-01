@@ -87,11 +87,11 @@ public class PrenotazioneService {
 
     }
 
-    public boolean addPrenotazione(String idUtente, String idOmbrellone, List<SlotData> dataPrenotazione) {
+    public boolean addPrenotazione(String idUtente, String idOmbrellone, List<SlotData> dataPrenotazione, int numeroLettini, int numeroSdraio) {
         boolean prenotazioneConfermata = ombrelloneService.rimuoviDisponibilita(idOmbrellone, dataPrenotazione);
         if(prenotazioneConfermata) {
             Ombrellone ombrelloneDB =ombrelloneService.getById(idOmbrellone);
-            Prenotazione newPrenotazione = new Prenotazione(idUtente,idOmbrellone,ombrelloneDB.getPrezzo()*dataPrenotazione.size(),dataPrenotazione);
+            Prenotazione newPrenotazione = new Prenotazione(idUtente,idOmbrellone,ombrelloneDB.getPrezzo()*dataPrenotazione.size(),dataPrenotazione,numeroLettini,numeroSdraio);
             this.repository.save(newPrenotazione);
        }
         return prenotazioneConfermata;

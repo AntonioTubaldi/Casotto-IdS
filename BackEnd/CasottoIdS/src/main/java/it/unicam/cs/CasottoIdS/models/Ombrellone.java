@@ -17,11 +17,16 @@ public class Ombrellone {
     private double prezzo;
     private int posizione;
     private List<SlotData> disponibilita;
+    private double prezzoLettini;
+    private double prezzoSdraio;
 
-    public Ombrellone(double prezzo, int posizione, List<SlotData> disponibilita) {
+    public Ombrellone(double prezzo, int posizione, List<SlotData> disponibilita, double prezzoLettini,double prezzoSdraio) {
         this.prezzo = prezzo;
         this.posizione = posizione;
         this.disponibilita = disponibilita;
+        this.prezzoLettini = prezzoLettini;
+        this.prezzoSdraio = prezzoSdraio;
+
     }
     /**
      * ritorna la posizione
@@ -99,6 +104,8 @@ public class Ombrellone {
                 ", prezzo=" + prezzo +
                 ", posizione=" + posizione +
                 ", disponibilita=" + disponibilita +
+                ", prezzo lettini: " + prezzoLettini +
+                ", prezzo sdraio: " + prezzoSdraio +
                 '}';
     }
 }

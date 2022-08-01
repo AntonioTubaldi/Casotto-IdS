@@ -15,13 +15,17 @@ public class Prenotazione {
     private double costoTotale;
     private List<SlotData> dataPrenotazione;
     private StatoPrenotazione statoPrenotazione;
+    private int numeroLettini;
+    private int numeroSdraio;
 
-    public Prenotazione(String idUtente, String idOmbrellone, double costoTotale, List<SlotData> dataPrenotazione) {
+    public Prenotazione(String idUtente, String idOmbrellone, double costoTotale, List<SlotData> dataPrenotazione,int numeroLettini, int numeroSdraio) {
         this.idUtente = idUtente;
         this.idOmbrellone = idOmbrellone;
         this.costoTotale = costoTotale;
         this.dataPrenotazione = dataPrenotazione;
        this.statoPrenotazione = APERTA;
+       this.numeroLettini = numeroLettini;
+       this.numeroSdraio = numeroSdraio;
     }
 
     /**
@@ -108,5 +112,21 @@ public class Prenotazione {
      * */
     public void setStatoPrenotazione(StatoPrenotazione statoPrenotazione) {
         this.statoPrenotazione = statoPrenotazione;
+    }
+
+    public int getNumeroLettini() {
+        return numeroLettini;
+    }
+
+    public void setNumeroLettini(int numeroLettini) {
+        this.numeroLettini = numeroLettini;
+    }
+
+    public int getNumeroSdraio() {
+        return numeroSdraio;
+    }
+
+    public void setNumeroSdraio(int numeroSdraio) {
+        this.numeroSdraio = numeroSdraio;
     }
 }
