@@ -113,14 +113,26 @@ class SinglePrenotazioneView extends StatelessWidget {
               child: Text(
                   "Utente associato: " + singlePrenotazione.getIdUtente())),
           ElevatedButton(
-              onPressed: () {},
-              child: Text("CostoTotale: " +
-                  singlePrenotazione.getCostoTotale().toString())),
+            onPressed: () {},
+            child: Text("CostoTotale: " +
+                singlePrenotazione.getCostoTotale().toString()),
+          ),
           ElevatedButton(
-              onPressed: () {},
-              child: Text("Stato Prenotazione: " +
-                  singlePrenotazione.getStatoPrenotazioneString())),
+            onPressed: () {},
+            child: Text("Stato Prenotazione: " +
+                singlePrenotazione.getStatoPrenotazioneString()),
+          ),
           _getScrollableView(singlePrenotazione.getDataPrenotazione()),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Numero Lettini: " +
+                singlePrenotazione.getNumeroLettini().toString()),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Numero Sdraio: " +
+                singlePrenotazione.getNumeroSdraio().toString()),
+          ),
         ],
       )),
     );

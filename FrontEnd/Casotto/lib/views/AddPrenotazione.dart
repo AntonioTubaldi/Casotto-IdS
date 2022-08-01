@@ -12,12 +12,15 @@ class AddPrenotazioneView extends StatefulWidget {
       {Key? key,
       required this.idUtente,
       required this.dataPrenotazione,
-      required this.idOmbrellone})
+      required this.idOmbrellone,
+      required this.numeroLettini,
+      required this.numeroSdraio})
       : super(key: key);
   final String idUtente;
   final String idOmbrellone;
-
   final List<SlotData> dataPrenotazione;
+  final int numeroLettini;
+  final int numeroSdraio;
 
   static const String routeName = "AddPrenotazione";
 
@@ -31,7 +34,11 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
       future: prenotazioneService.addPrenotazione(
-          widget.idUtente, widget.idOmbrellone, widget.dataPrenotazione),
+          widget.idUtente,
+          widget.idOmbrellone,
+          widget.dataPrenotazione,
+          widget.numeroLettini,
+          widget.numeroSdraio),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

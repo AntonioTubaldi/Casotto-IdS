@@ -46,9 +46,18 @@ class PrenotazioneService {
       StatoPrenotazione stato = StatoPrenotazione.values.firstWhere((e) =>
           e.toString() ==
           "StatoPrenotazione." + prenotazioneObject["statoPrenotazione"]);
+      int? numeroLettini = prenotazioneObject["numeroLettini"];
+      int? numeroSdraio = prenotazioneObject["numeroSdraio"];
 
-      Prenotazione prenotazioneToAdd = Prenotazione(idPrenotazione!, idUtente!,
-          idOmbrellone!, costoTotale!, dataToReturn, stato);
+      Prenotazione prenotazioneToAdd = Prenotazione(
+          idPrenotazione!,
+          idUtente!,
+          idOmbrellone!,
+          costoTotale!,
+          dataToReturn,
+          stato,
+          numeroLettini!,
+          numeroSdraio!);
 
       toReturn.add(prenotazioneToAdd);
     }
@@ -74,8 +83,12 @@ class PrenotazioneService {
     return responseBody;
   }
 
-  Future<bool> addPrenotazione(String idUtente, String idOmbrellone,
-      List<SlotData> dataPrenotazione) async {
+  Future<bool> addPrenotazione(
+      String idUtente,
+      String idOmbrellone,
+      List<SlotData> dataPrenotazione,
+      int numeroLettini,
+      int numeroSdraio) async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
@@ -99,7 +112,9 @@ class PrenotazioneService {
                   "durata": slotData.getDurataString(),
                   "data": slotData.getData().toIso8601String()
                 })
-            .toList()
+            .toList(),
+        "numeroLettini": numeroLettini,
+        "numeroSdraio": numeroSdraio
       }),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

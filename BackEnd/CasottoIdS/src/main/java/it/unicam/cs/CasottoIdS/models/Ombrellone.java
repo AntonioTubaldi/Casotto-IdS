@@ -18,6 +18,9 @@ public class Ombrellone {
     private int posizione;
     private List<SlotData> disponibilita;
     private double prezzoLettini;
+
+
+
     private double prezzoSdraio;
 
     public Ombrellone(double prezzo, int posizione, List<SlotData> disponibilita, double prezzoLettini,double prezzoSdraio) {
@@ -84,6 +87,22 @@ public class Ombrellone {
      * */
     public String getIdOmbrellone() {
         return idOmbrellone;
+    }
+
+    public double getPrezzoLettini() {
+        return prezzoLettini;
+    }
+
+    public void setPrezzoLettini(double prezzoLettini) {
+        this.prezzoLettini = prezzoLettini;
+    }
+
+    public double getPrezzoSdraio() {
+        return prezzoSdraio;
+    }
+
+    public void setPrezzoSdraio(double prezzoSdraio) {
+        this.prezzoSdraio = prezzoSdraio;
     }
 
     /**

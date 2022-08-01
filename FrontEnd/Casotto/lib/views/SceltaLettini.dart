@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import '../arguments/RiepilogoPrenotazioneViewArgs.dart';
+import 'RiepilogoPrenotazione.dart';
 
 class SceltaLettiniView extends StatefulWidget {
   const SceltaLettiniView(
@@ -18,7 +20,8 @@ class SceltaLettiniView extends StatefulWidget {
 }
 
 class _SceltaLettiniViewState extends State<SceltaLettiniView> {
-  int dropdownValue = 1;
+  int numeroLettini = 1;
+  int numeroSdraio = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +33,9 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("prova"),
-            ),
+            Text("Scegli quanti lettini prenotare: "),
             DropdownButton<int>(
-              value: dropdownValue,
+              value: numeroLettini,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
               style: const TextStyle(color: Colors.deepPurple),
@@ -45,7 +45,7 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
               ),
               onChanged: (int? newValue) {
                 setState(() {
-                  dropdownValue = newValue!;
+                  numeroLettini = newValue!;
                 });
               },
               items: <int>[1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
@@ -54,6 +54,42 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
                   child: Text(value.toString()),
                 );
               }).toList(),
+            ),
+            Text("Scegli quante sdraio prenotare: "),
+            DropdownButton<int>(
+              value: numeroSdraio,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (int? newValue) {
+                setState(() {
+                  numeroSdraio = newValue!;
+                });
+              },
+              items: <int>[1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
+                return DropdownMenuItem<int>(
+                  value: value,
+                  child: Text(value.toString()),
+                );
+              }).toList(),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RiepilogoPrenotazioneView.routeName,
+                  arguments: RiepilogoPrenotazioneViewArgs(
+                      widget.singleOmbrellone,
+                      widget.selezionati,
+                      numeroLettini,
+                      numeroSdraio),
+                );
+              },
+              child: Text("CONFERMA"),
             ),
           ],
         ),

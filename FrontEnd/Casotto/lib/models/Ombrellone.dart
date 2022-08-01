@@ -5,8 +5,8 @@ class Ombrellone {
   late double _prezzo;
   late int _posizione;
   late List<SlotData> _disponibilita;
-  late double prezzoLettini;
-  late double prezzoSdraio;
+  late double _prezzoLettini;
+  late double _prezzoSdraio;
 
   Ombrellone(String idOmbrellone, double prezzo, int posizione,
       List<SlotData> disponibilita, double prezzoLettini, double prezzoSdraio) {
@@ -14,17 +14,17 @@ class Ombrellone {
     this._prezzo = prezzo;
     this._posizione = posizione;
     this._disponibilita = disponibilita;
-    this.prezzoLettini = prezzoLettini;
-    this.prezzoSdraio = prezzoSdraio;
+    this._prezzoLettini = prezzoLettini;
+    this._prezzoSdraio = prezzoSdraio;
   }
 
   Ombrellone.nienteId(double prezzo, int posizione,
-      List<SlotData> disponibilita, double prezzoLettini, double prezzoSraio) {
+      List<SlotData> disponibilita, double prezzoLettini, double prezzoSdraio) {
     this._prezzo = prezzo;
     this._posizione = posizione;
     this._disponibilita = disponibilita;
-    this.prezzoLettini = prezzoLettini;
-    this.prezzoSdraio = prezzoSdraio;
+    this._prezzoLettini = prezzoLettini;
+    this._prezzoSdraio = prezzoSdraio;
   }
 
   String getIdOmbrellone() {
@@ -60,19 +60,19 @@ class Ombrellone {
   }
 
   double getPrezzoLettini() {
-    return this.prezzoLettini;
+    return this._prezzoLettini;
   }
 
   void setPrezzoLettini(double prezzoLettini) {
-    this.prezzoLettini = prezzoLettini;
+    this._prezzoLettini = prezzoLettini;
   }
 
   double getPrezzoSdraio() {
-    return this.prezzoSdraio;
+    return this._prezzoSdraio;
   }
 
   void setPrezzoSdraio(double prezzoSdraio) {
-    this.prezzoSdraio = prezzoSdraio;
+    this._prezzoSdraio = prezzoSdraio;
   }
 
   @override
@@ -88,9 +88,9 @@ class Ombrellone {
         ", disponibilita=" +
         _disponibilita.toString() +
         ", prezzo lettini: " +
-        prezzoLettini.toString() +
+        _prezzoLettini.toString() +
         ", prezzo Sdraio: " +
-        prezzoSdraio.toString() +
+        _prezzoSdraio.toString() +
         '}';
   }
 }

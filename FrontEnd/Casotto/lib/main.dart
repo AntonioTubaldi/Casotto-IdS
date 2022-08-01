@@ -8,11 +8,13 @@ import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
+import 'package:casotto/views/SceltaLettini.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
+import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'views/AddPrenotazione.dart';
 
@@ -69,7 +71,9 @@ class MyApp extends StatelessWidget {
                     name: RiepilogoPrenotazioneView.routeName),
                 builder: (_) => RiepilogoPrenotazioneView(
                     selezionati: argomenti.lista,
-                    singleOmbrellone: argomenti.ombrellone1),
+                    singleOmbrellone: argomenti.ombrellone1,
+                    numeroLettini: argomenti.numeroLettini,
+                    numeroSdraio: argomenti.numeroSdraio),
               );
             }
             break;
@@ -82,7 +86,9 @@ class MyApp extends StatelessWidget {
                 builder: (_) => AddPrenotazioneView(
                     idUtente: argomenti.idUtente,
                     idOmbrellone: argomenti.idOmbrellone,
-                    dataPrenotazione: argomenti.dataPrenotazione),
+                    dataPrenotazione: argomenti.dataPrenotazione,
+                    numeroLettini: argomenti.numeroLettini,
+                    numeroSdraio: argomenti.numeroSdraio),
               );
             }
             break;
@@ -134,6 +140,18 @@ class MyApp extends StatelessWidget {
                     name: PrenotazioneEliminataView.routeName),
                 builder: (_) =>
                     PrenotazioneEliminataView(child: argomenti.prenotazione1),
+              );
+            }
+            break;
+
+          case SceltaLettiniView.routeName:
+            if (argomenti is SceltaLettiniViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SceltaLettiniView.routeName),
+                builder: (_) => SceltaLettiniView(
+                    selezionati: argomenti.lista,
+                    singleOmbrellone: argomenti.ombrellone1),
               );
             }
             break;

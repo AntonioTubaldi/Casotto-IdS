@@ -20,11 +20,11 @@ class HomePage extends StatelessWidget {
         // ALT + INVIO per fare il wrap del widget all'interno di un altro widget (una colonna o una riga)
         body: Container(
           width: double.infinity,
-          decoration: const BoxDecoration(
+          /* decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("lib/images/spiaggia2.jpg"),
                 fit: BoxFit.cover),
-          ),
+          ), */
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

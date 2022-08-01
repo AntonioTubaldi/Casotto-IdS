@@ -10,13 +10,19 @@ import '../models/SlotData.dart';
 
 class RiepilogoPrenotazioneView extends StatelessWidget {
   const RiepilogoPrenotazioneView(
-      {Key? key, required this.selezionati, required this.singleOmbrellone})
+      {Key? key,
+      required this.selezionati,
+      required this.singleOmbrellone,
+      required this.numeroLettini,
+      required this.numeroSdraio})
       : super(key: key);
 
   static const String routeName = "RiepilogoPrenotazione";
 
   final List<SlotData> selezionati;
   final Ombrellone singleOmbrellone;
+  final int numeroLettini;
+  final int numeroSdraio;
 
   Widget _getRiepilogoPrenotazione(
       Ombrellone ombrellone, BuildContext context) {
@@ -32,7 +38,10 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {},
                 child: Text("Costo prenotazione: " +
-                    (ombrellone.getPrezzo() * selezionati.length).toString())),
+                    ((ombrellone.getPrezzo() * selezionati.length) +
+                            (ombrellone.getPrezzoLettini() * numeroLettini) +
+                            (ombrellone.getPrezzoSdraio() * numeroSdraio))
+                        .toString())),
             _getScrollableView(selezionati)
           ],
         ),
@@ -49,7 +58,11 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
                   context,
                   AddPrenotazioneView.routeName,
                   arguments: AddPrenotazioneViewArgs(
-                      "123", singleOmbrellone.getIdOmbrellone(), selezionati),
+                      "123",
+                      singleOmbrellone.getIdOmbrellone(),
+                      selezionati,
+                      numeroLettini,
+                      numeroSdraio),
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },

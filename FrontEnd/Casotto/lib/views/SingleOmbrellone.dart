@@ -6,9 +6,11 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
 
+import '../arguments/SceltaLettiniViewArgs.dart';
 import '../models/Ombrellone.dart';
 import '../models/SlotData.dart';
 import '../widgets/SelectableSlotDataTab.dart';
+import 'SceltaLettini.dart';
 
 class SingleOmbrelloneView extends StatefulWidget {
   const SingleOmbrelloneView({Key? key, required this.ombrellone})
@@ -59,8 +61,8 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           onPressed: () => {
                 Navigator.pushNamed(
                   context,
-                  RiepilogoPrenotazioneView.routeName,
-                  arguments: RiepilogoPrenotazioneViewArgs(
+                  SceltaLettiniView.routeName,
+                  arguments: SceltaLettiniViewArgs(
                       widget.ombrellone, _datiSelezionati.toList()),
                 ),
               },
