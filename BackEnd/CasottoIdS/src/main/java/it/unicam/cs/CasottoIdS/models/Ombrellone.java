@@ -18,9 +18,6 @@ public class Ombrellone {
     private int posizione;
     private List<SlotData> disponibilita;
     private double prezzoLettini;
-
-
-
     private double prezzoSdraio;
 
     public Ombrellone(double prezzo, int posizione, List<SlotData> disponibilita, double prezzoLettini,double prezzoSdraio) {

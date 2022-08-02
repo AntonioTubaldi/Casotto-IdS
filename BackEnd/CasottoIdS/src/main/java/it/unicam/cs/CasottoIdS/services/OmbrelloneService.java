@@ -87,9 +87,30 @@ public class OmbrelloneService {
      * aggiunge una lista di ombrelloni nel database
      * @return la lista di ombrelloni inserite nel repository
      * */
-    public List<Ombrellone> addListOmbrellone(List<Ombrellone> newOmbrelloneList) {
-        this.repository.saveAll(newOmbrelloneList);
-        return this.repository.findAll();
+    public Ombrellone addOmbrellone(Ombrellone newOmbrellone) {
+        return this.repository.save(newOmbrellone);
+
     }
+
+    public void delOmbrellone(String idOmbrellone) {
+        this.repository.deleteById(idOmbrellone);
+
+    }
+
+    public Ombrellone modificaOmbrellone(String idOmbrellone, double newPrezzo, int newPosizione, double newPrezzoLettini, double newPrezzoSdraio) {
+        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
+        if(ombrelloneFromMongo.isPresent()) {
+            Ombrellone daModificare = ombrelloneFromMongo.get();
+            daModificare.setPrezzo(newPrezzo);
+            daModificare.setPosizione(newPosizione);
+            daModificare.setPrezzoLettini(newPrezzoLettini);
+            daModificare.setPrezzoSdraio(newPrezzoSdraio);
+            this.repository.save(daModificare);
+            return daModificare;
+        }
+        else return null;
+
+    }
+
 
 }
