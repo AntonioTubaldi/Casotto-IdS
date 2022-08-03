@@ -41,4 +41,9 @@ public class PrenotazioneController {
     public boolean addPrenotazione(@RequestBody ParametriPrenotazione p) {
         return this.service.addPrenotazione( p.idUtente, p.idOmbrellone, p.dataPrenotazione, p.numeroLettini, p.numeroSdraio);
     }
+
+    @DeleteMapping("cancella/{id}")
+    public void cancellaById(@PathVariable("id") String idOmbrellone) {
+        this.service.deleteByIdOmbrellone(idOmbrellone);
+    }
 }

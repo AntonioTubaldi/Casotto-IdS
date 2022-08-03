@@ -4,8 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Prodotto {
     @Id
-    public String idProdotto;
-    private String nome;
+    public String nome;
     private double prezzo;
     private Tipologia tipologia;
 
@@ -16,9 +15,8 @@ public class Prodotto {
 
     }
 
-    public String getIdProdotto() {
-        return idProdotto;
-    }
+
+
 
     public String getNome() {
         return nome;
@@ -47,7 +45,7 @@ public class Prodotto {
     @Override
     public String toString() {
         return "Prodotto{" +
-                "idProdotto='" + idProdotto + '\'' +
+                 '\'' +
                 ", nome='" + nome + '\'' +
                 ", prezzo=" + prezzo +
                 ", tipologia=" + tipologia +

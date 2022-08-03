@@ -15,8 +15,12 @@ public class OrdineService {
     @Autowired
     private OrdineRepository repository;
 
+    public List<Ordine> getAll() {
+        return this.repository.findAll();
+    }
+
     public Ordine addOrdine(String idUtente, double costoTotale, List<Prodotto> prodotti) {
-        Ordine newOrdine = new Ordine(idUtente, costoTotale,prodotti);
+        Ordine newOrdine = new Ordine(idUtente, costoTotale, prodotti);
         this.repository.save(newOrdine);
         return newOrdine;
     }

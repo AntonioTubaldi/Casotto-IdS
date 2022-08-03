@@ -6,10 +6,9 @@ import it.unicam.cs.CasottoIdS.models.ParametriOrdine;
 import it.unicam.cs.CasottoIdS.models.StatoOrdine;
 import it.unicam.cs.CasottoIdS.services.OrdineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ordine")
@@ -17,6 +16,11 @@ public class OrdineController {
 
     @Autowired
     private OrdineService service;
+
+    @GetMapping("/all")
+    public List<Ordine> getAll() {
+        return this.service.getAll();
+    }
 
     @PostMapping("/new")
     public Ordine addOrdine(@RequestBody ParametriOrdine p) {

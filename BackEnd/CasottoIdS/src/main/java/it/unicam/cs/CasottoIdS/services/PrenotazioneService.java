@@ -97,6 +97,13 @@ public class PrenotazioneService {
         return prenotazioneConfermata;
     }
 
+    public void deleteByIdOmbrellone(String idOmbrellone) {
+        this.repository.deleteByIdOmbrellone(idOmbrellone);
+
+
+
+    }
+
 
 
 }

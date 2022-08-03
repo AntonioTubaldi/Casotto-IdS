@@ -1,9 +1,14 @@
 package it.unicam.cs.CasottoIdS.services;
 
 
+
+import it.unicam.cs.CasottoIdS.controllers.PrenotazioneController;
+import it.unicam.cs.CasottoIdS.models.Notifica;
 import it.unicam.cs.CasottoIdS.models.Ombrellone;
+import it.unicam.cs.CasottoIdS.models.Prenotazione;
 import it.unicam.cs.CasottoIdS.models.SlotData;
 import it.unicam.cs.CasottoIdS.repositories.OmbrelloneRepository;
+import it.unicam.cs.CasottoIdS.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +20,12 @@ public class OmbrelloneService {
 
     @Autowired
     private OmbrelloneRepository repository;
+
+    @Autowired
+    private PrenotazioneService prenotazioneService;
+
+
+
 
     /**
      * recupera la lista degli ombrelloni presenti nel database
@@ -93,9 +104,10 @@ public class OmbrelloneService {
     }
 
     public void delOmbrellone(String idOmbrellone) {
+        this.prenotazioneService.deleteByIdOmbrellone(idOmbrellone);
         this.repository.deleteById(idOmbrellone);
-
     }
+
 
     public Ombrellone modificaOmbrellone(String idOmbrellone, double newPrezzo, int newPosizione, double newPrezzoLettini, double newPrezzoSdraio) {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
