@@ -93,6 +93,8 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		prenotazioneRepository.save(prenotazione1);
 		Prenotazione prenotazione2 = new Prenotazione(utente2.getIdUtente(), Two.getIdOmbrellone(), 10, lista,2,1);
 		prenotazioneRepository.save(prenotazione2);
+		Prenotazione prenotazione3 = new Prenotazione(utente2.getIdUtente(), One.getIdOmbrellone(), 20, lista1,2,1);
+		prenotazioneRepository.save(prenotazione3);
 
 		Prodotto prodotto1 = new Prodotto("Gelato", 8, Tipologia.CIBO);
 		prodottoRepository.save(prodotto1);

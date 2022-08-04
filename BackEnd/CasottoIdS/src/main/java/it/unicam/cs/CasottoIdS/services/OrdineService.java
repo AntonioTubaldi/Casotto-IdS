@@ -19,9 +19,8 @@ public class OrdineService {
         return this.repository.findAll();
     }
 
-    public Ordine addOrdine(String idUtente, double costoTotale, List<Prodotto> prodotti) {
-        Ordine newOrdine = new Ordine(idUtente, costoTotale, prodotti);
-        this.repository.save(newOrdine);
-        return newOrdine;
+    public Ordine addOrdine(Ordine newOrdine) {
+          return this.repository.save(newOrdine);
+
     }
 }

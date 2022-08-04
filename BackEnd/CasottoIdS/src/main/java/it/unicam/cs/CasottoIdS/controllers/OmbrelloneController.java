@@ -53,6 +53,7 @@ public class OmbrelloneController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteOmbrellone(@PathVariable("id") String idOmbrellone) {
+
         this.service.delOmbrellone(idOmbrellone);
     }
 
