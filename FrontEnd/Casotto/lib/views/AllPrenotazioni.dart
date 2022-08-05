@@ -63,9 +63,19 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                   ),
                   body: _getScrollableView(list),
                 );
-              } else
+              } else {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
+                  appBar: AppBar(
+                    backgroundColor: Colors.teal,
+                    centerTitle: true,
+                    title: const Text("Visualizza Prenotazioni"),
+                  ),
+                  floatingActionButton: RawMaterialButton(
+                    constraints: BoxConstraints.expand(width: 120, height: 50),
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                     onPressed: () => {
                       Navigator.popUntil(
                         context,
@@ -73,22 +83,19 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                       ),
                     },
                     child: Text(
-                      "H",
-                      style: TextStyle(fontSize: 30),
+                      "Home",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
-                  appBar: AppBar(
-                    centerTitle: true,
-                    title: const Text("Visualizza Prenotazioni"),
-                  ),
                   body: Center(
-                    child: ElevatedButton(
+                    child: RawMaterialButton(
                       onPressed: () {},
                       child: Text(
                           "Non ci sono prenotazioni per il giorno selezionato"),
                     ),
                   ),
                 );
+              }
             }
         }
         return const MessageScreen(status: MessageScreenStatus.ERROR);

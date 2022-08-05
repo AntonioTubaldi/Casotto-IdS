@@ -28,7 +28,9 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
       Ombrellone ombrellone, BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true, title: const Text("Riepilogo Prenotazione")),
+          backgroundColor: Colors.teal,
+          centerTitle: true,
+          title: const Text("Riepilogo Prenotazione")),
       body: Container(
         width: double.infinity,
         alignment: Alignment.topCenter,
@@ -52,7 +54,7 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(
+            RawMaterialButton(
               onPressed: () => {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
@@ -66,16 +68,30 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },
-              child: Text("CONFERMA PRENOTAZIONE"),
+              child: Text("CONFERMA PRENOTAZIONE",
+                  style: TextStyle(color: Colors.white)),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 50.0, width: 205),
             ),
-            ElevatedButton(
+            RawMaterialButton(
               onPressed: () {
                 Navigator.popUntil(
                   context,
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("TORNA ALLA HOME"),
+              child: Text(
+                "TORNA ALLA HOME",
+                style: TextStyle(color: Colors.white),
+              ),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
             ),
           ],
         ),

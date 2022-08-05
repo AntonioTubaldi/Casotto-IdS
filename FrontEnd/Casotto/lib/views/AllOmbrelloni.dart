@@ -52,6 +52,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                 List<Ombrellone> list = snapshot.data!;
                 return Scaffold(
                     appBar: AppBar(
+                      backgroundColor: Colors.teal,
                       centerTitle: true,
                       title: const Text('Visualizza Spiaggia'),
                     ),
@@ -65,7 +66,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       },
                       child: Text("Home",
                           style: TextStyle(fontSize: 30, color: Colors.white)),
-                      fillColor: Colors.blueGrey,
+                      fillColor: Colors.teal,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0),
                       ),

@@ -26,7 +26,9 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true, title: const Text("Riepilogo Prenotazione")),
+          backgroundColor: Colors.teal,
+          centerTitle: true,
+          title: const Text("Riepilogo Prenotazione")),
       body: Container(
         width: double.infinity,
         alignment: Alignment.topCenter,
@@ -38,10 +40,10 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
               value: numeroLettini,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
-              style: const TextStyle(color: Colors.deepPurple),
+              style: const TextStyle(color: Colors.black),
               underline: Container(
                 height: 2,
-                color: Colors.deepPurpleAccent,
+                color: Colors.teal,
               ),
               onChanged: (int? newValue) {
                 setState(() {
@@ -60,10 +62,10 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
               value: numeroSdraio,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
-              style: const TextStyle(color: Colors.deepPurple),
+              style: const TextStyle(color: Colors.black),
               underline: Container(
                 height: 2,
-                color: Colors.deepPurpleAccent,
+                color: Colors.teal,
               ),
               onChanged: (int? newValue) {
                 setState(() {
@@ -77,7 +79,14 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
                 );
               }).toList(),
             ),
-            ElevatedButton(
+            RawMaterialButton(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
+              constraints: BoxConstraints.expand(width: 100, height: 30),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -89,7 +98,10 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
                       numeroSdraio),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text(
+                "CONFERMA",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

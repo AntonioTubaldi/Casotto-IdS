@@ -26,8 +26,13 @@ class _CalendarViewState extends State<CalendarView> {
     if (_isDaySelected) {
       return Container(
           alignment: Alignment.bottomRight,
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-          child: ElevatedButton(
+          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
+          child: RawMaterialButton(
+              constraints: BoxConstraints.expand(width: 350, height: 50),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
               onPressed: () => {
                     Navigator.pushNamed(
                       context,
@@ -37,7 +42,8 @@ class _CalendarViewState extends State<CalendarView> {
                   },
               child: const Text(
                 "VISUALIZZA PRENOTAZIONI",
-                style: TextStyle(fontSize: 25),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.white),
               )));
     } else
       return null;
@@ -51,7 +57,7 @@ class _CalendarViewState extends State<CalendarView> {
         backgroundColor: Colors.white,
         floatingActionButton: mostraPrenotazioni(),
         appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Colors.teal,
           title: Text('Calendario'),
         ),
         body: TableCalendar(

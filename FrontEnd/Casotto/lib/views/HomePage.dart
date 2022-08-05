@@ -14,17 +14,24 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Colors.teal,
           title: const Text('HomePage'),
         ),
-        // ALT + INVIO per fare il wrap del widget all'interno di un altro widget (una colonna o una riga)
+        /**
+         * per visualizzare il background, andare su 
+         * pubspec.yaml ->  assets:
+                          - .env
+                          - lib/images/
+
+        sotto .env aggiungere -lib/images/
+         */
         body: Container(
           width: double.infinity,
-          /* decoration: const BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("lib/images/spiaggia2.jpg"),
+                image: AssetImage("lib/images/spiaggia.jpg"),
                 fit: BoxFit.cover),
-          ), */
+          ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,7 +48,7 @@ class HomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
-                  fillColor: Colors.blue,
+                  fillColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
@@ -58,7 +65,7 @@ class HomePage extends StatelessWidget {
                   child: Text("VISUALIZZA PRENOTAZIONI",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 25, color: Colors.white)),
-                  fillColor: Colors.blue,
+                  fillColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),

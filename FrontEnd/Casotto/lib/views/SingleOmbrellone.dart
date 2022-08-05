@@ -57,19 +57,30 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
 
   Widget? _showPrenotazione() {
     if (_datiSelezionati.isNotEmpty) {
-      return ElevatedButton(
-          onPressed: () => {
-                Navigator.pushNamed(
-                  context,
-                  SceltaLettiniView.routeName,
-                  arguments: SceltaLettiniViewArgs(
-                      widget.ombrellone, _datiSelezionati.toList()),
-                ),
-              },
-          child: Text(
-            "PRENOTA",
-            style: TextStyle(fontSize: 30),
-          ));
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          RawMaterialButton(
+            onPressed: () => {
+              Navigator.pushNamed(
+                context,
+                SceltaLettiniView.routeName,
+                arguments: SceltaLettiniViewArgs(
+                    widget.ombrellone, _datiSelezionati.toList()),
+              ),
+            },
+            child: Text(
+              "PRENOTA",
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            ),
+            fillColor: Colors.teal,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
+          ),
+        ],
+      );
     } else {
       return null;
     }
@@ -80,24 +91,30 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
     if (widget.ombrellone.getDisponibilita().isNotEmpty) {
       return Scaffold(
         floatingActionButton: _showPrenotazione(),
-        appBar: AppBar(title: Text("Schermata Prenotazione")),
+        appBar: AppBar(
+          title: Text("Schermata Prenotazione"),
+          backgroundColor: Colors.teal,
+        ),
         body: Center(
           child: _getScrollableView(widget.ombrellone.getDisponibilita()),
         ),
       );
-    } else
+    } else {
       return Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: RawMaterialButton(
           onPressed: () => {
             Navigator.popUntil(
               context,
               ModalRoute.withName(HomePage.routeName),
             ),
           },
-          child: Text(
-            "H",
-            style: TextStyle(fontSize: 30),
+          child: const Text("Home",
+              style: TextStyle(fontSize: 30, color: Colors.white)),
+          fillColor: Colors.teal,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50.0),
           ),
+          constraints: BoxConstraints.tightFor(height: 50.0, width: 130),
         ),
         appBar: AppBar(
           centerTitle: true,
@@ -111,5 +128,6 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           ),
         ),
       );
+    }
   }
 }
