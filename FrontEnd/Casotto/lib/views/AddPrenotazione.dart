@@ -51,13 +51,13 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               return Scaffold(
-                floatingActionButton: FloatingActionButton(
+                floatingActionButton: RawMaterialButton(
                   onPressed: () => {
                     Navigator.popUntil(
                         context, ModalRoute.withName(HomePage.routeName)),
                   },
                   child: Text(
-                    "H",
+                    "Home",
                     style: TextStyle(fontSize: 30),
                   ),
                 ),

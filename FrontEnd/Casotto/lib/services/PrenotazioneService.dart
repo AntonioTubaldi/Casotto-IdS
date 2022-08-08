@@ -97,9 +97,9 @@ class PrenotazioneService {
       "idOmbrellone": idOmbrellone,
       "dataPrenotazione": dataPrenotazione
           .map((slotData) => {
-                "durata": slotData.getDurataString(),
-                "data": slotData.getData().toIso8601String()
-              })
+        "durata": slotData.getDurataString(),
+        "data": slotData.getData().toIso8601String()
+      })
           .toList()
     }));
     Response response = await http.post(
@@ -109,9 +109,9 @@ class PrenotazioneService {
         "idOmbrellone": idOmbrellone,
         "dataPrenotazione": dataPrenotazione
             .map((slotData) => {
-                  "durata": slotData.getDurataString(),
-                  "data": slotData.getData().toIso8601String()
-                })
+          "durata": slotData.getDurataString(),
+          "data": slotData.getData().toIso8601String()
+        })
             .toList(),
         "numeroLettini": numeroLettini,
         "numeroSdraio": numeroSdraio
