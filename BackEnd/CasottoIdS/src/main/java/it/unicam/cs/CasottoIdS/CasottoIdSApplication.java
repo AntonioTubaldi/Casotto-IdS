@@ -75,6 +75,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		);
 
 
+
 		Ombrellone One = new Ombrellone(10, 1, lista,1,1);
 		ombrelloneRepository.save(One);
 		Ombrellone Two = new Ombrellone(10, 2, lista1,1,1);

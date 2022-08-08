@@ -3,17 +3,20 @@ package it.unicam.cs.CasottoIdS.services;
 
 
 import it.unicam.cs.CasottoIdS.controllers.PrenotazioneController;
-import it.unicam.cs.CasottoIdS.models.Notifica;
-import it.unicam.cs.CasottoIdS.models.Ombrellone;
-import it.unicam.cs.CasottoIdS.models.Prenotazione;
-import it.unicam.cs.CasottoIdS.models.SlotData;
+import it.unicam.cs.CasottoIdS.models.*;
 import it.unicam.cs.CasottoIdS.repositories.OmbrelloneRepository;
 import it.unicam.cs.CasottoIdS.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+
+import static it.unicam.cs.CasottoIdS.models.Giorno.MATTINA;
+import static it.unicam.cs.CasottoIdS.models.Giorno.POMERIGGIO;
 
 @Service
 public class OmbrelloneService {
@@ -98,8 +101,36 @@ public class OmbrelloneService {
      * aggiunge una lista di ombrelloni nel database
      * @return la lista di ombrelloni inserite nel repository
      * */
-    public Ombrellone addOmbrellone(Ombrellone newOmbrellone) {
-        return this.repository.save(newOmbrellone);
+    public boolean addOmbrellone(double prezzo, int posizione, double prezzoLettini, double prezzoSdraio) {
+        Calendar calendario = Calendar.getInstance();
+        calendario.set(2022, 8, 28, 0, 0, 0);
+        SlotData iniziale = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate());
+        SlotData iniziale1 = new SlotData(Giorno.POMERIGGIO, calendario.getTime().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate());
+
+        calendario.add(Calendar.DAY_OF_YEAR, 1);
+        SlotData iniziale2 = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate());
+        SlotData iniziale3 = new SlotData(Giorno.POMERIGGIO, calendario.getTime().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate());
+        List<SlotData> lista = new ArrayList<>(
+                List.of(iniziale, iniziale1, iniziale2, iniziale3)
+        );
+
+        Ombrellone newOmbrellone = new Ombrellone(prezzo, posizione, lista, prezzoLettini, prezzoSdraio);
+        this.repository.save(newOmbrellone);
+        Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(newOmbrellone.getIdOmbrellone());
+        if(ombrelloneFromMongo.isPresent()) {
+           return true;
+        } else
+            return false;
+
+
 
     }
 

@@ -1,4 +1,6 @@
 import 'package:casotto/models/Ombrellone.dart';
+import 'package:casotto/views/SceltaSpecificheOmb.dart';
+import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
 import '../services/OmbrelloneService.dart';
 import '../widgets/OmbrelloniTab.dart';
@@ -57,21 +59,43 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       title: const Text('Visualizza Spiaggia'),
                     ),
                     body: _getScrollableView(list),
-                    floatingActionButton: RawMaterialButton(
-                      onPressed: () => {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(HomePage.routeName),
+                    floatingActionButton: Row(
+                      children: [
+                        RawMaterialButton(
+                          onPressed: () => {
+                            Navigator.popUntil(
+                              context,
+                              ModalRoute.withName(HomePage.routeName),
+                            ),
+                          },
+                          child: Text("Home",
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white)),
+                          fillColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          constraints:
+                              BoxConstraints.tightFor(height: 50.0, width: 130),
                         ),
-                      },
-                      child: Text("Home",
-                          style: TextStyle(fontSize: 30, color: Colors.white)),
-                      fillColor: Colors.teal,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      constraints:
-                          BoxConstraints.tightFor(height: 50.0, width: 130),
+                        RawMaterialButton(
+                          onPressed: () => {
+                            Navigator.pushNamed(
+                              context,
+                              SceltaSpecificheOmbView.routeName,
+                            ),
+                          },
+                          child: Text("Aggiungi Ombrellone",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white)),
+                          fillColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          constraints:
+                              BoxConstraints.tightFor(height: 50.0, width: 200),
+                        ),
+                      ],
                     ));
               } else
                 return Scaffold(

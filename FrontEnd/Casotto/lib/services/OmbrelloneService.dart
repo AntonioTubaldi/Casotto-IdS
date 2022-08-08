@@ -37,52 +37,40 @@ class OmbrelloneService {
       double prezzoLettini = ombrelloneObject["prezzoLettini"];
       double prezzoSdraio = ombrelloneObject["prezzoSdraio"];
 
-      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone,
-          prezzo,
-          posizione,
-          dataToReturn,
-          prezzoLettini,
-          prezzoSdraio);
+      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone, prezzo, posizione,
+          dataToReturn, prezzoLettini, prezzoSdraio);
 
       toReturn.add(ombrelloneToAdd);
     }
     return toReturn;
   }
 
-  Future<Ombrellone> addOmbrellone(
-      Ombrellone OmbrelloneToAdd) async {
+  Future<bool> addOmbrellone(double prezzo, int posizione, double prezzoLettini,
+      double prezzoSdraio) async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
-   /* print(jsonEncode({
-      "idOmbrellone": ,
-      "prezzo": prezzo,
-      "posizione": posizione,
-      "disponibilità": disponibilita.map((slotData) => {
-        slotData.getData()
-      }).toList(),
-      "prezzoLettini": prezzoLettini,
-      "prezzoSdraio": prezzoSdraio
-    }));*/
-    Response response = await http.post(
-      url,
-      body: jsonEncode({
-        OmbrelloneToAdd
-       /* "idOmbrellone": idOmbrellone,
-        "prezzo": prezzo,
-        "posizione": posizione,
-        "disponibilità": disponibilita.map((slotData) => {
-          slotData.getData()
-        }).toList(),
-        "prezzoLettini": prezzoLettini,
-        "prezzoSdraio": prezzoSdraio*/
-      }),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
-    dynamic responseBody = jsonDecode(response.body);
+    Response response = await http.post(url,
+        body: jsonEncode({
+          "prezzo": prezzo,
+          "posizione": posizione,
+          "prezzoLettini": prezzoLettini,
+          "prezzoSdraio": prezzoSdraio
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+
+    bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
+  }
+
+  Future<void> rimuoviOmbrellone(String idOmbrellone) async {
+    await Future.delayed(Duration(seconds: 1));
+
+    Uri url = Uri.parse(_baseUrl + "/delete/" + idOmbrellone);
+    Response response = await http.delete(url);
+    dynamic responseBody = response.body;
   }
 
   Future<List<SlotData>> getDisponibilita(String idOmbrellone) async {
@@ -138,6 +126,4 @@ class OmbrelloneService {
 
     return toReturn;
   }
-
-
 }

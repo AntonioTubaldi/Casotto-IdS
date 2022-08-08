@@ -1,6 +1,9 @@
+import 'package:casotto/arguments/AddOmbrelloneViewArgs.dart';
 import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
+import 'package:casotto/arguments/OmbrelloneStringArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
+import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
@@ -8,9 +11,12 @@ import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
+import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaLettini.dart';
+import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
+import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
@@ -152,6 +158,36 @@ class MyApp extends StatelessWidget {
                 builder: (_) => SceltaLettiniView(
                     selezionati: argomenti.lista,
                     singleOmbrellone: argomenti.ombrellone1),
+              );
+            }
+            break;
+          case AddOmbrelloneView.routeName:
+            if (argomenti is AddOmbrelloneViewArgs) {
+              return MaterialPageRoute(
+                  settings:
+                      const RouteSettings(name: AddOmbrelloneView.routeName),
+                  builder: (_) => AddOmbrelloneView(
+                      prezzo: argomenti.prezzo,
+                      posizione: argomenti.posizione,
+                      prezzoLettini: argomenti.prezzoLettini,
+                      prezzoSdraio: argomenti.prezzoSdraio));
+            }
+            break;
+          case SceltaSpecificheOmbView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => SceltaSpecificheOmbView(),
+              settings:
+                  const RouteSettings(name: SceltaSpecificheOmbView.routeName),
+            );
+            break;
+
+          case RimuoviOmbrelloneView.routeName:
+            if (argomenti is OmbrelloneStringArg) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: RimuoviOmbrelloneView.routeName),
+                builder: (_) =>
+                    RimuoviOmbrelloneView(idOmbrellone: argomenti.idOmbrellone),
               );
             }
             break;

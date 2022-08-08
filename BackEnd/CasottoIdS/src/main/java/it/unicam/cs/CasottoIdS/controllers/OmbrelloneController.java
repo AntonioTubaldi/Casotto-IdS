@@ -1,7 +1,7 @@
 package it.unicam.cs.CasottoIdS.controllers;
 
 import it.unicam.cs.CasottoIdS.models.Ombrellone;
-import it.unicam.cs.CasottoIdS.models.ParametriModifica;
+import it.unicam.cs.CasottoIdS.models.ParametriOmbrellone;
 import it.unicam.cs.CasottoIdS.models.SlotData;
 import it.unicam.cs.CasottoIdS.services.OmbrelloneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +47,8 @@ public class OmbrelloneController {
 
     // POST localhost:8080/ombrellone/new
     @PostMapping("/new")
-    public Ombrellone addOmbrellone(@RequestBody Ombrellone newOmbrellone) {
-        return this.service.addOmbrellone(newOmbrellone);
+    public boolean addOmbrellone(@RequestBody ParametriOmbrellone o) {
+        return this.service.addOmbrellone(o.prezzo, o.posizione, o.prezzoLettini, o.prezzoSdraio);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -58,7 +58,7 @@ public class OmbrelloneController {
     }
 
     @PutMapping("/modifica/{id}")
-    public Ombrellone modificaOmbrellone(@PathVariable("id") String idOmbrellone, @RequestBody ParametriModifica p) {
+    public Ombrellone modificaOmbrellone(@PathVariable("id") String idOmbrellone, @RequestBody ParametriOmbrellone p) {
         return this.service.modificaOmbrellone(idOmbrellone, p.prezzo,p.posizione, p.prezzoLettini, p.prezzoSdraio);
     }
 

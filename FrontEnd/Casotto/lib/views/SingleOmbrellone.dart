@@ -1,3 +1,4 @@
+import 'package:casotto/arguments/OmbrelloneStringArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
@@ -10,6 +11,7 @@ import '../arguments/SceltaLettiniViewArgs.dart';
 import '../models/Ombrellone.dart';
 import '../models/SlotData.dart';
 import '../widgets/SelectableSlotDataTab.dart';
+import 'RimuoviOmbrellone.dart';
 import 'SceltaLettini.dart';
 
 class SingleOmbrelloneView extends StatefulWidget {
@@ -96,7 +98,25 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           backgroundColor: Colors.teal,
         ),
         body: Center(
-          child: _getScrollableView(widget.ombrellone.getDisponibilita()),
+          child: Column(
+            children: [
+              _getScrollableView(widget.ombrellone.getDisponibilita()),
+              RawMaterialButton(
+                onPressed: () => {
+                  Navigator.pushNamed(
+                    context,
+                    RimuoviOmbrelloneView.routeName,
+                    arguments: OmbrelloneStringArg(
+                        widget.ombrellone.getIdOmbrellone()),
+                  ),
+                },
+                child: const Text(
+                  "Elimina Ombrellone",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     } else {
