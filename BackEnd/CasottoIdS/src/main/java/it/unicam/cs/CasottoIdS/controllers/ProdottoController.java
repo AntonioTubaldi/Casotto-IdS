@@ -20,8 +20,8 @@ public class ProdottoController {
     }
 
     @PostMapping("/new")
-    public Prodotto addProdotto(@RequestBody Prodotto newProdotto) {
-        return this.service.addProdotto(newProdotto);
+    public boolean addProdotto(@RequestBody ParametriProdotto p) {
+        return this.service.addProdotto(p.nome, p.prezzo);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -30,8 +30,8 @@ public class ProdottoController {
     }
 
     @PutMapping("/modifica/{id}")
-    public Prodotto modificaProdotto(@PathVariable("id") String nome, @RequestBody ParametriProdotto p) {
-        return this.service.modificaProdotto(nome, p.prezzo, p.tipologia);
+    public boolean modificaProdotto(@PathVariable("id") String nome, @RequestBody ParametriProdotto p) {
+        return this.service.modificaProdotto(nome, p.prezzo);
     }
 
 }

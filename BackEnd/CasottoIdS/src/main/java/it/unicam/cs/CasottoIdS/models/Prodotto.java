@@ -6,18 +6,14 @@ public class Prodotto {
     @Id
     public String nome;
     private double prezzo;
-    private Tipologia tipologia;
 
-    public Prodotto(String nome, double prezzo, Tipologia tipologia) {
+
+    public Prodotto(String nome, double prezzo) {
         this.nome = nome;
         this.prezzo = prezzo;
-        this.tipologia = tipologia;
+
 
     }
-
-
-
-
     public String getNome() {
         return nome;
     }
@@ -34,21 +30,13 @@ public class Prodotto {
         this.prezzo = prezzo;
     }
 
-    public Tipologia getTipologia() {
-        return tipologia;
-    }
-
-    public void setTipologia(Tipologia tipologia) {
-        this.tipologia = tipologia;
-    }
 
     @Override
     public String toString() {
         return "Prodotto{" +
                  '\'' +
                 ", nome='" + nome + '\'' +
-                ", prezzo=" + prezzo +
-                ", tipologia=" + tipologia +
+                ", prezzo=" + prezzo  +
                 '}';
     }
 }

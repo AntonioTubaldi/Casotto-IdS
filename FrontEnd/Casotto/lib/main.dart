@@ -4,27 +4,39 @@ import 'package:casotto/arguments/OmbrelloneStringArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
+import 'package:casotto/views/AddProdotto.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/HomePage.dart';
+import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
+import 'package:casotto/views/ModificaProdotto.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
+import 'package:casotto/views/ProdottiSelezionabili.dart';
+import 'package:casotto/views/ProdottoEliminato.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaLettini.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
+import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
+import 'package:casotto/views/SceltaSpecificheProdotto.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
+import 'package:casotto/views/SingleProdotto.dart';
 import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
+import 'arguments/ModificaProdottoViewArgs.dart';
+import 'arguments/ProdottiSelezionabiliArgs.dart';
+import 'arguments/ProdottoStringArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
+import 'arguments/SingleProdottoViewArgs.dart';
 import 'views/AddPrenotazione.dart';
 
 Future main() async {
@@ -164,6 +176,7 @@ class MyApp extends StatelessWidget {
               );
             }
             break;
+
           case AddOmbrelloneView.routeName:
             if (argomenti is AddOmbrelloneViewArgs) {
               return MaterialPageRoute(
@@ -176,6 +189,7 @@ class MyApp extends StatelessWidget {
                       prezzoSdraio: argomenti.prezzoSdraio));
             }
             break;
+
           case SceltaSpecificheOmbView.routeName:
             return MaterialPageRoute(
               settings:
@@ -194,6 +208,7 @@ class MyApp extends StatelessWidget {
               );
             }
             break;
+
           case SceltaModificheOmbrelloneView.routeName:
             if (argomenti is SceltaModificheOmbrelloneViewArgs) {
               return MaterialPageRoute(
@@ -208,6 +223,7 @@ class MyApp extends StatelessWidget {
               );
             }
             break;
+
           case ModificaOmbrelloneView.routeName:
             if (argomenti is SceltaModificheOmbrelloneViewArgs) {
               return MaterialPageRoute(
@@ -221,6 +237,84 @@ class MyApp extends StatelessWidget {
                     prezzoSdraio: argomenti.prezzoSdraio),
               );
             }
+            break;
+
+          case MenuView.routeName:
+            return MaterialPageRoute(
+                settings: const RouteSettings(name: MenuView.routeName),
+                builder: (_) => MenuView());
+
+            break;
+
+          case ProdottiSelezionabiliView.routeName:
+            if (argomenti is ProdottiSelezionabiliArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ProdottiSelezionabiliView.routeName),
+                builder: (_) =>
+                    ProdottiSelezionabiliView(lista: argomenti.lista),
+              );
+            }
+            break;
+
+          case SingleProdottoView.routeName:
+            if (argomenti is SingleProdottoViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SingleProdottoView.routeName),
+                builder: (_) => SingleProdottoView(
+                    singleProdotto: argomenti.singleProdotto),
+              );
+            }
+            break;
+
+          case ProdottoEliminatoView.routeName:
+            if (argomenti is ProdottoStringArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ProdottoEliminatoView.routeName),
+                builder: (_) => ProdottoEliminatoView(name: argomenti.nome),
+              );
+            }
+            break;
+
+          case SceltaPrezzoProdottoView.routeName:
+            if (argomenti is ProdottoStringArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaPrezzoProdottoView.routeName),
+                builder: (_) => SceltaPrezzoProdottoView(nome: argomenti.nome),
+              );
+            }
+            break;
+
+          case ModificaProdottoView.routeName:
+            if (argomenti is ModificaProdottoViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaProdottoView.routeName),
+                builder: (_) => ModificaProdottoView(
+                    nome: argomenti.nome, newPrezzo: argomenti.prezzo),
+              );
+            }
+            break;
+
+          case AddProdottoView.routeName:
+            if (argomenti is ModificaProdottoViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: AddProdottoView.routeName),
+                builder: (_) => AddProdottoView(
+                    nome: argomenti.nome, prezzo: argomenti.prezzo),
+              );
+            }
+            break;
+
+          case SceltaSpecificheProdottoView.routeName:
+            return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaSpecificheProdottoView.routeName),
+                builder: (_) => SceltaSpecificheProdottoView());
+
             break;
         }
       },

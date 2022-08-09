@@ -1,11 +1,29 @@
 package it.unicam.cs.CasottoIdS.models;
 
 public class ParametriProdotto {
+    public String nome;
     public double prezzo;
-    public Tipologia tipologia;
 
-    public ParametriProdotto(double prezzo, Tipologia tipologia) {
+
+    public ParametriProdotto(String nome, double prezzo) {
+        this.nome=nome;
         this.prezzo = prezzo;
-        this.tipologia = tipologia;
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
     }
 }

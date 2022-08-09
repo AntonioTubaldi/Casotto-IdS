@@ -98,43 +98,44 @@ class SinglePrenotazioneView extends StatelessWidget {
       ),
       appBar: AppBar(title: Text("La prenotazione nel dettaglio")),
       body: Center(
-          child: Column(
-        children: [
-          ElevatedButton(
+        child: Column(
+          children: [
+            ElevatedButton(
+                onPressed: () {},
+                child: Text("Ombrellone prenotato: " +
+                    singlePrenotazione.getIdOmbrellone())),
+            ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                    "Prenotazione: " + singlePrenotazione.getIdPrenotazione())),
+            ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                    "Utente associato: " + singlePrenotazione.getIdUtente())),
+            ElevatedButton(
               onPressed: () {},
-              child: Text("Ombrellone prenotato: " +
-                  singlePrenotazione.getIdOmbrellone())),
-          ElevatedButton(
+              child: Text("CostoTotale: " +
+                  singlePrenotazione.getCostoTotale().toString()),
+            ),
+            ElevatedButton(
               onPressed: () {},
-              child: Text(
-                  "Prenotazione: " + singlePrenotazione.getIdPrenotazione())),
-          ElevatedButton(
+              child: Text("Stato Prenotazione: " +
+                  singlePrenotazione.getStatoPrenotazioneString()),
+            ),
+            _getScrollableView(singlePrenotazione.getDataPrenotazione()),
+            ElevatedButton(
               onPressed: () {},
-              child: Text(
-                  "Utente associato: " + singlePrenotazione.getIdUtente())),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("CostoTotale: " +
-                singlePrenotazione.getCostoTotale().toString()),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Stato Prenotazione: " +
-                singlePrenotazione.getStatoPrenotazioneString()),
-          ),
-          _getScrollableView(singlePrenotazione.getDataPrenotazione()),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Numero Lettini: " +
-                singlePrenotazione.getNumeroLettini().toString()),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Numero Sdraio: " +
-                singlePrenotazione.getNumeroSdraio().toString()),
-          ),
-        ],
-      )),
+              child: Text("Numero Lettini: " +
+                  singlePrenotazione.getNumeroLettini().toString()),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Numero Sdraio: " +
+                  singlePrenotazione.getNumeroSdraio().toString()),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

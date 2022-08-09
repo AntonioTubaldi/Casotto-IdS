@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'AllOmbrelloni.dart';
+import 'Menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -65,6 +66,25 @@ class HomePage extends StatelessWidget {
                   child: Text("VISUALIZZA PRENOTAZIONI",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 25, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 350),
+                ),
+                RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      MenuView.routeName,
+                    ),
+                  },
+                  child: const Text(
+                    "VISUALIZZA MENU",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
                   fillColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),

@@ -21,24 +21,29 @@ public class ProdottoService {
        return menu;
     }
 
-    public Prodotto addProdotto(Prodotto newProdotto) {
-        return this.repository.save(newProdotto);
+    public boolean addProdotto(String nome, double prezzo) {
+        Prodotto newProdotto = new Prodotto(nome, prezzo);
+        this.repository.save(newProdotto);
+        Optional<Prodotto> prodottoFromMongo = this.repository.findById(newProdotto.getNome());
+        if(prodottoFromMongo.isPresent()) {
+            return true;
+        } else
+            return false;
         }
 
     public void deleteProdotto(String nome) {
         this.repository.deleteById(nome);
     }
 
-    public Prodotto modificaProdotto(String nome, double newPrezzo, Tipologia newTipologia) {
+    public boolean modificaProdotto(String nome, double newPrezzo) {
         Optional<Prodotto> prodottoFromMongo = this.repository.findById(nome);
         if(prodottoFromMongo.isPresent()) {
             Prodotto daModificare = prodottoFromMongo.get();
             daModificare.setPrezzo(newPrezzo);
-            daModificare.setTipologia(newTipologia);
             this.repository.save(daModificare);
-            return daModificare;
+            return true;
         }
-        else return null;
+        else return false;
 
     }
 
