@@ -58,7 +58,7 @@ public class OmbrelloneController {
     }
 
     @PutMapping("/modifica/{id}")
-    public Ombrellone modificaOmbrellone(@PathVariable("id") String idOmbrellone, @RequestBody ParametriOmbrellone p) {
+    public boolean modificaOmbrellone(@PathVariable("id") String idOmbrellone, @RequestBody ParametriOmbrellone p) {
         return this.service.modificaOmbrellone(idOmbrellone, p.prezzo,p.posizione, p.prezzoLettini, p.prezzoSdraio);
     }
 

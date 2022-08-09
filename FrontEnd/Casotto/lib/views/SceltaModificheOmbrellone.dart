@@ -1,20 +1,36 @@
-import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-import '../arguments/AddOmbrelloneViewArgs.dart';
+import '../arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'HomePage.dart';
+import 'ModificaOmbrellone.dart';
 
-class SceltaSpecificheOmbView extends StatefulWidget {
-  const SceltaSpecificheOmbView({Key? key}) : super(key: key);
+class SceltaModificheOmbrelloneView extends StatefulWidget {
+  const SceltaModificheOmbrelloneView(
+      {Key? key,
+      required this.idOmbrellone,
+      required this.prezzo,
+      required this.posizione,
+      required this.prezzoLettini,
+      required this.prezzoSdraio})
+      : super(key: key);
 
-  static const String routeName = "SceltaSpecificheOmb";
+  final String idOmbrellone;
+  final double prezzo;
+  final int posizione;
+  final double prezzoLettini;
+  final double prezzoSdraio;
+
+  static const String routeName = "SceltaModificheOmb";
 
   @override
-  State<SceltaSpecificheOmbView> createState() =>
-      _SceltaSpecificheOmbViewState();
+  State<SceltaModificheOmbrelloneView> createState() =>
+      _SceltaModificheOmbrelloneViewState();
 }
 
-class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
+class _SceltaModificheOmbrelloneViewState
+    extends State<SceltaModificheOmbrelloneView> {
   double prezzo = 10;
   int posizione = 1;
   double prezzoLettini = 1;
@@ -25,14 +41,14 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
       appBar: AppBar(
           backgroundColor: Colors.teal,
           centerTitle: true,
-          title: const Text("Aggiungi un Ombrellone")),
+          title: const Text("Modifica Ombrellone")),
       body: Container(
         width: double.infinity,
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text("Imposta il prezzo: "),
+            Text("Modifica il prezzo: "),
             DropdownButton<double>(
               value: prezzo,
               icon: const Icon(Icons.arrow_downward),
@@ -55,7 +71,7 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
                 );
               }).toList(),
             ),
-            Text("Scegli la fila: "),
+            Text("Modifica la fila: "),
             DropdownButton<int>(
               value: posizione,
               icon: const Icon(Icons.arrow_downward),
@@ -77,7 +93,7 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
                 );
               }).toList(),
             ),
-            Text("Imposta il prezzo dei lettini: "),
+            Text("Modifica il prezzo dei lettini: "),
             DropdownButton<double>(
               value: prezzoLettini,
               icon: const Icon(Icons.arrow_downward),
@@ -100,7 +116,7 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
                 );
               }).toList(),
             ),
-            Text("Imposta il prezzo delle sdraio: "),
+            Text("Modifica il prezzo delle sdraio: "),
             DropdownButton<double>(
               value: prezzoSdraio,
               icon: const Icon(Icons.arrow_downward),
@@ -134,9 +150,13 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AddOmbrelloneView.routeName,
-                  arguments: AddOmbrelloneViewArgs(
-                      prezzo, posizione, prezzoLettini, prezzoSdraio),
+                  ModificaOmbrelloneView.routeName,
+                  arguments: SceltaModificheOmbrelloneViewArgs(
+                      widget.idOmbrellone,
+                      prezzo,
+                      posizione,
+                      prezzoLettini,
+                      prezzoSdraio),
                   ModalRoute.withName(HomePage.routeName),
                 );
               },

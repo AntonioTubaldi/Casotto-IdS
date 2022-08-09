@@ -8,11 +8,13 @@ import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/HomePage.dart';
+import 'package:casotto/views/ModificaOmbrellone.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaLettini.dart';
+import 'package:casotto/views/SceltaModificheOmbrellone.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
@@ -21,6 +23,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
+import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'views/AddPrenotazione.dart';
 
@@ -175,9 +178,9 @@ class MyApp extends StatelessWidget {
             break;
           case SceltaSpecificheOmbView.routeName:
             return MaterialPageRoute(
-              builder: (_) => SceltaSpecificheOmbView(),
               settings:
                   const RouteSettings(name: SceltaSpecificheOmbView.routeName),
+              builder: (_) => SceltaSpecificheOmbView(),
             );
             break;
 
@@ -188,6 +191,34 @@ class MyApp extends StatelessWidget {
                     const RouteSettings(name: RimuoviOmbrelloneView.routeName),
                 builder: (_) =>
                     RimuoviOmbrelloneView(idOmbrellone: argomenti.idOmbrellone),
+              );
+            }
+            break;
+          case SceltaModificheOmbrelloneView.routeName:
+            if (argomenti is SceltaModificheOmbrelloneViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaModificheOmbrelloneView.routeName),
+                builder: (_) => SceltaModificheOmbrelloneView(
+                    idOmbrellone: argomenti.idOmbrellone,
+                    prezzo: argomenti.prezzo,
+                    posizione: argomenti.posizione,
+                    prezzoLettini: argomenti.prezzoLettini,
+                    prezzoSdraio: argomenti.prezzoSdraio),
+              );
+            }
+            break;
+          case ModificaOmbrelloneView.routeName:
+            if (argomenti is SceltaModificheOmbrelloneViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaOmbrelloneView.routeName),
+                builder: (_) => ModificaOmbrelloneView(
+                    idOmbrellone: argomenti.idOmbrellone,
+                    prezzo: argomenti.prezzo,
+                    posizione: argomenti.posizione,
+                    prezzoLettini: argomenti.prezzoLettini,
+                    prezzoSdraio: argomenti.prezzoSdraio),
               );
             }
             break;

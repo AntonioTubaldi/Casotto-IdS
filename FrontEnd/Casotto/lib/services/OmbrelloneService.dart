@@ -73,6 +73,26 @@ class OmbrelloneService {
     dynamic responseBody = response.body;
   }
 
+  Future<bool> modificaOmbrellone(String idOmbrellone, double prezzo,
+      int posizione, double prezzoLettini, double prezzoSdraio) async {
+    await Future.delayed(Duration(seconds: 1));
+
+    Uri url = Uri.parse(_baseUrl + "/modifica/" + idOmbrellone);
+    Response response = await http.put(url,
+        body: jsonEncode({
+          "prezzo": prezzo,
+          "posizione": posizione,
+          "prezzoLettini": prezzoLettini,
+          "prezzoSdraio": prezzoSdraio
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
+
   Future<List<SlotData>> getDisponibilita(String idOmbrellone) async {
     await Future.delayed(Duration(seconds: 1));
 

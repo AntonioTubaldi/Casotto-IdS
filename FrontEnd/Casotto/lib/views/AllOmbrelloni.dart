@@ -116,11 +116,31 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                     title: const Text("Visualizza Spiaggia"),
                   ),
                   body: Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text("Non ci sono ombrelloni disponibili!"),
-                    ),
-                  ),
+                      child: Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Non ci sono ombrelloni disponibili!"),
+                      ),
+                      RawMaterialButton(
+                        onPressed: () => {
+                          Navigator.pushNamed(
+                            context,
+                            SceltaSpecificheOmbView.routeName,
+                          ),
+                        },
+                        child: Text("Aggiungi Ombrellone",
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.white)),
+                        fillColor: Colors.teal,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        constraints:
+                            BoxConstraints.tightFor(height: 50.0, width: 200),
+                      ),
+                    ],
+                  )),
                 );
             }
             return const MessageScreen(status: MessageScreenStatus.ERROR);
