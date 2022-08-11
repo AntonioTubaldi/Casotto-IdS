@@ -60,25 +60,48 @@ class _MenuViewState extends State<MenuView> {
                   return Scaffold(
                     floatingActionButton: Row(
                       children: [
-                        ElevatedButton(
+                        const SizedBox(
+                          width: 50.0,
+                        ),
+                        RawMaterialButton(
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               ProdottiSelezionabiliView.routeName,
                               arguments: ProdottiSelezionabiliArgs(list),
+
                             );
                           },
-                          child: Text("ORDINA"),
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    constraints:
+                    const BoxConstraints.tightFor(height: 50.0, width: 110),
+                          child: const Text("ORDINA", style: TextStyle(fontSize: 20.0,
+                          color: Colors.white),
+                          ),
+                  ),
+                        const SizedBox(
+                          width: 40.0,
                         ),
-                        ElevatedButton(
+                        RawMaterialButton(
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               SceltaSpecificheProdottoView.routeName,
                             );
                           },
-                          child: Text("AGGIUNGI PRODOTTO"),
-                        ),
+          fillColor: Colors.teal,
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+          ),
+          constraints:
+          const BoxConstraints.tightFor(height: 50.0, width: 160),
+                          child: const Text("AGGIUNGI PRODOTTO", style: TextStyle(fontSize: 13.0,
+                              color: Colors.white),),
+          ),
+
                       ],
                     ),
                     appBar: AppBar(

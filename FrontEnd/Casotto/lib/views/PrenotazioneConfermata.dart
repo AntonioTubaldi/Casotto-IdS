@@ -42,15 +42,23 @@ class _PrenotazioneConfermataViewState
               bool risposta = snapshot.data!;
               if (risposta) {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
+                  floatingActionButton: RawMaterialButton(
                     onPressed: () => {
                       Navigator.popUntil(
                         context,
                         ModalRoute.withName(HomePage.routeName),
                       ),
+
                     },
-                    child: Text(
-                      "H",
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    constraints:
+                    BoxConstraints.tightFor(height: 50.0, width: 100),
+
+                    child: const Text(
+                      "Home",
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
@@ -61,24 +69,31 @@ class _PrenotazioneConfermataViewState
                   body: Center(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Prenotazione Confermata",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                   ),
                 );
-              } else
+              } else {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
+                  floatingActionButton: RawMaterialButton(
                     onPressed: () => {
                       Navigator.popUntil(
                         context,
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
-                    child: Text(
-                      "H",
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    constraints:
+                    const BoxConstraints.tightFor(height: 50.0, width: 100),
+
+                    child: const Text(
+                      "Home",
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
@@ -89,13 +104,14 @@ class _PrenotazioneConfermataViewState
                   body: Center(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Qualcosa è andato storto!",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                   ),
                 );
+              }
             }
         }
 

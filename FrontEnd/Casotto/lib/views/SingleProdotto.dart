@@ -21,21 +21,39 @@ class SingleProdottoView extends StatelessWidget {
       appBar: AppBar(
         title: Text("Scheda Prodotto"),
       ),
-      body: Center(
+      body: SafeArea(
         child: Column(
+
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                singleProdotto.getNome(),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+        children:[
+          SizedBox(width: 100.0),
+            Card(
+              margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 25),
+                child:
+                Container(
+                  child: Padding(
+                    
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Text(
+                          "prodotto: ${singleProdotto.getNome()}",
+                            style: const TextStyle(fontSize: 20)
+                        ),
+                     Text(
+                      "prezzo: ${singleProdotto.getPrezzo()} euro",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                     ] //children
+                       ),
+                  ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                singleProdotto.getPrezzo().toString(),
-              ),
-            ),
+        )
+        ]
+        ),
             RawMaterialButton(
               onPressed: () => {
                 Navigator.pushNamedAndRemoveUntil(
@@ -47,11 +65,12 @@ class SingleProdottoView extends StatelessWidget {
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },
-              child: const Text(
+            ),
+              const Text(
                 "Elimina Prodotto",
                 style: TextStyle(fontSize: 30),
               ),
-            ),
+
             RawMaterialButton(
               onPressed: () => {
                 Navigator.pushNamed(
@@ -67,9 +86,8 @@ class SingleProdottoView extends StatelessWidget {
                 style: TextStyle(fontSize: 30),
               ),
             ),
-          ],
-        ),
-      ),
-    );
+
+     ] ),
+    ));
   }
 }

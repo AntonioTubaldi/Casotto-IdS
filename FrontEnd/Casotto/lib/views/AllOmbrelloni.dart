@@ -58,26 +58,38 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       centerTitle: true,
                       title: const Text('Visualizza Spiaggia'),
                     ),
+
                     body: _getScrollableView(list),
-                    floatingActionButton: Row(
+                    floatingActionButton:
+                    Row(
                       children: [
-                        RawMaterialButton(
-                          onPressed: () => {
-                            Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(HomePage.routeName),
-                            ),
-                          },
-                          child: Text("Home",
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white)),
-                          fillColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          constraints:
-                              BoxConstraints.tightFor(height: 50.0, width: 130),
+                        SizedBox(
+                          width: 40.0
                         ),
+                        Container(
+                          child: RawMaterialButton(
+                            onPressed: () => {
+                              Navigator.popUntil(
+                                context,
+                                ModalRoute.withName(HomePage.routeName),
+                              ),
+                            },
+                            child: Text("Home",
+                                style:
+                                    TextStyle(fontSize: 30, color: Colors.white)),
+                            fillColor: Colors.teal,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            constraints:
+                                BoxConstraints.tightFor(height: 50.0, width: 130),
+                          ),
+                        ),
+
+                        SizedBox(
+                            width: 10.0
+                        ),
+
                         RawMaterialButton(
                           onPressed: () => {
                             Navigator.pushNamed(
@@ -90,14 +102,15 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                                   TextStyle(fontSize: 20, color: Colors.white)),
                           fillColor: Colors.teal,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                           constraints:
-                              BoxConstraints.tightFor(height: 50.0, width: 200),
+                              BoxConstraints.tightFor(height: 50.0, width: 203 ),
                         ),
                       ],
                     ));
               } else
+              {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
@@ -111,10 +124,12 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
+
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text("Visualizza Spiaggia"),
                   ),
+
                   body: Center(
                       child: Column(
                     children: [
@@ -142,6 +157,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                     ],
                   )),
                 );
+              }
             }
             return const MessageScreen(status: MessageScreenStatus.ERROR);
         }

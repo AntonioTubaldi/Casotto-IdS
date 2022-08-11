@@ -37,13 +37,12 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            ElevatedButton(
-                onPressed: () {},
-                child: Text("Costo prenotazione: " +
-                    ((ombrellone.getPrezzo() * selezionati.length) +
+            Card(
+              margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 25),
+                child: Text("Costo prenotazione: ${(ombrellone.getPrezzo() * selezionati.length) +
                             (ombrellone.getPrezzoLettini() * numeroLettini) +
-                            (ombrellone.getPrezzoSdraio() * numeroSdraio))
-                        .toString())),
+                            (ombrellone.getPrezzoSdraio() * numeroSdraio)}", style: const TextStyle(color: Colors.black),
+                ),),
             _getScrollableView(selezionati)
           ],
         ),
