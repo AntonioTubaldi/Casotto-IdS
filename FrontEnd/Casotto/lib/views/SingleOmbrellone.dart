@@ -74,7 +74,7 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
             },
             child: Text(
               "PRENOTA",
-              style: TextStyle(fontSize: 30, color: Colors.white),
+              style: TextStyle(fontSize: 25, color: Colors.white),
             ),
             fillColor: Colors.teal,
             shape: RoundedRectangleBorder(
@@ -102,37 +102,51 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           child: Column(
             children: [
               _getScrollableView(widget.ombrellone.getDisponibilita()),
-              RawMaterialButton(
-                onPressed: () => {
-                  Navigator.pushNamed(
-                    context,
-                    RimuoviOmbrelloneView.routeName,
-                    arguments: OmbrelloneStringArg(
-                        widget.ombrellone.getIdOmbrellone()),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      RimuoviOmbrelloneView.routeName,
+                      arguments: OmbrelloneStringArg(
+                          widget.ombrellone.getIdOmbrellone()),
+                    ),
+                  },
+                  child: const Text("Elimina Ombrellone",
+                      style: TextStyle(fontSize: 20, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                },
-                child: const Text(
-                  "Elimina Ombrellone",
-                  style: TextStyle(fontSize: 30),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 200),
                 ),
               ),
-              RawMaterialButton(
-                onPressed: () => {
-                  Navigator.pushNamed(
-                    context,
-                    SceltaModificheOmbrelloneView.routeName,
-                    arguments: SceltaModificheOmbrelloneViewArgs(
-                      widget.ombrellone.getIdOmbrellone(),
-                      widget.ombrellone.getPrezzo(),
-                      widget.ombrellone.getPosizione(),
-                      widget.ombrellone.getPrezzoLettini(),
-                      widget.ombrellone.getPrezzoSdraio(),
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      SceltaModificheOmbrelloneView.routeName,
+                      arguments: SceltaModificheOmbrelloneViewArgs(
+                        widget.ombrellone.getIdOmbrellone(),
+                        widget.ombrellone.getPrezzo(),
+                        widget.ombrellone.getPosizione(),
+                        widget.ombrellone.getPrezzoLettini(),
+                        widget.ombrellone.getPrezzoSdraio(),
+                      ),
                     ),
+                  },
+                  child: const Text("Modifica Ombrellone",
+                      style: TextStyle(fontSize: 19, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                },
-                child: const Text(
-                  "Modifica Ombrellone",
-                  style: TextStyle(fontSize: 30),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 200),
                 ),
               ),
             ],

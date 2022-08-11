@@ -55,20 +55,32 @@ class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Ombrellone Modificato'),
+                    title: const Text('Riepilogo'),
                   ),
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
                       Navigator.popUntil(
                           context, ModalRoute.withName(HomePage.routeName)),
                     },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+                    child: const Text("Home",
+                        style: TextStyle(fontSize: 30, color: Colors.white)),
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
+                    constraints:
+                        BoxConstraints.tightFor(height: 50.0, width: 130),
+                  ),
+                  body: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: const [
+                      Text("L'ombrellone è stato modificato",
+                          textAlign: TextAlign.center)
+                    ],
                   ),
                 );
-              } else
+              } else {
                 return Scaffold(
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
@@ -88,6 +100,7 @@ class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
                     ),
                   ),
                 );
+              }
           }
         });
   }

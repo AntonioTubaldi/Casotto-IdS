@@ -48,15 +48,13 @@ class _PrenotazioneConfermataViewState
                         context,
                         ModalRoute.withName(HomePage.routeName),
                       ),
-
                     },
                     fillColor: Colors.teal,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     constraints:
-                    BoxConstraints.tightFor(height: 50.0, width: 100),
-
+                        BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
                       style: TextStyle(fontSize: 30),
@@ -90,8 +88,7 @@ class _PrenotazioneConfermataViewState
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     constraints:
-                    const BoxConstraints.tightFor(height: 50.0, width: 100),
-
+                        const BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
                       style: TextStyle(fontSize: 30),
