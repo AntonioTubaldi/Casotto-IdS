@@ -52,7 +52,7 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Ombrellone Aggiunto'),
+                    title: const Text('Riepilogo'),
                   ),
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
@@ -63,6 +63,11 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                       "Home",
                       style: TextStyle(fontSize: 30),
                     ),
+                  ),
+                  body: Center(
+                    child: Container(
+                        child: Text(
+                            "L'ombrellone è stato aggiunto correttamente")),
                   ),
                 );
               } else

@@ -41,7 +41,7 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                 appBar: AppBar(
                   backgroundColor: Colors.teal,
                   centerTitle: true,
-                  title: const Text('Prodotto Aggiunto'),
+                  title: const Text('Riepilogo'),
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
@@ -54,6 +54,11 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                     "Home",
                     style: TextStyle(fontSize: 30),
                   ),
+                ),
+                body: Center(
+                  child: Container(
+                      child:
+                          Text("il prodotto è stato aggiunto correttamente")),
                 ),
               );
             } else

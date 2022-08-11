@@ -58,14 +58,10 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       centerTitle: true,
                       title: const Text('Visualizza Spiaggia'),
                     ),
-
                     body: _getScrollableView(list),
-                    floatingActionButton:
-                    Row(
+                    floatingActionButton: Row(
                       children: [
-                        SizedBox(
-                          width: 40.0
-                        ),
+                        SizedBox(width: 40.0),
                         Container(
                           child: RawMaterialButton(
                             onPressed: () => {
@@ -75,21 +71,17 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                               ),
                             },
                             child: Text("Home",
-                                style:
-                                    TextStyle(fontSize: 30, color: Colors.white)),
+                                style: TextStyle(
+                                    fontSize: 30, color: Colors.white)),
                             fillColor: Colors.teal,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            constraints:
-                                BoxConstraints.tightFor(height: 50.0, width: 130),
+                            constraints: BoxConstraints.tightFor(
+                                height: 50.0, width: 130),
                           ),
                         ),
-
-                        SizedBox(
-                            width: 10.0
-                        ),
-
+                        SizedBox(width: 10.0),
                         RawMaterialButton(
                           onPressed: () => {
                             Navigator.pushNamed(
@@ -105,12 +97,11 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           constraints:
-                              BoxConstraints.tightFor(height: 50.0, width: 203 ),
+                              BoxConstraints.tightFor(height: 50.0, width: 203),
                         ),
                       ],
                     ));
-              } else
-              {
+              } else {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
@@ -124,12 +115,10 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text("Visualizza Spiaggia"),
                   ),
-
                   body: Center(
                       child: Column(
                     children: [

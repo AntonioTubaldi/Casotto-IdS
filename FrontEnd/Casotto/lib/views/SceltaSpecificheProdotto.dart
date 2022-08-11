@@ -38,9 +38,20 @@ class _SceltaSpecificheProdottoViewState
             Expanded(
               child: Container(
                 child: Center(
-                  child: Text(
-                    userPost,
-                    style: TextStyle(fontSize: 40),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 150,
+                      ),
+                      Text(
+                        userPost,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        prezzo.toString(),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -58,17 +69,21 @@ class _SceltaSpecificheProdottoViewState
                 ),
               ),
             ),
-            MaterialButton(
+            RawMaterialButton(
               onPressed: () {
                 setState(() {
                   userPost = _textController.text;
                 });
               },
-              color: Colors.blue,
               child: const Text(
                 "Conferma nome",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(fontSize: 15, color: Colors.white),
               ),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 35.0, width: 150),
             ),
             Text("Imposta il prezzo: "),
             DropdownButton<double>(
@@ -85,7 +100,7 @@ class _SceltaSpecificheProdottoViewState
                   prezzo = newValue!;
                 });
               },
-              items: <double>[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5]
+              items: <double>[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5]
                   .map<DropdownMenuItem<double>>((double value) {
                 return DropdownMenuItem<double>(
                   value: value,
@@ -93,7 +108,7 @@ class _SceltaSpecificheProdottoViewState
                 );
               }).toList(),
             ),
-            ElevatedButton(
+            RawMaterialButton(
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -101,7 +116,15 @@ class _SceltaSpecificheProdottoViewState
                   arguments: ModificaProdottoViewArgs(userPost, prezzo),
                 );
               },
-              child: Text("Aggiungi"),
+              child: Text(
+                "Aggiungi",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 35.0, width: 150),
             ),
           ],
         ),

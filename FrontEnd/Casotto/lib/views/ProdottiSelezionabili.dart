@@ -58,7 +58,9 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           RawMaterialButton(
-            onPressed: () => {},
+            onPressed: () => {
+              //aggiungere percorso vista qui
+            },
             child: Text(
               "PROCEDI ALL'ACQUISTO",
               style: TextStyle(fontSize: 15, color: Colors.white),
@@ -67,7 +69,7 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
-            constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
+            constraints: BoxConstraints.tightFor(height: 50.0, width: 200),
           ),
         ],
       );
@@ -88,20 +90,25 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
         child: Column(
           children: [
             _getScrollableView(widget.lista),
-            RawMaterialButton(
-              onPressed: () => {
-                Navigator.popUntil(
-                  context,
-                  ModalRoute.withName(HomePage.routeName),
+            Row(
+              children: [
+                RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.popUntil(
+                      context,
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
+                  },
+                  child: const Text("Home",
+                      style: TextStyle(fontSize: 30, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 130),
                 ),
-              },
-              child: const Text("Home",
-                  style: TextStyle(fontSize: 30, color: Colors.white)),
-              fillColor: Colors.teal,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              constraints: BoxConstraints.tightFor(height: 50.0, width: 130),
+              ],
             ),
           ],
         ),

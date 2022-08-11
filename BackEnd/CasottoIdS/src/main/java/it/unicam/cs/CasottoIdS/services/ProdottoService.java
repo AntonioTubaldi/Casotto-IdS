@@ -1,6 +1,7 @@
 package it.unicam.cs.CasottoIdS.services;
 
 import it.unicam.cs.CasottoIdS.models.Ombrellone;
+import it.unicam.cs.CasottoIdS.models.Prenotazione;
 import it.unicam.cs.CasottoIdS.models.Prodotto;
 import it.unicam.cs.CasottoIdS.models.Tipologia;
 import it.unicam.cs.CasottoIdS.repositories.ProdottoRepository;
@@ -31,8 +32,15 @@ public class ProdottoService {
             return false;
         }
 
-    public void deleteProdotto(String nome) {
+    public boolean deleteProdotto(String nome) {
+        Optional<Prodotto> prodottoFromMongo = this.repository.findById(nome);
+        if(prodottoFromMongo.isPresent()) {
+            Prodotto prodottoDaEliminare = prodottoFromMongo.get();
         this.repository.deleteById(nome);
+            return true;
+        }
+        else
+            return false;
     }
 
     public boolean modificaProdotto(String nome, double newPrezzo) {

@@ -31,11 +31,11 @@ class _EliminaPrenotazioniState extends State<EliminaPrenotazione> {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text('Prenotazione Eliminata'),
+                    title: const Text('Riepilogo'),
                   ),
                   body: Center(
                       child: Text(
-                    "PRENOTAZIONE ELIMINATA",
+                    "Prenotazione eliminata",
                     style: TextStyle(fontSize: 30.0),
                   )),
                 );

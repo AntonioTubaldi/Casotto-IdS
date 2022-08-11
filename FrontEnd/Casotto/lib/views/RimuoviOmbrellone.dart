@@ -40,7 +40,7 @@ class _RimuoviOmbrelloneViewState extends State<RimuoviOmbrelloneView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Ombrellone Rimosso'),
+                    title: const Text('Riepilogo'),
                   ),
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
@@ -51,6 +51,11 @@ class _RimuoviOmbrelloneViewState extends State<RimuoviOmbrelloneView> {
                       "Home",
                       style: TextStyle(fontSize: 30),
                     ),
+                  ),
+                  body: Center(
+                    child: Container(
+                        child: Text(
+                            "L'ombrellone è stato eliminato correttamente")),
                   ),
                 );
               }

@@ -40,7 +40,7 @@ class _ProdottoEliminatoViewState extends State<ProdottoEliminatoView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Prodotto Rimosso'),
+                    title: const Text('Riepilogo'),
                   ),
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
@@ -51,6 +51,11 @@ class _ProdottoEliminatoViewState extends State<ProdottoEliminatoView> {
                       "Home",
                       style: TextStyle(fontSize: 30),
                     ),
+                  ),
+                  body: Center(
+                    child: Container(
+                        child: Text(
+                            "il prodotto è stato eliminato correttamente")),
                   ),
                 );
               }
