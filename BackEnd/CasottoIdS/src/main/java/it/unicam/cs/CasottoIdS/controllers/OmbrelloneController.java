@@ -48,12 +48,12 @@ public class OmbrelloneController {
     // POST localhost:8080/ombrellone/new
     @PostMapping("/new")
     public boolean addOmbrellone(@RequestBody ParametriOmbrellone o) {
-        return this.service.addOmbrellone(o.prezzo, o.posizione, o.prezzoLettini, o.prezzoSdraio);
+        boolean esito = this.service.addOmbrellone(o.prezzo, o.posizione, o.prezzoLettini, o.prezzoSdraio);
+        return esito;
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteOmbrellone(@PathVariable("id") String idOmbrellone) {
-
         this.service.delOmbrellone(idOmbrellone);
     }
 

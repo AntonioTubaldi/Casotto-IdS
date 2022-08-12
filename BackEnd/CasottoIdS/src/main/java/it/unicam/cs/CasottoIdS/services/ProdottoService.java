@@ -23,36 +23,40 @@ public class ProdottoService {
     }
 
     public boolean addProdotto(String nome, double prezzo) {
+        boolean esito;
         Prodotto newProdotto = new Prodotto(nome, prezzo);
         this.repository.save(newProdotto);
         Optional<Prodotto> prodottoFromMongo = this.repository.findById(newProdotto.getNome());
         if(prodottoFromMongo.isPresent()) {
-            return true;
+            esito = true;
         } else
-            return false;
+            esito = false;
+        return esito;
         }
 
     public boolean deleteProdotto(String nome) {
+        boolean esito;
         Optional<Prodotto> prodottoFromMongo = this.repository.findById(nome);
         if(prodottoFromMongo.isPresent()) {
-            Prodotto prodottoDaEliminare = prodottoFromMongo.get();
-        this.repository.deleteById(nome);
-            return true;
+            this.repository.deleteById(nome);
+            esito = true;
         }
         else
-            return false;
+            esito = false;
+        return esito;
     }
 
     public boolean modificaProdotto(String nome, double newPrezzo) {
+        boolean esito;
         Optional<Prodotto> prodottoFromMongo = this.repository.findById(nome);
         if(prodottoFromMongo.isPresent()) {
             Prodotto daModificare = prodottoFromMongo.get();
             daModificare.setPrezzo(newPrezzo);
             this.repository.save(daModificare);
-            return true;
+            esito = true;
         }
-        else return false;
-
+        else esito = false;
+        return esito;
     }
 
 }

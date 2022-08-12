@@ -100,7 +100,6 @@ public class PrenotazioneService {
     public void deleteByIdOmbrellone(String idOmbrellone) {
         List<Prenotazione> prenotazioneFromMongo = this.repository.findByIdOmbrellone(idOmbrellone);
         for (Prenotazione singlePrenotazione: prenotazioneFromMongo) {
-
             this.repository.deleteById(singlePrenotazione.getIdPrenotazione());
             utenteService.notificaUtente(singlePrenotazione.getIdUtente(), new Notifica("Prenotazione Eliminata", "La tua prenotazione è stata eliminata"));
 

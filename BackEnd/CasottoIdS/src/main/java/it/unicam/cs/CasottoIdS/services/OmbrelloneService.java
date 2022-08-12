@@ -125,13 +125,14 @@ public class OmbrelloneService {
         Ombrellone newOmbrellone = new Ombrellone(prezzo, posizione, lista, prezzoLettini, prezzoSdraio);
         this.repository.save(newOmbrellone);
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(newOmbrellone.getIdOmbrellone());
+        boolean esito;
         if(ombrelloneFromMongo.isPresent()) {
-           return true;
-        } else
-            return false;
+            esito = true;
 
-
-
+        } else {
+            esito = false;
+        }
+            return esito;
     }
 
     public void delOmbrellone(String idOmbrellone) {
@@ -142,6 +143,7 @@ public class OmbrelloneService {
 
     public boolean modificaOmbrellone(String idOmbrellone, double newPrezzo, int newPosizione, double newPrezzoLettini, double newPrezzoSdraio) {
         Optional<Ombrellone> ombrelloneFromMongo = this.repository.findById(idOmbrellone);
+        boolean esito;
         if(ombrelloneFromMongo.isPresent()) {
             Ombrellone daModificare = ombrelloneFromMongo.get();
             daModificare.setPrezzo(newPrezzo);
@@ -149,9 +151,10 @@ public class OmbrelloneService {
             daModificare.setPrezzoLettini(newPrezzoLettini);
             daModificare.setPrezzoSdraio(newPrezzoSdraio);
             this.repository.save(daModificare);
-            return true;
+            esito = true;
         }
-        else return false;
+        else esito = false;
+        return esito;
 
     }
 
