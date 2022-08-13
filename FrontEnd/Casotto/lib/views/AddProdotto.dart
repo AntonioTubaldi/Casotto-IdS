@@ -61,7 +61,7 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                           Text("il prodotto è stato aggiunto correttamente")),
                 ),
               );
-            } else
+            } else {
               return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.teal,
@@ -81,6 +81,7 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                   ),
                 ),
               );
+            }
         }
       },
     );

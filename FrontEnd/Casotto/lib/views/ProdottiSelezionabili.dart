@@ -1,3 +1,5 @@
+import 'package:casotto/views/RiepilogoOrdinazione.dart';
+import 'package:casotto/views/SceltaProdotti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -52,7 +54,7 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
     );
   }
 
-  Widget? _showPrenotazione() {
+  Widget? _showOrdinazione() {
     if (_prodottiSelezionati.isNotEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -60,6 +62,9 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
           RawMaterialButton(
             onPressed: () => {
               //aggiungere percorso vista qui
+            Navigator.popUntil(
+            context,
+            ModalRoute.withName(SceltaProdottiView.routeName,))
             },
             child: Text(
               "PROCEDI ALL'ACQUISTO",
@@ -81,9 +86,9 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _showPrenotazione(),
+      floatingActionButton: _showOrdinazione(),
       appBar: AppBar(
-        title: Text("Schermata Prenotazione"),
+        title: Text("Schermata Ordinazione"),
         backgroundColor: Colors.teal,
       ),
       body: Center(
@@ -92,6 +97,7 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
             _getScrollableView(widget.lista),
             Row(
               children: [
+                SizedBox(width: 125.0),
                 RawMaterialButton(
                   onPressed: () => {
                     Navigator.popUntil(

@@ -71,7 +71,7 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },
-              child: Text("CONFERMA PRENOTAZIONE",
+              child: Text("Conferma Prenotazione",
                   style: TextStyle(color: Colors.white)),
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
@@ -87,7 +87,7 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
                 );
               },
               child: Text(
-                "TORNA ALLA HOME",
+                "Torna alla Home",
                 style: TextStyle(color: Colors.white),
               ),
               fillColor: Colors.teal,

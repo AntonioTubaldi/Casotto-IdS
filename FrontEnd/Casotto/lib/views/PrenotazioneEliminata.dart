@@ -47,7 +47,7 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
-                    child: Text(
+                    child: const Text(
                       "H",
                       style: TextStyle(fontSize: 30),
                     ),
@@ -59,14 +59,14 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                   body: Center(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Prenotazione Eliminata",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                   ),
                 );
-              } else
+              } else {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
@@ -94,6 +94,7 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                     ),
                   ),
                 );
+              }
             }
         }
 

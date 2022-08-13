@@ -63,13 +63,13 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
-                  title: const Text('Prenotazione Confermata'),
+                  title: const Text('Riepilogo'),
                 ),
                 body: Center(
-                  child: ElevatedButton(
+                  child: RawMaterialButton(
                     onPressed: () {},
                     child: Text(
-                      "PRENOTAZIONE CONFERMATA",
+                      "Prenotazione Confermata",
                       style: TextStyle(fontSize: 25.0),
                     ),
                   ),
@@ -83,7 +83,7 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
                         context, ModalRoute.withName(HomePage.routeName)),
                   },
                   child: Text(
-                    "H",
+                    "Home",
                     style: TextStyle(fontSize: 30),
                   ),
                 ),

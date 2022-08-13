@@ -10,4 +10,5 @@ class SceltaLettiniViewArgs {
     this.ombrellone1 = ombr;
     this.lista = list;
   }
+
 }
