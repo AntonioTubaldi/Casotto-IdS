@@ -1,4 +1,3 @@
-import 'package:casotto/arguments/RiepilogoOrdinazioneViewArgs.dart';
 import 'package:casotto/widgets/SelectableProdottiTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,23 +10,23 @@ import 'AddProdotto.dart';
 import 'HomePage.dart';
 
 class RiepilogoOrdinazioneView extends StatelessWidget {
-  const RiepilogoOrdinazioneView({Key? key,
-    required this.prodotto,
-    required this.lista,
-
-    required this.numeroProdotti
-  })
+  const RiepilogoOrdinazioneView({Key? key, required this.lista})
       : super(key: key);
 
   static const String routeName = "RiepilogoOrdinazione";
 
-
-  final Prodotto prodotto;
   final List<Prodotto> lista;
-  final int numeroProdotti;
 
-  Widget _getRiepilogoOrdinazione(Prodotto prodotto,
-      BuildContext context) {
+  double contaPrezzo(List<Prodotto> lista) {
+    double totale = 0;
+    lista.forEach((element) {
+      totale += element.getPrezzo();
+    });
+    return totale;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.teal,
@@ -37,22 +36,15 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
         width: double.infinity,
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Card(
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "Costo Ordinazione: ${(prodotto.getPrezzo() *
-                      lista.length) +
-                      (prodotto.getPrezzo() * numeroProdotti)} euro",
-                  style: const TextStyle(color: Colors.black),
-                ),
-              ),
+        child: Card(
+          margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "Costo Ordinazione:  ${contaPrezzo(lista)}  euro",
+              style: const TextStyle(color: Colors.black),
             ),
-            _getScrollableView(lista)
-          ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -62,21 +54,11 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RawMaterialButton(
-              onPressed: () =>
-              {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  AddProdottoView.routeName,
-                  arguments: SceltaProdottiViewArgs(
-                    prodotto,
-                    lista,
-                    numeroProdotti
-                    ),
-                  ModalRoute.withName(HomePage.routeName),
-                ),
-              },
-              child: Text("Conferma Ordinazione",
-                  style: TextStyle(color: Colors.white)),
+              onPressed: () => {},
+              child: Text(
+                "Conferma Ordinazione",
+                style: TextStyle(color: Colors.white),
+              ),
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
@@ -104,30 +86,5 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Widget> _getProdottiTabs(List<Prodotto> lista) {
-    return lista.map((Prodotto prodotto) {
-      return SelectableProdottiTab(
-        child: prodotto,
-        isActivated: true,
-        onPressed: null,
-      );
-    }).toList();
-  }
-
-  Widget _getScrollableView(List<Prodotto> lista) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _getProdottiTabs(lista),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _getRiepilogoOrdinazione(prodotto, context);
   }
 }

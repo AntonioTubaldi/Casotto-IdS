@@ -23,7 +23,6 @@ import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaLettini.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
 import 'package:casotto/views/SceltaPrezzoProdotto.dart';
-import 'package:casotto/views/SceltaProdotti.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
@@ -36,7 +35,6 @@ import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
-import 'arguments/RiepilogoOrdinazioneViewArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
@@ -320,26 +318,14 @@ class MyApp extends StatelessWidget {
                 builder: (_) => SceltaSpecificheProdottoView());
             break;
 
-          case SceltaProdottiView.routeName:
-            if (argomenti is SceltaProdottiViewArgs) {
-              return MaterialPageRoute(
-                settings:
-                const RouteSettings(name: SceltaProdottiView.routeName),
-                builder: (_) => SceltaProdottiView(prodotto: argomenti.prodotto, lista: argomenti.lista,numeroProdotti: argomenti.numeroProdotti,
-                    ),
-              );
-            }
-            break;
           case RiepilogoOrdinazioneView.routeName:
-            if (argomenti is RiepilogoOrdinazioneViewArgs) {
+            if (argomenti is ProdottiSelezionabiliArgs) {
               return MaterialPageRoute(
                 settings: const RouteSettings(
                     name: RiepilogoOrdinazioneView.routeName),
                 builder: (_) => RiepilogoOrdinazioneView(
-                  prodotto: argomenti.prodotto,
                   lista: argomenti.lista,
-                  numeroProdotti: argomenti.numeroProdotti,  
-              ),
+                ),
               );
             }
             break;

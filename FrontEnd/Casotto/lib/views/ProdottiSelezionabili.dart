@@ -1,10 +1,11 @@
+import 'package:casotto/arguments/ProdottiSelezionabiliArgs.dart';
 import 'package:casotto/views/RiepilogoOrdinazione.dart';
-import 'package:casotto/views/SceltaProdotti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../arguments/AddProdottoViewArgs.dart';
 import '../models/Prodotto.dart';
 import '../widgets/SelectableProdottiTab.dart';
 import 'HomePage.dart';
@@ -61,10 +62,13 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
         children: [
           RawMaterialButton(
             onPressed: () => {
-              //aggiungere percorso vista qui
-            Navigator.popUntil(
-            context,
-            ModalRoute.withName(SceltaProdottiView.routeName,))
+              Navigator.pushNamed(
+                context,
+                RiepilogoOrdinazioneView.routeName,
+                arguments: ProdottiSelezionabiliArgs(
+                  _prodottiSelezionati.toList(),
+                ),
+              ),
             },
             child: Text(
               "PROCEDI ALL'ACQUISTO",
