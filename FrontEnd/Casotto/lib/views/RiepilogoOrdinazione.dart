@@ -1,12 +1,7 @@
-import 'package:casotto/widgets/SelectableProdottiTab.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:casotto/arguments/AddOrdineViewArgs.dart';
+import 'package:casotto/views/AddOrdine.dart';
 import 'package:flutter/material.dart';
-
-import '../arguments/AddProdottoViewArgs.dart';
 import '../models/Prodotto.dart';
-import '../models/SlotData.dart';
-import '../widgets/SelectableSlotDataTab.dart';
-import 'AddProdotto.dart';
 import 'HomePage.dart';
 
 class RiepilogoOrdinazioneView extends StatelessWidget {
@@ -54,16 +49,25 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RawMaterialButton(
-              onPressed: () => {},
-              child: Text(
-                "Conferma Ordinazione",
-                style: TextStyle(color: Colors.white),
-              ),
+              onPressed: () => {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AddOrdineView.routeName,
+                  arguments: AddOrdineViewArgs(
+                      lista
+                  ),
+                  ModalRoute.withName(HomePage.routeName),
+                ),
+              },
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
               ),
               constraints: BoxConstraints.tightFor(height: 50.0, width: 205),
+              child: const Text(
+                "Conferma Ordinazione",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             RawMaterialButton(
               onPressed: () {
@@ -72,15 +76,15 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text(
-                "Torna alla Home",
-                style: TextStyle(color: Colors.white),
-              ),
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
               ),
               constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
+              child: const Text(
+                "Torna alla Home",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

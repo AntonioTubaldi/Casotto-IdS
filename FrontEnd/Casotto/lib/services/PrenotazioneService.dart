@@ -11,7 +11,7 @@ import '../models/Giorno.dart';
 import '../models/SlotData.dart';
 
 class PrenotazioneService {
-  String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/prenotazione";
+  final String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/prenotazione";
 
   Future<List<Prenotazione>> getPrenotazioneByData(DateTime data) async {
     await Future.delayed(Duration(seconds: 1));

@@ -5,6 +5,7 @@ import 'package:casotto/arguments/OmbrelloneStringArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
+import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
@@ -31,6 +32,7 @@ import 'package:casotto/views/SingleProdotto.dart';
 import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'arguments/AddOrdineViewArgs.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
@@ -307,6 +309,16 @@ class MyApp extends StatelessWidget {
                 settings: const RouteSettings(name: AddProdottoView.routeName),
                 builder: (_) => AddProdottoView(
                     nome: argomenti.nome, prezzo: argomenti.prezzo),
+              );
+            }
+            break;
+
+          case AddOrdineView.routeName:
+            if (argomenti is AddOrdineViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: AddProdottoView.routeName),
+                builder: (_) => AddOrdineView(
+                    prodotti: argomenti.prodotti),
               );
             }
             break;

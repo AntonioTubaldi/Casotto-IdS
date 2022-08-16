@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class ProdottoService {
   String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/prodotto";
 
+  // GET ALL PRODOTTI
   Future<List<Prodotto>> getAll() async {
     await Future.delayed(Duration(seconds: 1));
 
@@ -29,6 +30,7 @@ class ProdottoService {
     return toReturn;
   }
 
+  //  AGGIUNGI PRODOTTO
   Future<bool> addProdotto(String nome, double prezzo) async {
     await Future.delayed(Duration(seconds: 1));
 
@@ -46,6 +48,7 @@ class ProdottoService {
     return responseBody;
   }
 
+//  RIMUOVI PRODOTTO
   Future<void> rimuoviProdotto(String nome) async {
     await Future.delayed(Duration(seconds: 1));
 
