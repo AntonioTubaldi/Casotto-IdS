@@ -1,10 +1,12 @@
 import 'package:casotto/views/AllOmbrelloni.dart';
+import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'AllOmbrelloni.dart';
 import 'Menu.dart';
+import 'PaginaContatti.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -84,6 +86,44 @@ class HomePage extends StatelessWidget {
                     "VISUALIZZA MENU",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 350),
+                ),
+                RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      AllOrdiniView.routeName,
+                    ),
+                  },
+                  child: const Text(
+                    "VISUALIZZA ORDINI",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 350),
+                ),
+                RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      PaginaContattiView.routeName,
+                    ),
+                  },
+                  child: const Text(
+                    "VISUALIZZA PAGINA CONTATTI",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   fillColor: Colors.teal,
                   shape: RoundedRectangleBorder(

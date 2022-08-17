@@ -6,10 +6,15 @@ import 'HomePage.dart';
 import 'MessageScreen.dart';
 
 class AddOrdineView extends StatefulWidget {
-  const AddOrdineView({Key? key,
-  required List<Prodotto> this.prodotti
+  const AddOrdineView({
+    Key? key,
+    required this.idUtente,
+    required this.costoTotale,
+    required this.prodotti,
   }) : super(key: key);
 
+  final String idUtente;
+  final double costoTotale;
   final List<Prodotto> prodotti;
 
   static const String routeName = "AddOrdine";
@@ -25,8 +30,7 @@ class _AddOrdineViewState extends State<AddOrdineView> {
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
       future: ordineService.addOrdine(
-          widget.prodotti
-          ),
+          widget.idUtente, widget.costoTotale, widget.prodotti),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

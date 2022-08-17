@@ -53,9 +53,8 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   AddOrdineView.routeName,
-                  arguments: AddOrdineViewArgs(
-                      lista
-                  ),
+                  arguments:
+                      AddOrdineViewArgs("123", contaPrezzo(lista), lista),
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },

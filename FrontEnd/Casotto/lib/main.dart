@@ -8,12 +8,14 @@ import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
+import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
 import 'package:casotto/views/ModificaProdotto.dart';
+import 'package:casotto/views/PaginaContatti.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/ProdottiSelezionabili.dart';
@@ -316,10 +318,13 @@ class MyApp extends StatelessWidget {
           case AddOrdineView.routeName:
             if (argomenti is AddOrdineViewArgs) {
               return MaterialPageRoute(
-                settings: const RouteSettings(name: AddProdottoView.routeName),
-                builder: (_) => AddOrdineView(
-                    prodotti: argomenti.prodotti),
-              );
+                  settings:
+                      const RouteSettings(name: AddProdottoView.routeName),
+                  builder: (_) => AddOrdineView(
+                        idUtente: argomenti.idUtente,
+                        costoTotale: argomenti.costoTotale,
+                        prodotti: argomenti.prodotti,
+                      ));
             }
             break;
 
@@ -340,6 +345,19 @@ class MyApp extends StatelessWidget {
                 ),
               );
             }
+            break;
+          case AllOrdiniView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => AllOrdiniView(),
+              settings: const RouteSettings(name: AllOrdiniView.routeName),
+            );
+            break;
+
+          case PaginaContattiView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => PaginaContattiView(),
+              settings: const RouteSettings(name: PaginaContattiView.routeName),
+            );
             break;
         }
       },
