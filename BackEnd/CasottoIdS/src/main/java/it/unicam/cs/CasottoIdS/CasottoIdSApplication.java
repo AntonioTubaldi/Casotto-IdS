@@ -77,6 +77,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 
 
 		Ombrellone One = new Ombrellone(10, 1, lista,1,1);
+		One.setIdOmbrellone("999");
 		ombrelloneRepository.save(One);
 		Ombrellone Two = new Ombrellone(10, 2, lista1,1,1);
 		ombrelloneRepository.save(Two);
@@ -110,9 +111,9 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		List<Prodotto> provaOrdine1 = new ArrayList<>(List.of(prodotto3,prodotto2,prodotto4));
 
 
-		Ordine ordine1 = new Ordine("123", prodotto1.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine);
+		Ordine ordine1 = new Ordine(utente1.getIdUtente(), One.getIdOmbrellone(), prodotto1.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine);
 		ordineRepository.save(ordine1);
-		Ordine ordine2 = new Ordine("234", prodotto3.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine1);
+		Ordine ordine2 = new Ordine(utente2.getIdUtente(), Two.getIdOmbrellone(), prodotto3.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine1);
 		ordineRepository.save(ordine2);
 
 

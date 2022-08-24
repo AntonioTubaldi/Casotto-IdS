@@ -4,14 +4,16 @@ import 'StatoOrdine.dart';
 class Ordine {
   late String idOrdine;
   late String idUtente;
+  late String idOmbrellone;
   late double costoTotale;
   late List<Prodotto> prodotti;
   late StatoOrdine stato;
 
-  Ordine(String idOrdine, String idUtente, double costoTotale,
-      List<Prodotto> prodotti, StatoOrdine stato) {
+  Ordine(String idOrdine, String idUtente, String idOmbrellone,
+      double costoTotale, List<Prodotto> prodotti, StatoOrdine stato) {
     this.idOrdine = idOrdine;
     this.idUtente = idUtente;
+    this.idOmbrellone = idOmbrellone;
     this.costoTotale = costoTotale;
     this.prodotti = prodotti;
     this.stato = stato;
@@ -23,6 +25,10 @@ class Ordine {
 
   String getIdUtente() {
     return idUtente;
+  }
+
+  String getIdOmbrellone() {
+    return idOmbrellone;
   }
 
   double getCostoTotale() {
@@ -39,6 +45,10 @@ class Ordine {
 
   void setIdUtente(String idUtente) {
     this.idUtente = idUtente;
+  }
+
+  void setIdOmbrellone(String idOmbrellone) {
+    this.idOmbrellone = idOmbrellone;
   }
 
   void setCostoTotale(double costoTotale) {

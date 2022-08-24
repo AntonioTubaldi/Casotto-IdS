@@ -7,9 +7,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import '../arguments/SceltaLettiniViewArgs.dart';
 import '../arguments/SceltaModificheOmbrelloneViewArgs.dart';
+import '../arguments/SingleOmbrelloneViewArgs.dart';
 import '../models/Ombrellone.dart';
 import '../models/SlotData.dart';
 import '../widgets/SelectableSlotDataTab.dart';
+import 'ConfermaEliminazione.dart';
 import 'RimuoviOmbrellone.dart';
 import 'SceltaLettini.dart';
 import 'SceltaModificheOmbrellone.dart';
@@ -108,9 +110,8 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                   onPressed: () => {
                     Navigator.pushNamed(
                       context,
-                      RimuoviOmbrelloneView.routeName,
-                      arguments: OmbrelloneStringArg(
-                          widget.ombrellone.getIdOmbrellone()),
+                      ConfermaEliminazioneView.routeName,
+                      arguments: SingleOmbrelloneViewArgs(widget.ombrellone),
                     ),
                   },
                   child: const Text("Elimina Ombrellone",
@@ -149,6 +150,25 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                       BoxConstraints.tightFor(height: 50.0, width: 200),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.popUntil(
+                      context,
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
+                  },
+                  child: const Text("Home",
+                      style: TextStyle(fontSize: 19, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 200),
+                ),
+              ),
             ],
           ),
         ),
@@ -160,46 +180,43 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           title: const Text("Schermata Prenotazione"),
         ),
         body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RawMaterialButton(
-                    onPressed: () {},
-                    child: Text(
-                        "Non ci sono date disponibili per l'ombrellone selezionato"),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            RawMaterialButton(
+              onPressed: () {},
+              child: Text(
+                  "Non ci sono date disponibili per l'ombrellone selezionato"),
+            ),
+            Padding(
+              padding: EdgeInsets.all(30),
+              child: RawMaterialButton(
+                onPressed: () => {
+                  Navigator.popUntil(
+                    context,
+                    ModalRoute.withName(HomePage.routeName),
                   ),
-
-                  Padding(
-                    padding: EdgeInsets.all(30),
-                    child: RawMaterialButton(
-                      onPressed: () => {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(HomePage.routeName),
-                        ),
-                      },
-                      child: const Text("Home",
-                          style: TextStyle(fontSize: 30, color: Colors.white)),
-                      fillColor: Colors.teal,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      constraints: BoxConstraints.tightFor(height: 50.0, width: 130),
-                    ),
-                  ),
-                  RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.pushNamed(
-                        context,
-                        RimuoviOmbrelloneView.routeName,
-                        arguments:
-                        OmbrelloneStringArg(widget.ombrellone.getIdOmbrellone()),
-                      ),
-                    },
-                  ),
-                ] ),
-          ),
-     );
+                },
+                child: const Text("Home",
+                    style: TextStyle(fontSize: 30, color: Colors.white)),
+                fillColor: Colors.teal,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                constraints: BoxConstraints.tightFor(height: 50.0, width: 130),
+              ),
+            ),
+            RawMaterialButton(
+              onPressed: () => {
+                Navigator.pushNamed(
+                  context,
+                  RimuoviOmbrelloneView.routeName,
+                  arguments:
+                      OmbrelloneStringArg(widget.ombrellone.getIdOmbrellone()),
+                ),
+              },
+            ),
+          ]),
+        ),
+      );
     }
   }
 }

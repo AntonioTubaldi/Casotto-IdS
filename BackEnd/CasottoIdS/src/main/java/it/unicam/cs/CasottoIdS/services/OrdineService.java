@@ -21,8 +21,8 @@ public class OrdineService {
         return this.repository.findAll();
     }
 
-    public boolean addOrdine(String idUtente, double costoTotale, List<Prodotto> prodotti) {
-        Ordine newOrdine = new Ordine(idUtente,costoTotale,prodotti);
+    public boolean addOrdine(String idUtente, String idOmbrellone, double costoTotale, List<Prodotto> prodotti) {
+        Ordine newOrdine = new Ordine(idUtente,idOmbrellone, costoTotale,prodotti);
         this.repository.save(newOrdine);
         Optional<Ordine> ordineFromMongo = this.repository.findById(newOrdine.getIdOrdine());
         boolean esito;

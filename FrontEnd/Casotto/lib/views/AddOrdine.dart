@@ -9,11 +9,13 @@ class AddOrdineView extends StatefulWidget {
   const AddOrdineView({
     Key? key,
     required this.idUtente,
+    required this.idOmbrellone,
     required this.costoTotale,
     required this.prodotti,
   }) : super(key: key);
 
   final String idUtente;
+  final String idOmbrellone;
   final double costoTotale;
   final List<Prodotto> prodotti;
 
@@ -29,8 +31,8 @@ class _AddOrdineViewState extends State<AddOrdineView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: ordineService.addOrdine(
-          widget.idUtente, widget.costoTotale, widget.prodotti),
+      future: ordineService.addOrdine(widget.idUtente, widget.idOmbrellone,
+          widget.costoTotale, widget.prodotti),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

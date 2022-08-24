@@ -86,6 +86,10 @@ public class Ombrellone {
         return idOmbrellone;
     }
 
+    public void setIdOmbrellone(String idOmbrellone) {
+        this.idOmbrellone = idOmbrellone;
+    }
+
     public double getPrezzoLettini() {
         return prezzoLettini;
     }

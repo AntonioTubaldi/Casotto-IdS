@@ -11,6 +11,8 @@ import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
+import 'package:casotto/views/ConfermaEliminazione.dart';
+import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
@@ -322,6 +324,7 @@ class MyApp extends StatelessWidget {
                       const RouteSettings(name: AddProdottoView.routeName),
                   builder: (_) => AddOrdineView(
                         idUtente: argomenti.idUtente,
+                        idOmbrellone: argomenti.idOmbrellone,
                         costoTotale: argomenti.costoTotale,
                         prodotti: argomenti.prodotti,
                       ));
@@ -358,6 +361,28 @@ class MyApp extends StatelessWidget {
               builder: (_) => PaginaContattiView(),
               settings: const RouteSettings(name: PaginaContattiView.routeName),
             );
+            break;
+
+          case ConfermaEliminazioneView.routeName:
+            if (argomenti is SingleOmbrelloneViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazioneView.routeName),
+                builder: (_) => ConfermaEliminazioneView(
+                    singleOmbrellone: argomenti.singleOmbre),
+              );
+            }
+            break;
+
+          case ConfermaEliminazioneProdottoView.routeName:
+            if (argomenti is SingleProdottoViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazioneProdottoView.routeName),
+                builder: (_) => ConfermaEliminazioneProdottoView(
+                    singleProdotto: argomenti.singleProdotto),
+              );
+            }
             break;
         }
       },

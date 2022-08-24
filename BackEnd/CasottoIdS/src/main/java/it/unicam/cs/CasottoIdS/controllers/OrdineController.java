@@ -24,6 +24,6 @@ public class OrdineController {
 
     @PostMapping("/new")
     public boolean addOrdine(@RequestBody ParametriOrdine p) {
-        return this.service.addOrdine(p.idUtente, p.costoTotale, p.prodotti);
+        return this.service.addOrdine(p.idUtente, p.idOmbrellone, p.costoTotale, p.prodotti);
     }
 }

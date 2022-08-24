@@ -6,12 +6,14 @@ public class ParametriOrdine {
 
 
     public String idUtente;
+    public String idOmbrellone;
     public double costoTotale;
     public List<Prodotto> prodotti;
     public StatoOrdine stato;
 
-    public ParametriOrdine(String idUtente, double costoTotale, List<Prodotto> prodotti, StatoOrdine stato) {
+    public ParametriOrdine(String idUtente, String idOmbrellone, double costoTotale, List<Prodotto> prodotti, StatoOrdine stato) {
         this.idUtente = idUtente;
+        this.idOmbrellone=idOmbrellone;
         this.costoTotale = costoTotale;
         this.prodotti = prodotti;
         this.stato = stato;
@@ -19,6 +21,14 @@ public class ParametriOrdine {
 
     public String getIdUtente() {
         return idUtente;
+    }
+
+    public String getIdOmbrellone() {
+        return idOmbrellone;
+    }
+
+    public void setIdOmbrellone(String idOmbrellone) {
+        this.idOmbrellone = idOmbrellone;
     }
 
     public void setIdUtente(String idUtente) {

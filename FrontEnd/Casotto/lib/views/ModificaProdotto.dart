@@ -53,6 +53,9 @@ class _ModificaProdottoViewState extends State<ModificaProdottoView> {
                     style: TextStyle(fontSize: 30),
                   ),
                 ),
+                body: Center(
+                  child: Text("Il prodotto è stato modificato"),
+                ),
               );
             } else
               return Scaffold(

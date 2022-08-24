@@ -4,6 +4,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../arguments/ProdottoStringArgs.dart';
+import '../arguments/SingleProdottoViewArgs.dart';
+import 'ConfermaEliminazioneProdotto.dart';
 import 'HomePage.dart';
 import 'ProdottoEliminato.dart';
 import 'SceltaPrezzoProdotto.dart';
@@ -21,6 +23,23 @@ class SingleProdottoView extends StatelessWidget {
         appBar: AppBar(
           title: Text("Scheda Prodotto"),
           backgroundColor: Colors.teal,
+        ),
+        floatingActionButton: RawMaterialButton(
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(HomePage.routeName),
+            );
+          },
+          fillColor: Colors.teal,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          constraints: const BoxConstraints.tightFor(height: 50.0, width: 110),
+          child: const Text(
+            "HOME",
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
+          ),
         ),
         body: SafeArea(
           child:
@@ -52,10 +71,8 @@ class SingleProdottoView extends StatelessWidget {
                 onPressed: () => {
                   Navigator.pushNamedAndRemoveUntil(
                     context,
-                    ProdottoEliminatoView.routeName,
-                    arguments: ProdottoStringArgs(
-                      singleProdotto.getNome(),
-                    ),
+                    ConfermaEliminazioneProdottoView.routeName,
+                    arguments: SingleProdottoViewArgs(singleProdotto),
                     ModalRoute.withName(HomePage.routeName),
                   ),
                 },

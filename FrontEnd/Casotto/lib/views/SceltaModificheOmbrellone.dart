@@ -180,7 +180,7 @@ class _SceltaModificheOmbrelloneViewState
                 );
               },
               child: Text(
-                "HOME",
+                "ANNULLA",
                 style: TextStyle(color: Colors.white),
               ),
             ),

@@ -8,15 +8,25 @@ public class Ordine {
     @Id
     public String idOrdine;
     private String idUtente;
+    private String idOmbrellone;
     private double costoTotale;
     private List<Prodotto> prodotti;
     private StatoOrdine stato;
 
-    public Ordine(String idUtente, double costoTotale, List<Prodotto> prodotti) {
+    public Ordine(String idUtente, String idOmbrellone, double costoTotale, List<Prodotto> prodotti) {
         this.idUtente = idUtente;
+        this.idOmbrellone=idOmbrellone;
         this.costoTotale = costoTotale;
         this.prodotti = prodotti;
         this.stato = StatoOrdine.DA_GESTIRE;
+    }
+
+    public String getIdOmbrellone() {
+        return idOmbrellone;
+    }
+
+    public void setIdOmbrellone(String idOmbrellone) {
+        this.idOmbrellone = idOmbrellone;
     }
 
     public String getIdOrdine() {

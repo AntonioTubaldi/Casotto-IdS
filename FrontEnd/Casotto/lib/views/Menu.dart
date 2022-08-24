@@ -60,30 +60,25 @@ class _MenuViewState extends State<MenuView> {
                   return Scaffold(
                     floatingActionButton: Row(
                       children: [
-                        const SizedBox(
-                          width: 50.0,
-                        ),
                         RawMaterialButton(
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               ProdottiSelezionabiliView.routeName,
                               arguments: ProdottiSelezionabiliArgs(list),
-
                             );
                           },
-                    fillColor: Colors.teal,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    constraints:
-                    const BoxConstraints.tightFor(height: 50.0, width: 110),
-                          child: const Text("ORDINA", style: TextStyle(fontSize: 20.0,
-                          color: Colors.white),
+                          fillColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                  ),
-                        const SizedBox(
-                          width: 40.0,
+                          constraints: const BoxConstraints.tightFor(
+                              height: 50.0, width: 100),
+                          child: const Text(
+                            "ORDINA",
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
                         ),
                         RawMaterialButton(
                           onPressed: () {
@@ -92,16 +87,37 @@ class _MenuViewState extends State<MenuView> {
                               SceltaSpecificheProdottoView.routeName,
                             );
                           },
-          fillColor: Colors.teal,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-          ),
-          constraints:
-          const BoxConstraints.tightFor(height: 50.0, width: 160),
-                          child: const Text("AGGIUNGI PRODOTTO", style: TextStyle(fontSize: 13.0,
-                              color: Colors.white),),
-          ),
-
+                          fillColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          constraints: const BoxConstraints.tightFor(
+                              height: 50.0, width: 150),
+                          child: const Text(
+                            "AGGIUNGI PRODOTTO",
+                            style:
+                                TextStyle(fontSize: 13.0, color: Colors.white),
+                          ),
+                        ),
+                        RawMaterialButton(
+                          onPressed: () {
+                            Navigator.popUntil(
+                              context,
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                          fillColor: Colors.teal,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          constraints: const BoxConstraints.tightFor(
+                              height: 50.0, width: 110),
+                          child: const Text(
+                            "HOME",
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
+                        ),
                       ],
                     ),
                     appBar: AppBar(

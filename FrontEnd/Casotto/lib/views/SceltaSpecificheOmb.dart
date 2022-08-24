@@ -160,7 +160,7 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
                 );
               },
               child: Text(
-                "HOME",
+                "ANNULLA",
                 style: TextStyle(color: Colors.white),
               ),
             ),

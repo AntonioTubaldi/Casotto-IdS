@@ -25,6 +25,7 @@ class OrdineService {
     for (var ordineObject in responseBody) {
       String idOrdine = ordineObject["idOrdine"];
       String idUtente = ordineObject["idUtente"];
+      String idOmbrellone = ordineObject["idOmbrellone"];
       double costoTotale = ordineObject["costoTotale"];
       List<Prodotto> prodottiToReturn = [];
       for (var prodottoObject in ordineObject["prodotti"]) {
@@ -38,8 +39,8 @@ class OrdineService {
           (e) => e.toString() == "StatoOrdine." + ordineObject["stato"]);
       print(stato);
 
-      Ordine ordineToAdd =
-          Ordine(idOrdine, idUtente, costoTotale, prodottiToReturn, stato);
+      Ordine ordineToAdd = Ordine(idOrdine, idUtente, idOmbrellone, costoTotale,
+          prodottiToReturn, stato);
 
       toReturn.add(ordineToAdd);
     }
@@ -49,8 +50,8 @@ class OrdineService {
 
 // ADD ORDINE
 
-  Future<bool> addOrdine(
-      String idUtente, double costoTotale, List<Prodotto> prodotti) async {
+  Future<bool> addOrdine(String idUtente, String idOmbrellone,
+      double costoTotale, List<Prodotto> prodotti) async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
@@ -59,6 +60,7 @@ class OrdineService {
       body: jsonEncode(
         {
           "idUtente": idUtente,
+          "idOmbrellone": idOmbrellone,
           "costoTotale": costoTotale,
           "prodotti": prodotti
               .map(
