@@ -31,6 +31,12 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	@Autowired
 	private OrdineRepository ordineRepository;
 
+	@Autowired
+	private AttrezzaturaRepository attrezzaturaRepository;
+
+	@Autowired
+	private StrutturaRepository strutturaRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoIdSApplication.class, args);
 	}
@@ -42,6 +48,8 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		prenotazioneRepository.deleteAll();
 		prodottoRepository.deleteAll();
 		ordineRepository.deleteAll();
+		attrezzaturaRepository.deleteAll();
+		strutturaRepository.deleteAll();
 
 
 		Calendar calendario = Calendar.getInstance();
@@ -116,6 +124,21 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		Ordine ordine2 = new Ordine(utente2.getIdUtente(), Two.getIdOmbrellone(), prodotto3.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine1);
 		ordineRepository.save(ordine2);
 
+
+		Attrezzatura attrezzatura1 = new Attrezzatura("Pallone da beach volley", 4);
+		attrezzaturaRepository.save(attrezzatura1);
+		Attrezzatura attrezzatura2 = new Attrezzatura("Pedalò", 3);
+		attrezzaturaRepository.save(attrezzatura2);
+		Attrezzatura attrezzatura3 = new Attrezzatura("Porte da calcetto", 2);
+		attrezzaturaRepository.save(attrezzatura3);
+
+
+		Struttura struttura1 = new Struttura("Campo da beach", StatoStruttura.LIBERA);
+		strutturaRepository.save(struttura1);
+		Struttura struttura2 = new Struttura("Campo da calcetto", StatoStruttura.OCCUPATA);
+		strutturaRepository.save(struttura2);
+		Struttura struttura3 = new Struttura("Piattaforma per i tuffi", StatoStruttura.OCCUPATA);
+		strutturaRepository.save(struttura3);
 
 
 
