@@ -33,24 +33,25 @@ class _EliminaPrenotazioniState extends State<EliminaPrenotazione> {
                     centerTitle: true,
                     title: const Text('Riepilogo'),
                   ),
-                  body: Center(
+                  body: const Center(
                       child: Text(
                     "Prenotazione eliminata",
                     style: TextStyle(fontSize: 30.0),
                   )),
                 );
-              } else
+              } else {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text('Ops! Qualcosa è andato storto!'),
                   ),
-                  body: Center(
+                  body: const Center(
                       child: Text(
                     "La prenotazione non è stata eliminata!",
                     style: TextStyle(fontSize: 30.0),
                   )),
                 );
+              }
           }
         });
   }

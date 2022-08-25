@@ -58,68 +58,42 @@ class _MenuViewState extends State<MenuView> {
                 if (snapshot.data!.isNotEmpty) {
                   List<Prodotto> list = snapshot.data!;
                   return Scaffold(
-                    floatingActionButton: Row(
-                      children: [
-                        RawMaterialButton(
-                          onPressed: () {
+                    bottomNavigationBar:
+                    BottomAppBar(
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+
+                          IconButton(icon: Icon(color:Colors.teal ,Icons.shopping_cart), onPressed: () {
                             Navigator.pushNamed(
                               context,
                               ProdottiSelezionabiliView.routeName,
                               arguments: ProdottiSelezionabiliArgs(list),
                             );
-                          },
-                          fillColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          constraints: const BoxConstraints.tightFor(
-                              height: 50.0, width: 100),
-                          child: const Text(
-                            "ORDINA",
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
-                          ),
-                        ),
-                        RawMaterialButton(
-                          onPressed: () {
+                          }),
+
+                          //crea uno spazio che si adatta automaticamente
+                          const Spacer(),
+
+                          IconButton(icon: Icon(color:Colors.teal ,Icons.add), onPressed: () {
                             Navigator.pushNamed(
                               context,
                               SceltaSpecificheProdottoView.routeName,
                             );
-                          },
-                          fillColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          constraints: const BoxConstraints.tightFor(
-                              height: 50.0, width: 150),
-                          child: const Text(
-                            "AGGIUNGI PRODOTTO",
-                            style:
-                                TextStyle(fontSize: 13.0, color: Colors.white),
-                          ),
-                        ),
-                        RawMaterialButton(
-                          onPressed: () {
+                          }),
+
+                          const Spacer(),
+
+                          IconButton(icon: Icon(color:Colors.teal ,Icons.home), onPressed: () {
                             Navigator.popUntil(
                               context,
                               ModalRoute.withName(HomePage.routeName),
                             );
-                          },
-                          fillColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          constraints: const BoxConstraints.tightFor(
-                              height: 50.0, width: 110),
-                          child: const Text(
-                            "HOME",
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
-                          ),
-                        ),
-                      ],
+                          }),
+                        ],
+                      ),
                     ),
+
                     appBar: AppBar(
                       title: Text("Menù"),
                       backgroundColor: Colors.teal,

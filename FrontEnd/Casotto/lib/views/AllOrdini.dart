@@ -56,25 +56,33 @@ class _AllOrdiniViewState extends State<AllOrdiniView> {
                   appBar: AppBar(
                     centerTitle: true,
                     title: const Text('Visualizza Ordini'),
+                    backgroundColor: Colors.teal,
                   ),
-                  floatingActionButton: RawMaterialButton(
-                    constraints: BoxConstraints.expand(width: 120, height: 50),
-                    fillColor: Colors.teal,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    onPressed: () => {
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    ),
-                  ),
+
                   body: _getScrollableView(list),
+
+                  bottomNavigationBar:
+                  BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        IconButton(icon: Icon(color:Colors.white ,Icons.menu), onPressed: () {}),
+                        const Spacer(),
+                        // IconButton(icon: Icon(Icons.search), onPressed: () {}),
+                        // IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+                      ],
+                    ),
+                  ),
+                  floatingActionButton:
+                  FloatingActionButton(child: Icon(color: Colors.teal, Icons.home),
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(HomePage.routeName),
+                        );
+                      }),
+                  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
                 );
               } else {
                 return Scaffold(
