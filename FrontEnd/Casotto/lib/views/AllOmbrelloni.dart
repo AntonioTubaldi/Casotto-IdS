@@ -53,11 +53,43 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
               if (snapshot.data!.isNotEmpty) {
                 List<Ombrellone> list = snapshot.data!;
                 return Scaffold(
+
+                    bottomNavigationBar:
+                    BottomAppBar(
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+
+                          const Spacer(),
+
+                          IconButton(icon: Icon(color:Colors.teal ,Icons.home), onPressed: () {
+                            Navigator.popUntil(
+                              context,
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          }),
+
+                          const Spacer(),
+
+                          IconButton(icon: Icon(color:Colors.teal ,Icons.add), onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              SceltaSpecificheOmbView.routeName,
+                            );
+                          }),
+
+                          const Spacer(),
+
+                        ],
+                      ),
+                    ),
+
                     appBar: AppBar(
                       backgroundColor: Colors.teal,
                       centerTitle: true,
                       title: const Text('Visualizza Spiaggia'),
                     ),
+
                     body: _getScrollableView(list),
                     floatingActionButton: Row(
                       children: [
@@ -70,37 +102,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                                 ModalRoute.withName(HomePage.routeName),
                               ),
                             },
-                            child: Text("Home",
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.white)),
-                            fillColor: Colors.teal,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            constraints: BoxConstraints.tightFor(
-                                height: 50.0, width: 130),
-                          ),
-                        ),
-                        SizedBox(width: 10.0),
-                        RawMaterialButton(
-                          onPressed: () => {
-                            Navigator.pushNamed(
-                              context,
-                              SceltaSpecificheOmbView.routeName,
-                            ),
-                          },
-                          child: Text("Aggiungi Ombrellone",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white)),
-                          fillColor: Colors.teal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          constraints:
-                              BoxConstraints.tightFor(height: 50.0, width: 203),
-                        ),
-                      ],
-                    ));
+                   ),),]),);
               } else {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
@@ -145,6 +147,30 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       ),
                     ],
                   )),
+                  bottomNavigationBar:
+                  BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+
+                        IconButton(icon: Icon(color:Colors.teal ,Icons.home), onPressed: () {
+                          Navigator.popUntil(
+                            context,
+                            ModalRoute.withName(HomePage.routeName),
+                          );
+                        }),
+
+                        const Spacer(),
+
+                        IconButton(icon: Icon(color:Colors.teal ,Icons.add), onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            SceltaSpecificheOmbView.routeName,
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
                 );
               }
             }

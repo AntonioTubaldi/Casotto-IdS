@@ -60,26 +60,18 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          RawMaterialButton(
-            onPressed: () => {
-              Navigator.pushNamed(
-                context,
-                RiepilogoOrdinazioneView.routeName,
-                arguments: ProdottiSelezionabiliArgs(
-                  _prodottiSelezionati.toList(),
-                ),
-              ),
-            },
-            child: Text(
-              "PROCEDI ALL'ACQUISTO",
-              style: TextStyle(fontSize: 15, color: Colors.white),
-            ),
-            fillColor: Colors.teal,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
-            ),
-            constraints: BoxConstraints.tightFor(height: 50.0, width: 200),
-          ),
+          FloatingActionButton(
+              child: Icon(color: Colors.teal, Icons.shopping_cart),
+              backgroundColor: Colors.white,
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RiepilogoOrdinazioneView.routeName,
+                  arguments: ProdottiSelezionabiliArgs(
+                    _prodottiSelezionati.toList(),
+                  ),
+                );
+              }),
         ],
       );
     } else {
@@ -97,29 +89,26 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _getScrollableView(widget.lista),
-            Row(
-              children: [
-                SizedBox(width: 125.0),
-                RawMaterialButton(
-                  onPressed: () => {
-                    Navigator.popUntil(
-                      context,
-                      ModalRoute.withName(HomePage.routeName),
-                    ),
-                  },
-                  child: const Text("Home",
-                      style: TextStyle(fontSize: 30, color: Colors.white)),
-                  fillColor: Colors.teal,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  constraints:
-                      BoxConstraints.tightFor(height: 50.0, width: 130),
-                ),
-              ],
-            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Row(
+          children: [
+            const Spacer(),
+            IconButton(
+                icon: Icon(color: Colors.teal, Icons.home),
+                onPressed: () {
+                  Navigator.popUntil(
+                    context,
+                    ModalRoute.withName(HomePage.routeName),
+                  );
+                }),
+            const Spacer(),
           ],
         ),
       ),

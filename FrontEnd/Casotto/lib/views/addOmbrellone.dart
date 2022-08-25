@@ -64,13 +64,12 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-                  body: Center(
-                    child: Container(
-                        child: Text(
-                            "L'ombrellone è stato aggiunto correttamente")),
+                  body: const Center(
+                    child: Text(
+                        "L'ombrellone è stato aggiunto correttamente"),
                   ),
                 );
-              } else
+              } else {
                 return Scaffold(
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
@@ -90,6 +89,7 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                     ),
                   ),
                 );
+              }
           }
         });
   }

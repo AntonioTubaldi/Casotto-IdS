@@ -63,7 +63,7 @@ class _SceltaPrezzoProdottoViewState extends State<SceltaPrezzoProdottoView> {
             RawMaterialButton(
               padding:
                   const EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
-              constraints: BoxConstraints.expand(width: 100, height: 30),
+              constraints: const BoxConstraints.expand(width: 100, height: 30),
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
@@ -75,7 +75,7 @@ class _SceltaPrezzoProdottoViewState extends State<SceltaPrezzoProdottoView> {
                   arguments: ModificaProdottoViewArgs(widget.nome, prezzo),
                 );
               },
-              child: Text(
+              child: const Text(
                 "CONFERMA",
                 style: TextStyle(color: Colors.white),
               ),
@@ -94,7 +94,7 @@ class _SceltaPrezzoProdottoViewState extends State<SceltaPrezzoProdottoView> {
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text(
+              child: const Text(
                 "HOME",
                 style: TextStyle(color: Colors.white),
               ),
