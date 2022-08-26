@@ -18,19 +18,26 @@ public class Utente {
     private String cognome;
     private List<Notifica> notifiche;
     private Ruolo ruolo;
+    private List<Evento> eventiAderiti;
 
-    public void addNotificaById(Notifica nuovaNotifica) {
-        notifiche.add(nuovaNotifica);
 
-    }
 
     public Utente(String nome, String cognome, Ruolo ruolo) {
         this.nome = nome;
         this.cognome = cognome;
         this.notifiche = new ArrayList<>();
         this.ruolo = ruolo;
+        this.eventiAderiti = new ArrayList<>();
     }
 
+    public void addNotificaById(Notifica nuovaNotifica) {
+        notifiche.add(nuovaNotifica);
+
+    }
+
+    public void addEventoById(Evento nuovoEvento) {
+        eventiAderiti.add(nuovoEvento);
+    }
 
     /**
      * recupera l'identificativo dell'utente
@@ -101,6 +108,14 @@ public class Utente {
      * */
     public void setRuolo(Ruolo ruolo) {
         this.ruolo = ruolo;
+    }
+
+    public List<Evento> getEventiAderiti() {
+        return eventiAderiti;
+    }
+
+    public void setEventiAderiti(List<Evento> eventiAderiti) {
+        this.eventiAderiti = eventiAderiti;
     }
 
     @Override

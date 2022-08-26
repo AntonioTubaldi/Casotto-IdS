@@ -47,7 +47,6 @@ public class PrenotazioneService {
      * */
     public boolean confermaPrenotazione(String idPrenotazione) {
         Optional<Prenotazione> prenotazioneFromMongo = this.repository.findById(idPrenotazione);
-
         if(prenotazioneFromMongo.isPresent()) {
             Prenotazione prenotazioneToUpdate = prenotazioneFromMongo.get();
             prenotazioneToUpdate.setStatoPrenotazione(StatoPrenotazione.CONFERMATA);

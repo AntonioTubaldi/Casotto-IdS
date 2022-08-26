@@ -7,6 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -37,6 +40,9 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	@Autowired
 	private StrutturaRepository strutturaRepository;
 
+	@Autowired
+	private EventoRepository eventoRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoIdSApplication.class, args);
 	}
@@ -50,6 +56,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		ordineRepository.deleteAll();
 		attrezzaturaRepository.deleteAll();
 		strutturaRepository.deleteAll();
+		eventoRepository.deleteAll();
 
 
 		Calendar calendario = Calendar.getInstance();
@@ -99,6 +106,8 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		utente2.setIdUtente("234");
 		utenteRepository.save(utente2);
 
+		List<Utente> listaUtenti = new ArrayList<>(List.of(utente1,utente2));
+
 		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), One.getIdOmbrellone(), 10, lista,2,1);
 		prenotazioneRepository.save(prenotazione1);
 		Prenotazione prenotazione2 = new Prenotazione(utente2.getIdUtente(), Two.getIdOmbrellone(), 10, lista,2,1);
@@ -140,6 +149,12 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		Struttura struttura3 = new Struttura("Piattaforma per i tuffi", StatoStruttura.OCCUPATA);
 		strutturaRepository.save(struttura3);
 
+
+
+		Evento evento1 = new Evento("Torneo calcetto", LocalDate.now(), LocalTime.of(19,30),  10 );
+		eventoRepository.save(evento1);
+		Evento evento2 = new Evento("Torneo beach volley", LocalDate.of(2022,8, 27), LocalTime.of(20,00),  50 );
+		eventoRepository.save(evento2);
 
 
 	}
