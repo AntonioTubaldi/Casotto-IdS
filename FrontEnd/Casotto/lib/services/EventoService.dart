@@ -1,12 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import '../models/Evento.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-
 
 class EventoService {
   final String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/evento";
@@ -24,17 +21,19 @@ class EventoService {
       String idEvento = eventoObject["idEvento"];
       String nome = eventoObject["nome"];
       DateTime data = DateTime.parse(eventoObject["data"]);
-      TimeOfDay orarioInizio = DateFormat.jm().format(DateTime.parse(eventoObject["orarioInizio"])) as TimeOfDay;
+
+      TimeOfDay orarioInizio =
+          DateTime.parse(eventoObject["orarioInizio"]) as TimeOfDay;
+
       int numeroMaxPartecipanti = eventoObject["numeroMaxPartecipanti"];
       int numeroPartecipanti = eventoObject["numeroPartecipanti"];
 
-
-      Evento eventoToAdd = Evento(idEvento,nome,data,orarioInizio,numeroMaxPartecipanti, numeroPartecipanti);
+      Evento eventoToAdd = Evento(idEvento, nome, data, orarioInizio,
+          numeroMaxPartecipanti, numeroPartecipanti);
 
       toReturn.add(eventoToAdd);
     }
 
     return toReturn;
   }
-
 }

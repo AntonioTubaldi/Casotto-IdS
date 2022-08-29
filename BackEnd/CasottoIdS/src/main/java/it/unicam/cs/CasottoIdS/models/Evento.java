@@ -14,6 +14,7 @@ public class Evento {
     private String nome;
     private LocalDate data;
     private LocalTime orarioInizio;
+    
     private int numeroMaxPartecipanti;
     private int numeroPartecipanti;
 
