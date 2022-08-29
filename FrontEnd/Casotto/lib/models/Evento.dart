@@ -18,7 +18,7 @@ class Evento {
   this.data = data;
   this.orarioInizio = orarioInizio;
   this.numeroMaxPartecipanti = numeroMaxPartecipanti;
-  this.numeroPartecipanti = 0;
+  this.numeroPartecipanti = numeroPartecipanti;
  }
 
   getIdEvento() {

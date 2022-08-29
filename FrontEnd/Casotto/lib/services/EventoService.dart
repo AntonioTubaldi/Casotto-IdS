@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import '../models/Evento.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 
 class EventoService {
@@ -23,7 +24,7 @@ class EventoService {
       String idEvento = eventoObject["idEvento"];
       String nome = eventoObject["nome"];
       DateTime data = DateTime.parse(eventoObject["data"]);
-      TimeOfDay orarioInizio = eventoObject["orarioInizio"];
+      TimeOfDay orarioInizio = DateFormat.jm().format(DateTime.parse(eventoObject["orarioInizio"])) as TimeOfDay;
       int numeroMaxPartecipanti = eventoObject["numeroMaxPartecipanti"];
       int numeroPartecipanti = eventoObject["numeroPartecipanti"];
 

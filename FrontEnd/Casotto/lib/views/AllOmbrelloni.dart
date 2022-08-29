@@ -137,7 +137,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                         },
                         child: Text("Aggiungi Ombrellone",
                             style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
+                                 TextStyle(fontSize: 20, color: Colors.white)),
                         fillColor: Colors.teal,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
@@ -166,8 +166,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                           Navigator.pushNamed(
                             context,
                             SceltaSpecificheOmbView.routeName,
-                          );
-                        }),
+                          );}),
                       ],
                     ),
                   ),
