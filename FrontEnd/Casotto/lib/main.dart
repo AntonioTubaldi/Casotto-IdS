@@ -7,6 +7,7 @@ import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
+import 'package:casotto/views/AllEventi.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
@@ -383,6 +384,13 @@ class MyApp extends StatelessWidget {
                     singleProdotto: argomenti.singleProdotto),
               );
             }
+            break;
+
+          case AllEventiView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => AllEventiView(),
+              settings: const RouteSettings(name: AllEventiView.routeName),
+            );
             break;
         }
       },
