@@ -57,7 +57,9 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
                       Navigator.popUntil(
-                          context, ModalRoute.withName(HomePage.routeName)),
+                        context,
+                        ModalRoute.withName(HomePage.routeName),
+                      ),
                     },
                     child: const Text(
                       "Home",
@@ -65,8 +67,7 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
                     ),
                   ),
                   body: const Center(
-                    child: Text(
-                        "L'ombrellone è stato aggiunto correttamente"),
+                    child: Text("L'ombrellone è stato aggiunto correttamente"),
                   ),
                 );
               } else {
