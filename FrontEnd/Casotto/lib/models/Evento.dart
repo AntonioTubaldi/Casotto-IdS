@@ -4,11 +4,11 @@ class Evento {
   late String idEvento;
   late String nome;
   late DateTime data;
-  late DateTime orarioInizio;
+  late TimeOfDay orarioInizio;
   late int numeroMaxPartecipanti;
   late int numeroPartecipanti;
 
-  Evento(String idEvento, String nome, DateTime data, DateTime orarioInizio,
+  Evento(String idEvento, String nome, DateTime data, TimeOfDay orarioInizio,
       int numeroMaxPartecipanti, int numeroPartecipanti) {
     this.idEvento = idEvento;
     this.nome = nome;
@@ -42,11 +42,11 @@ class Evento {
     this.data = data;
   }
 
-  DateTime getOrarioInizio() {
+  TimeOfDay getOrarioInizio() {
     return orarioInizio;
   }
 
-  void setOrarioInizio(DateTime orarioInizio) {
+  void setOrarioInizio(TimeOfDay orarioInizio) {
     this.orarioInizio = orarioInizio;
   }
 

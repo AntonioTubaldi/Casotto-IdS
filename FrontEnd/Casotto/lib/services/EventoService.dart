@@ -21,9 +21,7 @@ class EventoService {
       String idEvento = eventoObject["idEvento"];
       String nome = eventoObject["nome"];
       DateTime data = DateTime.parse(eventoObject["data"]);
-
-      DateTime orarioInizio = DateTime.parse(eventoObject["orarioInizio"]);
-
+      TimeOfDay orarioInizio = eventoObject["orarioInizio"];
       int numeroMaxPartecipanti = eventoObject["numeroMaxPartecipanti"];
       int numeroPartecipanti = eventoObject["numeroPartecipanti"];
 
