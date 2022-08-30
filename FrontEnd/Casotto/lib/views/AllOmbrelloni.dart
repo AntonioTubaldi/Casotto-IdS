@@ -19,13 +19,13 @@ class AllOmbrelloniView extends StatefulWidget {
 class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
   OmbrelloneService _ombrelloneService = new OmbrelloneService();
 
-  List<Widget> _getOmbrelloniTabs(List<Ombrellone> ombrelloni) {
-    return ombrelloni.map((Ombrellone singleOmbrellone) {
+  List<Widget> _getOmbrelloniTabs(List<Attrezzatura> ombrelloni) {
+    return ombrelloni.map((Attrezzatura singleOmbrellone) {
       return OmbrelloniTab(child: singleOmbrellone);
     }).toList();
   }
 
-  Widget _getScrollableView(List<Ombrellone> ombrelloneList) {
+  Widget _getScrollableView(List<Attrezzatura> ombrelloneList) {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,7 +37,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Ombrellone>>(
+    return FutureBuilder<List<Attrezzatura>>(
       future: _ombrelloneService.getAllOmbrelloni(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -51,7 +51,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
-                List<Ombrellone> list = snapshot.data!;
+                List<Attrezzatura> list = snapshot.data!;
                 return Scaffold(
 
                     bottomNavigationBar:

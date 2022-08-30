@@ -20,12 +20,12 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
   static const String routeName = "RiepilogoPrenotazione";
 
   final List<SlotData> selezionati;
-  final Ombrellone singleOmbrellone;
+  final Attrezzatura singleOmbrellone;
   final int numeroLettini;
   final int numeroSdraio;
 
   Widget _getRiepilogoPrenotazione(
-      Ombrellone ombrellone, BuildContext context) {
+      Attrezzatura ombrellone, BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.teal,

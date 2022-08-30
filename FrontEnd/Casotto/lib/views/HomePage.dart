@@ -1,3 +1,4 @@
+import 'package:casotto/views/AllAttrezzature.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/Calendar.dart';
@@ -6,7 +7,6 @@ import 'AllEventi.dart';
 import 'AllOmbrelloni.dart';
 import 'Menu.dart';
 import 'PaginaContatti.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,69 +40,88 @@ class HomePage extends StatelessWidget {
                * cliccare l'icona per aprire la pagina;
                * */
               ListTile(
-                leading:  IconButton(icon: Icon(color:Colors.teal ,Icons.beach_access), onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    AllOmbrelloniView.routeName,
-                  );
-                }),
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.beach_access),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AllOmbrelloniView.routeName,
+                      );
+                    }),
                 title: Text('Visualizza Spiaggia'),
               ),
               ListTile(
-                leading: IconButton(icon: Icon(color:Colors.teal ,Icons.calendar_month), onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    CalendarView.routeName,
-                  );
-                }),
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.calendar_month),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        CalendarView.routeName,
+                      );
+                    }),
                 title: const Text('Visualizza Prenotazioni'),
               ),
               ListTile(
-                leading: IconButton(icon: Icon(color:Colors.teal ,Icons.restaurant_menu), onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    MenuView.routeName,
-                  );
-                }),
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.restaurant_menu),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        MenuView.routeName,
+                      );
+                    }),
                 title: const Text('Visualizza Menù'),
               ),
               ListTile(
-                leading: IconButton(icon: Icon(color:Colors.teal ,Icons.menu_open_outlined), onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    AllOrdiniView.routeName,
-                  );
-                }),
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.menu_open_outlined),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AllOrdiniView.routeName,
+                      );
+                    }),
                 title: const Text('Visualizza Ordini'),
               ),
               ListTile(
-        leading: IconButton(icon: Icon(color:Colors.teal ,Icons.person), onPressed: () {
-          Navigator.pushNamed(
-            context,
-            PaginaContattiView.routeName,
-          );
-        }),
-        title: const Text('Contatti'),
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.person),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        PaginaContattiView.routeName,
+                      );
+                    }),
+                title: const Text('Contatti'),
               ),
-
-      ListTile(
-        leading: IconButton(icon: Icon(color:Colors.teal ,Icons.event), onPressed: () {
-          Navigator.pushNamed(
-            context,
-              AllEventiView.routeName
-          );
-        }),
-        title: const Text('Visualizza eventi'),
-      ),
+              ListTile(
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.event),
+                    onPressed: () {
+                      Navigator.pushNamed(context, AllEventiView.routeName);
+                    }),
+                title: const Text('Visualizza eventi'),
+              ),
+              ListTile(
+                leading: IconButton(
+                    icon: Icon(color: Colors.teal, Icons.build),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AllAttrezzatureView.routeName,
+                      );
+                    }),
+                title: const Text('Visualizza Attrezzature'),
+              ),
             ],
           ),
         ),
         body: Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("lib/images/spiaggia.jpg"),
-                fit: BoxFit.cover),
-          )));
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("lib/images/spiaggia.jpg"),
+                  fit: BoxFit.cover),
+            )));
   }
 }

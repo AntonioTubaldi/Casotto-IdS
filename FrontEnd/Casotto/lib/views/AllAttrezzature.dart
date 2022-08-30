@@ -1,42 +1,43 @@
+import 'package:casotto/models/Attrezzatura.dart';
+import 'package:casotto/services/AttrezzaturaService.dart';
+import 'package:casotto/views/SceltaSpecificheAttrezzature.dart';
+import 'package:casotto/widgets/AttrezzatureTab.dart';
 import 'package:flutter/material.dart';
-import '../models/Evento.dart';
-import '../services/EventoService.dart';
-import '../widgets/EventiTab.dart';
 import 'HomePage.dart';
 import 'MessageScreen.dart';
 
-class AllEventiView extends StatefulWidget {
-  const AllEventiView({Key? key}) : super(key: key);
+class AllAttrezzatureView extends StatefulWidget {
+  const AllAttrezzatureView({Key? key}) : super(key: key);
 
-  static const String routeName = "AllEventi";
+  static const String routeName = "AllAttrezzature";
 
   @override
-  State<AllEventiView> createState() => _AllEventiViewState();
+  State<AllAttrezzatureView> createState() => _AllAttrezzatureViewState();
 }
 
-class _AllEventiViewState extends State<AllEventiView> {
-  EventoService _eventoService = new EventoService();
+class _AllAttrezzatureViewState extends State<AllAttrezzatureView> {
+  AttrezzaturaService _attrezzaturaService = new AttrezzaturaService();
 
-  List<Widget> _getEventiTabs(List<Evento> evento) {
-    return evento.map((Evento singleEvento) {
-      return EventiTab(singleEvento: singleEvento);
+  List<Widget> _getAttrezzatureTabs(List<Attrezzatura> attrezzature) {
+    return attrezzature.map((Attrezzatura singleAttrezzatura) {
+      return AttrezzatureTab(singleAttrezzatura: singleAttrezzatura);
     }).toList();
   }
 
-  Widget _getScrollableView(List<Evento> eventoList) {
+  Widget _getScrollableView(List<Attrezzatura> attrezzaturaList) {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _getEventiTabs(eventoList),
+        children: _getAttrezzatureTabs(attrezzaturaList),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Evento>>(
-      future: _eventoService.getAll(),
+    return FutureBuilder<List<Attrezzatura>>(
+      future: _attrezzaturaService.getAll(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
@@ -49,7 +50,7 @@ class _AllEventiViewState extends State<AllEventiView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
-                List<Evento> list = snapshot.data!;
+                List<Attrezzatura> list = snapshot.data!;
                 return Scaffold(
                   bottomNavigationBar: BottomAppBar(
                     color: Colors.white,
@@ -67,7 +68,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.pushNamed(context,
+                                  SceltaSpecificheAttrezzatureView.routeName);
+                            }),
                         const Spacer(),
                       ],
                     ),
@@ -75,7 +79,7 @@ class _AllEventiViewState extends State<AllEventiView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Visualizza Eventi'),
+                    title: const Text('Visualizza Attrezzature'),
                   ),
                   body: _getScrollableView(list),
                   floatingActionButton: Row(children: [
@@ -108,15 +112,23 @@ class _AllEventiViewState extends State<AllEventiView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text("Visualizza Eventi"),
+                    title: const Text("Visualizza Attrezzature"),
                   ),
                   body: Center(
                       child: Column(
                     children: [
-                      const Text("Non ci sono eventi disponibili!"),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Non ci sono attrezzature disponibili!"),
+                      ),
                       RawMaterialButton(
-                        onPressed: () => {},
-                        child: Text("Aggiungi evento",
+                        onPressed: () => {
+                          Navigator.pushNamed(
+                            context,
+                            SceltaSpecificheAttrezzatureView.routeName,
+                          ),
+                        },
+                        child: Text("Aggiungi Attrezzatura",
                             style:
                                 TextStyle(fontSize: 20, color: Colors.white)),
                         fillColor: Colors.teal,
@@ -142,8 +154,9 @@ class _AllEventiViewState extends State<AllEventiView> {
                             }),
                         const Spacer(),
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {}),
+                          icon: Icon(color: Colors.teal, Icons.add),
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                   ),

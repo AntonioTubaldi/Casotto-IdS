@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../models/Evento.dart';
 
 class EventiTab extends StatelessWidget {
@@ -15,9 +13,7 @@ class EventiTab extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(20),
       child: ElevatedButton.icon(
-        onPressed: () => {
-
-        },
+        onPressed: () => {},
         icon: const Icon(
           Icons.event,
           color: Colors.orange,

@@ -12,7 +12,7 @@ class SceltaLettiniView extends StatefulWidget {
       {Key? key, required this.selezionati, required this.singleOmbrellone})
       : super(key: key);
   final List<SlotData> selezionati;
-  final Ombrellone singleOmbrellone;
+  final Attrezzatura singleOmbrellone;
 
   static const String routeName = "SceltaLettini";
 

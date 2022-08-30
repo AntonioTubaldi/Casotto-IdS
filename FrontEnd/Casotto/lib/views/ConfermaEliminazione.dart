@@ -11,7 +11,7 @@ class ConfermaEliminazioneView extends StatefulWidget {
   const ConfermaEliminazioneView({Key? key, required this.singleOmbrellone})
       : super(key: key);
 
-  final Ombrellone singleOmbrellone;
+  final Attrezzatura singleOmbrellone;
 
   static const String routeName = "ConfermaEliminazione";
 

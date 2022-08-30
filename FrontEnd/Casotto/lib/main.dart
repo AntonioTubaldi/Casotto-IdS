@@ -7,6 +7,7 @@ import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
+import 'package:casotto/views/AllAttrezzature.dart';
 import 'package:casotto/views/AllEventi.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
@@ -47,6 +48,7 @@ import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
 import 'views/AddPrenotazione.dart';
+import 'views/SceltaSpecificheAttrezzature.dart';
 
 Future main() async {
   // To load the .env file contents into dotenv.
@@ -391,6 +393,21 @@ class MyApp extends StatelessWidget {
               builder: (_) => AllEventiView(),
               settings: const RouteSettings(name: AllEventiView.routeName),
             );
+            break;
+
+          case AllAttrezzatureView.routeName:
+            return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: AllAttrezzatureView.routeName),
+                builder: (_) => AllAttrezzatureView());
+
+            break;
+
+          case SceltaSpecificheAttrezzatureView.routeName:
+            return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaSpecificheAttrezzatureView.routeName),
+                builder: (_) => SceltaSpecificheAttrezzatureView());
             break;
         }
       },

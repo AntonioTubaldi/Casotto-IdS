@@ -1,12 +1,12 @@
-import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
-import 'package:casotto/models/Ombrellone.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../views/SingleOmbrellone.dart';
+import '../models/Attrezzatura.dart';
 
-class OmbrelloniTab extends StatelessWidget {
-  const OmbrelloniTab({Key? key, required this.child}) : super(key: key);
 
-  final Attrezzatura child;
+class AttrezzatureTab extends StatelessWidget {
+  const AttrezzatureTab({Key? key, required this.singleAttrezzatura}) : super(key: key);
+
+  final Attrezzatura singleAttrezzatura;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,10 @@ class OmbrelloniTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: ElevatedButton.icon(
         onPressed: () => {
-          Navigator.pushNamed(
-            context,
-            SingleOmbrelloneView.routeName,
-            arguments: SingleOmbrelloneViewArgs(child),
-          ),
+
         },
-        icon: Icon(
-          Icons.beach_access,
+        icon: const Icon(
+          Icons.build,
           color: Colors.orange,
           size: 50.0,
         ),
@@ -32,16 +28,16 @@ class OmbrelloniTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Fila: ' + child.getPosizione().toString(),
-              style: TextStyle(
+              'Nome: ${singleAttrezzatura.getNome()}',
+              style: const TextStyle(
                 fontSize: 30,
                 fontFamily: 'Avenir',
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Prezzo: ' + child.getPrezzo().toString(),
-              style: TextStyle(
+              'Quantità: ${singleAttrezzatura.getQuantita()}',
+              style: const TextStyle(
                 fontSize: 30,
                 fontFamily: 'Avenir',
                 fontWeight: FontWeight.bold,

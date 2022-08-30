@@ -10,14 +10,14 @@ import 'package:http/http.dart';
 class OmbrelloneService {
   String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/ombrellone";
 
-  Future<List<Ombrellone>> getAllOmbrelloni() async {
+  Future<List<Attrezzatura>> getAllOmbrelloni() async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/all");
     Response response = await http.get(url);
     dynamic responseBody = jsonDecode(response.body);
 
-    List<Ombrellone> toReturn = [];
+    List<Attrezzatura> toReturn = [];
 
     for (var ombrelloneObject in responseBody) {
       String idOmbrellone = ombrelloneObject["idOmbrellone"];
@@ -37,7 +37,7 @@ class OmbrelloneService {
       double prezzoLettini = ombrelloneObject["prezzoLettini"];
       double prezzoSdraio = ombrelloneObject["prezzoSdraio"];
 
-      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone, prezzo, posizione,
+      Attrezzatura ombrelloneToAdd = Attrezzatura(idOmbrellone, prezzo, posizione,
           dataToReturn, prezzoLettini, prezzoSdraio);
 
       toReturn.add(ombrelloneToAdd);
@@ -122,14 +122,14 @@ class OmbrelloneService {
     return responseBody;
   }
 
-  Future<List<Ombrellone>> addListOmbrellone(
-      List<Ombrellone> newOmbrelloneList) async {
+  Future<List<Attrezzatura>> addListOmbrellone(
+      List<Attrezzatura> newOmbrelloneList) async {
     await Future.delayed(Duration(seconds: 1));
 
     Uri url = Uri.parse(_baseUrl + "/new");
     Response response = await http.post(url);
     dynamic responseBody = jsonDecode(response.body);
-    List<Ombrellone> toReturn = [];
+    List<Attrezzatura> toReturn = [];
 
     for (var ombrelloneObject in responseBody) {
       String? idOmbrellone = ombrelloneObject["id"];
@@ -139,7 +139,7 @@ class OmbrelloneService {
       double prezzoLettini = ombrelloneObject["prezzoLettini"];
       double prezzoSdraio = ombrelloneObject["prezzoSdraio"];
 
-      Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone!, prezzo!,
+      Attrezzatura ombrelloneToAdd = Attrezzatura(idOmbrellone!, prezzo!,
           posizione!, disponibilita!, prezzoLettini, prezzoSdraio);
       toReturn.add(ombrelloneToAdd);
     }

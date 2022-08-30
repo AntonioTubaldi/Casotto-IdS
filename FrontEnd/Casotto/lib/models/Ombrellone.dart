@@ -1,6 +1,6 @@
 import 'SlotData.dart';
 
-class Ombrellone {
+class Attrezzatura {
   late String idOmbrellone;
   late double _prezzo;
   late int _posizione;
@@ -8,7 +8,7 @@ class Ombrellone {
   late double _prezzoLettini;
   late double _prezzoSdraio;
 
-  Ombrellone(String idOmbrellone, double prezzo, int posizione,
+  Attrezzatura(String idOmbrellone, double prezzo, int posizione,
       List<SlotData> disponibilita, double prezzoLettini, double prezzoSdraio) {
     this.idOmbrellone = idOmbrellone;
     this._prezzo = prezzo;
@@ -18,7 +18,7 @@ class Ombrellone {
     this._prezzoSdraio = prezzoSdraio;
   }
 
-  Ombrellone.nienteId(double prezzo, int posizione,
+  Attrezzatura.nienteId(double prezzo, int posizione,
       List<SlotData> disponibilita, double prezzoLettini, double prezzoSdraio) {
     this._prezzo = prezzo;
     this._posizione = posizione;
