@@ -1,9 +1,9 @@
 import 'package:casotto/models/Ombrellone.dart';
 
 class SingleOmbrelloneViewArgs {
-  late Attrezzatura singleOmbre;
+  late Ombrellone singleOmbre;
 
-  SingleOmbrelloneViewArgs(Attrezzatura ombrellone) {
+  SingleOmbrelloneViewArgs(Ombrellone ombrellone) {
     this.singleOmbre = ombrellone;
   }
 }

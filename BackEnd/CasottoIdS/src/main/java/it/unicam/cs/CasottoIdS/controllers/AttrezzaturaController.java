@@ -33,8 +33,8 @@ public class AttrezzaturaController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAttrezzatura(@PathVariable("id") String nome) {
-        this.service.deleteAttrezzatura(nome);
+    public boolean deleteAttrezzatura(@PathVariable("id") String nome) {
+        return this.service.deleteAttrezzatura(nome);
     }
 
 

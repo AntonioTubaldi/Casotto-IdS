@@ -1,12 +1,13 @@
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
-import 'package:casotto/models/Ombrellone.dart';
+
 import 'package:flutter/material.dart';
+import '../models/Ombrellone.dart';
 import '../views/SingleOmbrellone.dart';
 
 class OmbrelloniTab extends StatelessWidget {
   const OmbrelloniTab({Key? key, required this.child}) : super(key: key);
 
-  final Attrezzatura child;
+  final Ombrellone child;
 
   @override
   Widget build(BuildContext context) {

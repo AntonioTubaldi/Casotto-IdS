@@ -38,12 +38,20 @@ class Evento {
     return data;
   }
 
+  String getDataString() {
+    return "${this.data.day}-${this.data.month}-${this.data.year}";
+  }
+
   void setData(DateTime data) {
     this.data = data;
   }
 
   TimeOfDay getOrarioInizio() {
     return orarioInizio;
+  }
+
+  String getOrarioInizioString() {
+    return "${this.orarioInizio.hour}:${this.orarioInizio.minute}";
   }
 
   void setOrarioInizio(TimeOfDay orarioInizio) {

@@ -24,25 +24,25 @@ class EventiTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'nome: ${singleEvento.getNome()}',
+              'Nome: ${singleEvento.getNome()}',
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 25,
                 fontFamily: 'Avenir',
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Data: ${singleEvento.getData()}',
+              'Data: ${singleEvento.getDataString()}',
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 28,
                 fontFamily: 'Avenir',
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Orario di inizio: ${singleEvento.getOrarioInizio()}',
+              'Orario di inizio: ${singleEvento.getOrarioInizioString()}',
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 28,
                 fontFamily: 'Avenir',
                 fontWeight: FontWeight.bold,
               ),

@@ -46,8 +46,15 @@ public class AttrezzaturaService {
         return esito;
     }
 
-    public void deleteAttrezzatura(String nome) {
+    public boolean deleteAttrezzatura(String nome) {
         this.repository.deleteById(nome);
+        Optional<Attrezzatura> attrezzaturaFromMongo = this.repository.findById(nome);
+        boolean esito;
+        if(attrezzaturaFromMongo.isPresent()) {
+            esito = false;
+        }
+        else esito = true;
+        return esito;
     }
 
 }

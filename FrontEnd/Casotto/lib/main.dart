@@ -5,6 +5,7 @@ import 'package:casotto/arguments/OmbrelloneStringArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
+import 'package:casotto/views/AddAttrezzatura.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
 import 'package:casotto/views/AllAttrezzature.dart';
@@ -14,9 +15,12 @@ import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/ConfermaEliminazione.dart';
+import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
+import 'package:casotto/views/EliminaAttrezzatura.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/Menu.dart';
+import 'package:casotto/views/ModificaAttrezzatura.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
 import 'package:casotto/views/ModificaProdotto.dart';
 import 'package:casotto/views/PaginaContatti.dart';
@@ -28,10 +32,12 @@ import 'package:casotto/views/RiepilogoOrdinazione.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaLettini.dart';
+import 'package:casotto/views/SceltaModificheAttrezzatura.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
 import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
+import 'package:casotto/views/SingleAttrezzatura.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:casotto/views/SingleProdotto.dart';
@@ -40,11 +46,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AddOrdineViewArgs.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
+import 'arguments/AttrezzaturaNomeArg.dart';
+import 'arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
+import 'arguments/SingleAttrezzaturaViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
 import 'views/AddPrenotazione.dart';
@@ -408,6 +417,71 @@ class MyApp extends StatelessWidget {
                 settings: const RouteSettings(
                     name: SceltaSpecificheAttrezzatureView.routeName),
                 builder: (_) => SceltaSpecificheAttrezzatureView());
+            break;
+
+          case AddAttrezzaturaView.routeName:
+            if (argomenti is ModificaAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: AddAttrezzaturaView.routeName),
+                builder: (_) => AddAttrezzaturaView(
+                    nome: argomenti.nome, quantita: argomenti.quantita),
+              );
+            }
+            break;
+
+          case SingleAttrezzaturaView.routeName:
+            if (argomenti is SingleAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SingleAttrezzaturaView.routeName),
+                builder: (_) => SingleAttrezzaturaView(
+                    singleAttrezzatura: argomenti.attrezzatura),
+              );
+            }
+            break;
+
+          case SceltaModificheAttrezzaturaView.routeName:
+            if (argomenti is SingleAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaModificheAttrezzaturaView.routeName),
+                builder: (_) => SceltaModificheAttrezzaturaView(
+                    singleAttrezzatura: argomenti.attrezzatura),
+              );
+            }
+            break;
+
+          case ModificaAttrezzaturaView.routeName:
+            if (argomenti is ModificaAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ModificaAttrezzaturaView.routeName),
+                builder: (_) => ModificaAttrezzaturaView(
+                    nome: argomenti.nome, newQuantita: argomenti.quantita),
+              );
+            }
+            break;
+
+          case ConfermaEliminazioneAttrezzaturaView.routeName:
+            if (argomenti is SingleAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazioneAttrezzaturaView.routeName),
+                builder: (_) => ConfermaEliminazioneAttrezzaturaView(
+                    singleAttrezzatura: argomenti.attrezzatura),
+              );
+            }
+            break;
+
+          case EliminaAttrezzaturaView.routeName:
+            if (argomenti is AttrezzaturaNomeArg) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: EliminaAttrezzaturaView.routeName),
+                builder: (_) => EliminaAttrezzaturaView(nome: argomenti.nome),
+              );
+            }
             break;
         }
       },

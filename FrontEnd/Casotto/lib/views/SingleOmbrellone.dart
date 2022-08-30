@@ -20,7 +20,7 @@ import 'SceltaSpecificheOmb.dart';
 class SingleOmbrelloneView extends StatefulWidget {
   const SingleOmbrelloneView({Key? key, required this.ombrellone})
       : super(key: key);
-  final Attrezzatura ombrellone;
+  final Ombrellone ombrellone;
 
   static const String routeName = "SingleOmbrellone";
 

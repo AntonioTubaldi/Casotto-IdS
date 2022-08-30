@@ -19,13 +19,13 @@ class AllOmbrelloniView extends StatefulWidget {
 class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
   OmbrelloneService _ombrelloneService = new OmbrelloneService();
 
-  List<Widget> _getOmbrelloniTabs(List<Attrezzatura> ombrelloni) {
-    return ombrelloni.map((Attrezzatura singleOmbrellone) {
+  List<Widget> _getOmbrelloniTabs(List<Ombrellone> ombrelloni) {
+    return ombrelloni.map((Ombrellone singleOmbrellone) {
       return OmbrelloniTab(child: singleOmbrellone);
     }).toList();
   }
 
-  Widget _getScrollableView(List<Attrezzatura> ombrelloneList) {
+  Widget _getScrollableView(List<Ombrellone> ombrelloneList) {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,7 +37,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Attrezzatura>>(
+    return FutureBuilder<List<Ombrellone>>(
       future: _ombrelloneService.getAllOmbrelloni(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -51,58 +51,54 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
-                List<Attrezzatura> list = snapshot.data!;
+                List<Ombrellone> list = snapshot.data!;
                 return Scaffold(
-
-                    bottomNavigationBar:
-                    BottomAppBar(
-                      color: Colors.white,
-                      child: Row(
-                        children: [
-
-                          const Spacer(),
-
-                          IconButton(icon: Icon(color:Colors.teal ,Icons.home), onPressed: () {
-                            Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(HomePage.routeName),
-                            );
-                          }),
-
-                          const Spacer(),
-
-                          IconButton(icon: Icon(color:Colors.teal ,Icons.add), onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              SceltaSpecificheOmbView.routeName,
-                            );
-                          }),
-
-                          const Spacer(),
-
-                        ],
-                      ),
-                    ),
-
-                    appBar: AppBar(
-                      backgroundColor: Colors.teal,
-                      centerTitle: true,
-                      title: const Text('Visualizza Spiaggia'),
-                    ),
-
-                    body: _getScrollableView(list),
-                    floatingActionButton: Row(
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
                       children: [
-                        SizedBox(width: 40.0),
-                        Container(
-                          child: RawMaterialButton(
-                            onPressed: () => {
+                        const Spacer(),
+                        IconButton(
+                            icon: Icon(color: Colors.teal, Icons.home),
+                            onPressed: () {
                               Navigator.popUntil(
                                 context,
                                 ModalRoute.withName(HomePage.routeName),
-                              ),
-                            },
-                   ),),]),);
+                              );
+                            }),
+                        const Spacer(),
+                        IconButton(
+                            icon: Icon(color: Colors.teal, Icons.add),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                SceltaSpecificheOmbView.routeName,
+                              );
+                            }),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                  appBar: AppBar(
+                    backgroundColor: Colors.teal,
+                    centerTitle: true,
+                    title: const Text('Visualizza Spiaggia'),
+                  ),
+                  body: _getScrollableView(list),
+                  floatingActionButton: Row(children: [
+                    SizedBox(width: 40.0),
+                    Container(
+                      child: RawMaterialButton(
+                        onPressed: () => {
+                          Navigator.popUntil(
+                            context,
+                            ModalRoute.withName(HomePage.routeName),
+                          ),
+                        },
+                      ),
+                    ),
+                  ]),
+                );
               } else {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
@@ -137,7 +133,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                         },
                         child: Text("Aggiungi Ombrellone",
                             style:
-                                 TextStyle(fontSize: 20, color: Colors.white)),
+                                TextStyle(fontSize: 20, color: Colors.white)),
                         fillColor: Colors.teal,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
@@ -147,26 +143,27 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                       ),
                     ],
                   )),
-                  bottomNavigationBar:
-                  BottomAppBar(
+                  bottomNavigationBar: BottomAppBar(
                     color: Colors.white,
                     child: Row(
                       children: [
-
-                        IconButton(icon: Icon(color:Colors.teal ,Icons.home), onPressed: () {
-                          Navigator.popUntil(
-                            context,
-                            ModalRoute.withName(HomePage.routeName),
-                          );
-                        }),
-
+                        IconButton(
+                            icon: Icon(color: Colors.teal, Icons.home),
+                            onPressed: () {
+                              Navigator.popUntil(
+                                context,
+                                ModalRoute.withName(HomePage.routeName),
+                              );
+                            }),
                         const Spacer(),
-
-                        IconButton(icon: Icon(color:Colors.teal ,Icons.add), onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            SceltaSpecificheOmbView.routeName,
-                          );}),
+                        IconButton(
+                            icon: Icon(color: Colors.teal, Icons.add),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                SceltaSpecificheOmbView.routeName,
+                              );
+                            }),
                       ],
                     ),
                   ),

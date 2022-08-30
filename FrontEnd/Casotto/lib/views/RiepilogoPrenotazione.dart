@@ -3,7 +3,6 @@ import 'package:casotto/views/AddPrenotazione.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/widgets/SelectableSlotDataTab.dart';
 import 'package:flutter/material.dart';
-
 import '../models/Giorno.dart';
 import '../models/Ombrellone.dart';
 import '../models/SlotData.dart';
@@ -20,12 +19,12 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
   static const String routeName = "RiepilogoPrenotazione";
 
   final List<SlotData> selezionati;
-  final Attrezzatura singleOmbrellone;
+  final Ombrellone singleOmbrellone;
   final int numeroLettini;
   final int numeroSdraio;
 
   Widget _getRiepilogoPrenotazione(
-      Attrezzatura ombrellone, BuildContext context) {
+      Ombrellone ombrellone, BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.teal,

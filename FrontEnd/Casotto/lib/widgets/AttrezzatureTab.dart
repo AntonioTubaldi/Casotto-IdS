@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../arguments/SingleAttrezzaturaViewArgs.dart';
 import '../models/Attrezzatura.dart';
-
+import '../views/SingleAttrezzatura.dart';
 
 class AttrezzatureTab extends StatelessWidget {
-  const AttrezzatureTab({Key? key, required this.singleAttrezzatura}) : super(key: key);
+  const AttrezzatureTab({Key? key, required this.singleAttrezzatura})
+      : super(key: key);
 
   final Attrezzatura singleAttrezzatura;
 
@@ -16,7 +18,11 @@ class AttrezzatureTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: ElevatedButton.icon(
         onPressed: () => {
-
+          Navigator.pushNamed(
+            context,
+            SingleAttrezzaturaView.routeName,
+            arguments: SingleAttrezzaturaViewArgs(singleAttrezzatura),
+          ),
         },
         icon: const Icon(
           Icons.build,

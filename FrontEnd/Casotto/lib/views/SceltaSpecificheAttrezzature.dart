@@ -32,24 +32,22 @@ class _SceltaSpecificheAttrezzatureViewState
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Expanded(
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 150,
-                      ),
-                      Text(
-                        userPost,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        quantita.toString(),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ],
-                  ),
+            Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      userPost,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      quantita.toString(),
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
             ),
