@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../arguments/SingleEventoViewArgs.dart';
 import '../models/Evento.dart';
+import '../views/SingleEvento.dart';
 
 class EventiTab extends StatelessWidget {
   const EventiTab({Key? key, required this.singleEvento}) : super(key: key);
@@ -13,7 +15,13 @@ class EventiTab extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(20),
       child: ElevatedButton.icon(
-        onPressed: () => {},
+        onPressed: () => {
+          Navigator.pushNamed(
+            context,
+            SingleEventoView.routeName,
+            arguments: SingleEventoViewArgs(singleEvento),
+          )
+        },
         icon: const Icon(
           Icons.event,
           color: Colors.orange,

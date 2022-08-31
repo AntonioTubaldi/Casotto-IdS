@@ -38,6 +38,7 @@ import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
 import 'package:casotto/views/SingleAttrezzatura.dart';
+import 'package:casotto/views/SingleEvento.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:casotto/views/SingleProdotto.dart';
@@ -54,6 +55,7 @@ import 'arguments/ProdottoStringArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SingleAttrezzaturaViewArgs.dart';
+import 'arguments/SingleEventoViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
 import 'views/AddPrenotazione.dart';
@@ -480,6 +482,16 @@ class MyApp extends StatelessWidget {
                 settings: const RouteSettings(
                     name: EliminaAttrezzaturaView.routeName),
                 builder: (_) => EliminaAttrezzaturaView(nome: argomenti.nome),
+              );
+            }
+
+            break;
+          case SingleEventoView.routeName:
+            if (argomenti is SingleEventoViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SingleEventoView.routeName),
+                builder: (_) => SingleEventoView(singleEvento: argomenti.singleEvento),
               );
             }
             break;

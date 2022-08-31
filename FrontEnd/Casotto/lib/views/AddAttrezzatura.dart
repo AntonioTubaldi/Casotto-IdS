@@ -38,29 +38,36 @@ class _AddAttrezzaturaViewState extends State<AddAttrezzaturaView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               return Scaffold(
-                floatingActionButton: RawMaterialButton(
-                  onPressed: () => {
-                    Navigator.popUntil(
-                      context,
-                      ModalRoute.withName(HomePage.routeName),
-                    ),
-                  },
-                  child: const Text(
-                    "Home",
-                    style: TextStyle(fontSize: 30),
-                  ),
-                ),
                 appBar: AppBar(
                   centerTitle: true,
                   title: const Text('Riepilogo'),
                 ),
                 body: Center(
-                  child: RawMaterialButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Attrezzatura aggiunta all'elenco!",
-                      style: TextStyle(fontSize: 25.0),
-                    ),
+                  child: Column(
+                    children: [
+                      RawMaterialButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Attrezzatura aggiunta all'elenco!",
+                          style: TextStyle(fontSize: 25.0),
+                        ),
+                      ),
+
+                      const Spacer(),
+
+                      MaterialButton(
+                        onPressed: () => {
+                          Navigator.popUntil(
+                            context,
+                            ModalRoute.withName(HomePage.routeName),
+                          ),
+                        },
+                        child: const Text(
+                          "Home",
+                          style: TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );

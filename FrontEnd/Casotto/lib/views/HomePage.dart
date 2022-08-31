@@ -122,6 +122,7 @@ class HomePage extends StatelessWidget {
               image: DecorationImage(
                   image: AssetImage("lib/images/spiaggia.jpg"),
                   fit: BoxFit.cover),
-            )));
+            ),),
+    );
   }
 }
