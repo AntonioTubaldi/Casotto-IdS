@@ -36,4 +36,22 @@ class EventoService {
 
     return toReturn;
   }
+
+  Future<bool> addEvento(String nome, DateTime data, TimeOfDay orarioInizio,
+      int numeroMaxPartecipanti) async {
+    Uri url = Uri.parse(_baseUrl + "/new");
+    Response response = await http.post(url,
+        body: jsonEncode({
+          "nome": nome,
+          "data": data.toIso8601String(),
+          "orarioInizio": orarioInizio.toString(),
+          "numeroMaxPartecipanti": numeroMaxPartecipanti
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
 }

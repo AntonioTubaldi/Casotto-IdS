@@ -6,10 +6,12 @@ import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
 import 'package:casotto/views/AddAttrezzatura.dart';
+import 'package:casotto/views/AddEvento.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
 import 'package:casotto/views/AllAttrezzature.dart';
 import 'package:casotto/views/AllEventi.dart';
+import 'package:casotto/views/AllEventiAderiti.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
@@ -19,6 +21,7 @@ import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
 import 'package:casotto/views/HomePage.dart';
+import 'package:casotto/views/IscrizioneAdEvento.dart';
 import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/ModificaAttrezzatura.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
@@ -31,9 +34,12 @@ import 'package:casotto/views/ProdottoEliminato.dart';
 import 'package:casotto/views/RiepilogoOrdinazione.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
 import 'package:casotto/views/RimuoviOmbrellone.dart';
+import 'package:casotto/views/SceltaDataEvento.dart';
 import 'package:casotto/views/SceltaLettini.dart';
 import 'package:casotto/views/SceltaModificheAttrezzatura.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
+import 'package:casotto/views/SceltaNomeEPartecipanti.dart';
+import 'package:casotto/views/SceltaOrarioEvento.dart';
 import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
@@ -45,19 +51,24 @@ import 'package:casotto/views/SingleProdotto.dart';
 import 'package:casotto/views/addOmbrellone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'arguments/AddEventoArgs.dart';
 import 'arguments/AddOrdineViewArgs.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/AttrezzaturaNomeArg.dart';
+import 'arguments/IscrizioneEventoViewArgs.dart';
 import 'arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
+import 'arguments/SceltaDataEventoArgs.dart';
 import 'arguments/SceltaLettiniViewArgs.dart';
 import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
+import 'arguments/SceltaOrarioEventoArgs.dart';
 import 'arguments/SingleAttrezzaturaViewArgs.dart';
 import 'arguments/SingleEventoViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
+import 'arguments/UtenteStringArg.dart';
 import 'views/AddPrenotazione.dart';
 import 'views/SceltaSpecificheAttrezzature.dart';
 
@@ -486,12 +497,80 @@ class MyApp extends StatelessWidget {
             }
 
             break;
+
           case SingleEventoView.routeName:
             if (argomenti is SingleEventoViewArgs) {
               return MaterialPageRoute(
+                settings: const RouteSettings(name: SingleEventoView.routeName),
+                builder: (_) =>
+                    SingleEventoView(singleEvento: argomenti.singleEvento),
+              );
+            }
+            break;
+
+          case IscrizioneAdEventoView.routeName:
+            if (argomenti is IscrizioneEventoViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: IscrizioneAdEventoView.routeName),
+                builder: (_) => IscrizioneAdEventoView(
+                    idUtente: argomenti.idUtente, idEvento: argomenti.idEvento),
+              );
+            }
+            break;
+
+          case AllEventiAderitiView.routeName:
+            if (argomenti is UtenteStringArg) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: AllEventiAderitiView.routeName),
+                builder: (_) =>
+                    AllEventiAderitiView(idUtente: argomenti.idUtente),
+              );
+            }
+            break;
+
+          case SceltaNomeEPartecipantiView.routeName:
+            return MaterialPageRoute(
                 settings: const RouteSettings(
-                    name: SingleEventoView.routeName),
-                builder: (_) => SingleEventoView(singleEvento: argomenti.singleEvento),
+                    name: SceltaNomeEPartecipantiView.routeName),
+                builder: (_) => SceltaNomeEPartecipantiView());
+            break;
+
+          case SceltaDataEventoView.routeName:
+            if (argomenti is SceltaDataEventoArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SceltaDataEventoView.routeName),
+                builder: (_) => SceltaDataEventoView(
+                    nome: argomenti.nome,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case SceltaOrarioEventoView.routeName:
+            if (argomenti is SceltaOrarioEventoArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SceltaOrarioEventoView.routeName),
+                builder: (_) => SceltaOrarioEventoView(
+                    nome: argomenti.nome,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti,
+                    data: argomenti.data),
+              );
+            }
+            break;
+
+          case AddEventoView.routeName:
+            if (argomenti is AddEventoArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: AddEventoView.routeName),
+                builder: (_) => AddEventoView(
+                    nome: argomenti.nome,
+                    data: argomenti.data,
+                    orarioInizio: argomenti.orarioInizio,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
               );
             }
             break;

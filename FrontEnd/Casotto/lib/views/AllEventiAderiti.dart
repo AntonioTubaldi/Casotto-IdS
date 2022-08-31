@@ -1,22 +1,28 @@
+import 'package:casotto/services/UtenteService.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+
 import '../models/Evento.dart';
-import '../services/EventoService.dart';
 import '../widgets/EventiTab.dart';
 import 'HomePage.dart';
 import 'MessageScreen.dart';
-import 'SceltaNomeEPartecipanti.dart';
 
-class AllEventiView extends StatefulWidget {
-  const AllEventiView({Key? key}) : super(key: key);
+class AllEventiAderitiView extends StatefulWidget {
+  const AllEventiAderitiView({Key? key, required this.idUtente})
+      : super(key: key);
 
-  static const String routeName = "AllEventi";
+  final String idUtente;
+
+  static const String routeName = "AllEventiAderiti";
 
   @override
-  State<AllEventiView> createState() => _AllEventiViewState();
+  State<AllEventiAderitiView> createState() => _AllEventiAderitiViewState();
 }
 
-class _AllEventiViewState extends State<AllEventiView> {
-  EventoService _eventoService = new EventoService();
+class _AllEventiAderitiViewState extends State<AllEventiAderitiView> {
+  UtenteService utenteService = new UtenteService();
 
   List<Widget> _getEventiTabs(List<Evento> evento) {
     return evento.map((Evento singleEvento) {
@@ -37,7 +43,7 @@ class _AllEventiViewState extends State<AllEventiView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Evento>>(
-      future: _eventoService.getAll(),
+      future: utenteService.visualizzaEventiAderiti(widget.idUtente),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
@@ -76,31 +82,22 @@ class _AllEventiViewState extends State<AllEventiView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Visualizza Eventi'),
+                    title: const Text('Visualizza Eventi Aderiti'),
                   ),
                   body: _getScrollableView(list),
-                  floatingActionButton: Row(
-                    children: [
-                      SizedBox(width: 40.0),
-                      Container(
-                        child: RawMaterialButton(
-                          onPressed: () => {
-                            Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(HomePage.routeName),
-                            ),
-                          },
-                        ),
-                      ),
-                      FloatingActionButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, SceltaNomeEPartecipantiView.routeName);
+                  floatingActionButton: Row(children: [
+                    SizedBox(width: 40.0),
+                    Container(
+                      child: RawMaterialButton(
+                        onPressed: () => {
+                          Navigator.popUntil(
+                            context,
+                            ModalRoute.withName(HomePage.routeName),
+                          ),
                         },
-                        child: Text("Aggiungi Evento"),
                       ),
-                    ],
-                  ),
+                    ),
+                  ]),
                 );
               } else {
                 return Scaffold(
@@ -118,44 +115,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text("Visualizza Eventi"),
+                    title: const Text("Visualizza Eventi Aderiti"),
                   ),
                   body: Center(
-                      child: Column(
-                    children: [
-                      const Text("Non ci sono eventi disponibili!"),
-                      RawMaterialButton(
-                        onPressed: () => {},
-                        child: Text("Aggiungi evento",
-                            style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
-                        fillColor: Colors.teal,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        constraints:
-                            BoxConstraints.tightFor(height: 50.0, width: 200),
-                      ),
-                    ],
-                  )),
-                  bottomNavigationBar: BottomAppBar(
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        IconButton(
-                            icon: Icon(color: Colors.teal, Icons.home),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(HomePage.routeName),
-                              );
-                            }),
-                        const Spacer(),
-                        IconButton(
-                            icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {}),
-                      ],
-                    ),
+                    child: const Text("Non sei iscritto a nessun evento!"),
                   ),
                 );
               }

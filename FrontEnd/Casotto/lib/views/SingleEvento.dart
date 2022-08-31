@@ -1,7 +1,9 @@
+import 'package:casotto/arguments/IscrizioneEventoViewArgs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/Evento.dart';
 import 'HomePage.dart';
+import 'IscrizioneAdEvento.dart';
 
 class SingleEventoView extends StatefulWidget {
   const SingleEventoView({Key? key, required this.singleEvento})
@@ -21,9 +23,15 @@ class _SingleEventoViewState extends State<SingleEventoView> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-
           RawMaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                IscrizioneAdEventoView.routeName,
+                arguments: IscrizioneEventoViewArgs(
+                    "123", widget.singleEvento.getIdEvento()),
+              );
+            },
             child: Text(
               "Iscriviti",
               style: TextStyle(fontSize: 25, color: Colors.white),

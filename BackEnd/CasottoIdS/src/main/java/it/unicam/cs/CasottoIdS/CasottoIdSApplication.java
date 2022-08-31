@@ -136,7 +136,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 
 		Attrezzatura attrezzatura1 = new Attrezzatura("Pallone da beach volley", 4);
 		attrezzaturaRepository.save(attrezzatura1);
-		Attrezzatura attrezzatura2 = new Attrezzatura("Pedalò", 3);
+		Attrezzatura attrezzatura2 = new Attrezzatura("Racchettoni", 3);
 		attrezzaturaRepository.save(attrezzatura2);
 		Attrezzatura attrezzatura3 = new Attrezzatura("Porte da calcetto", 2);
 		attrezzaturaRepository.save(attrezzatura3);
