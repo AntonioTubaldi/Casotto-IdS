@@ -80,8 +80,10 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
             ),
             RawMaterialButton(
               onPressed: () {
-                Navigator.popUntil(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
                   ModalRoute.withName(HomePage.routeName),
                 );
               },

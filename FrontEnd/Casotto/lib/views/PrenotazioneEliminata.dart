@@ -42,8 +42,10 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
@@ -70,8 +72,10 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },

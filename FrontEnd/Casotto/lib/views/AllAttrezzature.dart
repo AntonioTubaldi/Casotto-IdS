@@ -58,13 +58,16 @@ class _AllAttrezzatureViewState extends State<AllAttrezzatureView> {
                       children: [
                         const Spacer(),
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.home),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(HomePage.routeName),
-                              );
-                            }),
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),
@@ -82,26 +85,32 @@ class _AllAttrezzatureViewState extends State<AllAttrezzatureView> {
                     title: const Text('Visualizza Attrezzature'),
                   ),
                   body: _getScrollableView(list),
-                  floatingActionButton: Row(children: [
-                    SizedBox(width: 40.0),
-                    Container(
-                      child: RawMaterialButton(
-                        onPressed: () => {
-                          Navigator.popUntil(
-                            context,
-                            ModalRoute.withName(HomePage.routeName),
-                          ),
-                        },
+                  floatingActionButton: Row(
+                    children: [
+                      SizedBox(width: 40.0),
+                      Container(
+                        child: RawMaterialButton(
+                          onPressed: () => {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            ),
+                          },
+                        ),
                       ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 );
               } else {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
@@ -145,13 +154,16 @@ class _AllAttrezzatureViewState extends State<AllAttrezzatureView> {
                     child: Row(
                       children: [
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.home),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(HomePage.routeName),
-                              );
-                            }),
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
                         const Spacer(),
                         IconButton(
                           icon: Icon(color: Colors.teal, Icons.add),

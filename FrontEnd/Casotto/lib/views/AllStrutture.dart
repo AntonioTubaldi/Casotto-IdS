@@ -1,44 +1,46 @@
-import 'package:casotto/models/Ombrellone.dart';
-import 'package:casotto/views/SceltaSpecificheOmb.dart';
-import 'package:casotto/views/AddOmbrellone.dart';
+import 'package:casotto/models/Struttura.dart';
+import 'package:casotto/services/StrutturaService.dart';
 import 'package:flutter/material.dart';
-import '../services/OmbrelloneService.dart';
-import '../widgets/OmbrelloniTab.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+
+import '../widgets/StrutturaTab.dart';
 import 'HomePage.dart';
 import 'MessageScreen.dart';
+import 'SceltaParametriStruttura.dart';
 
-class AllOmbrelloniView extends StatefulWidget {
-  const AllOmbrelloniView({Key? key}) : super(key: key);
+class AllStruttureView extends StatefulWidget {
+  const AllStruttureView({Key? key}) : super(key: key);
 
-  static const String routeName = "AllOmbrelloni";
+  static const String routeName = "AllStrutture";
 
   @override
-  State<AllOmbrelloniView> createState() => _AllOmbrelloniViewState();
+  State<AllStruttureView> createState() => _AllStruttureViewState();
 }
 
-class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
-  OmbrelloneService _ombrelloneService = new OmbrelloneService();
+class _AllStruttureViewState extends State<AllStruttureView> {
+  StrutturaService strutturaService = new StrutturaService();
 
-  List<Widget> _getOmbrelloniTabs(List<Ombrellone> ombrelloni) {
-    return ombrelloni.map((Ombrellone singleOmbrellone) {
-      return OmbrelloniTab(child: singleOmbrellone);
+  List<Widget> _getStruttureTabs(List<Struttura> strutture) {
+    return strutture.map((Struttura singleStruttura) {
+      return StrutturaTabView(singleStruttura: singleStruttura);
     }).toList();
   }
 
-  Widget _getScrollableView(List<Ombrellone> ombrelloneList) {
+  Widget _getScrollableView(List<Struttura> strutturaList) {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _getOmbrelloniTabs(ombrelloneList),
+        children: _getStruttureTabs(strutturaList),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Ombrellone>>(
-      future: _ombrelloneService.getAllOmbrelloni(),
+    return FutureBuilder<List<Struttura>>(
+      future: strutturaService.getAll(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
@@ -51,7 +53,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
-                List<Ombrellone> list = snapshot.data!;
+                List<Struttura> list = snapshot.data!;
                 return Scaffold(
                   bottomNavigationBar: BottomAppBar(
                     color: Colors.white,
@@ -71,21 +73,16 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                         ),
                         const Spacer(),
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                SceltaSpecificheOmbView.routeName,
-                              );
-                            }),
-                        const Spacer(),
+                          icon: Icon(color: Colors.teal, Icons.add),
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                   ),
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text('Visualizza Spiaggia'),
+                    title: const Text('Visualizza Strutture'),
                   ),
                   body: _getScrollableView(list),
                   floatingActionButton: Row(
@@ -102,6 +99,23 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                             ),
                           },
                         ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: () => {
+                          Navigator.pushNamed(
+                            context,
+                            SceltaParametriStrutturaView.routeName,
+                          ),
+                        },
+                        child: Text("Aggiungi Struttura",
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.white)),
+                        fillColor: Colors.teal,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        constraints:
+                            BoxConstraints.tightFor(height: 50.0, width: 200),
                       ),
                     ],
                   ),
@@ -124,23 +138,24 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text("Visualizza Spiaggia"),
+                    title: const Text("Visualizza Strutture"),
                   ),
                   body: Center(
                       child: Column(
                     children: [
                       ElevatedButton(
                         onPressed: () {},
-                        child: Text("Non ci sono ombrelloni disponibili!"),
+                        child: Text(
+                            "Non ci sono strutture da poter visualizzare!"),
                       ),
                       RawMaterialButton(
                         onPressed: () => {
                           Navigator.pushNamed(
                             context,
-                            SceltaSpecificheOmbView.routeName,
+                            SceltaParametriStrutturaView.routeName,
                           ),
                         },
-                        child: Text("Aggiungi Ombrellone",
+                        child: Text("Aggiungi Struttura",
                             style:
                                 TextStyle(fontSize: 20, color: Colors.white)),
                         fillColor: Colors.teal,
@@ -170,12 +185,7 @@ class _AllOmbrelloniViewState extends State<AllOmbrelloniView> {
                         const Spacer(),
                         IconButton(
                           icon: Icon(color: Colors.teal, Icons.add),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              SceltaSpecificheOmbView.routeName,
-                            );
-                          },
+                          onPressed: () {},
                         ),
                       ],
                     ),

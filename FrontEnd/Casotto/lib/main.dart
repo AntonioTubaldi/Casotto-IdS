@@ -9,18 +9,22 @@ import 'package:casotto/views/AddAttrezzatura.dart';
 import 'package:casotto/views/AddEvento.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
+import 'package:casotto/views/AddStruttura.dart';
 import 'package:casotto/views/AllAttrezzature.dart';
 import 'package:casotto/views/AllEventi.dart';
 import 'package:casotto/views/AllEventiAderiti.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
+import 'package:casotto/views/AllStrutture.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/ConfermaEliminazione.dart';
 import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
 import 'package:casotto/views/ConfermaEliminazioneEvento.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
+import 'package:casotto/views/ConfermaEliminazioneStruttura.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
+import 'package:casotto/views/EliminaStruttura.dart';
 import 'package:casotto/views/EventoEliminato.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/IscrizioneAdEvento.dart';
@@ -30,8 +34,10 @@ import 'package:casotto/views/ModificaDataEvento.dart';
 import 'package:casotto/views/ModificaEvento.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
 import 'package:casotto/views/ModificaOrarioEvento.dart';
+import 'package:casotto/views/ModificaParametriStruttura.dart';
 import 'package:casotto/views/ModificaPartecipantiEvento.dart';
 import 'package:casotto/views/ModificaProdotto.dart';
+import 'package:casotto/views/ModificaStruttura.dart';
 import 'package:casotto/views/PaginaContatti.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
@@ -46,6 +52,7 @@ import 'package:casotto/views/SceltaModificheAttrezzatura.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
 import 'package:casotto/views/SceltaNomeEPartecipanti.dart';
 import 'package:casotto/views/SceltaOrarioEvento.dart';
+import 'package:casotto/views/SceltaParametriStruttura.dart';
 import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
@@ -54,11 +61,13 @@ import 'package:casotto/views/SingleEvento.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
 import 'package:casotto/views/SingleProdotto.dart';
-import 'package:casotto/views/addOmbrellone.dart';
+import 'package:casotto/views/SingleStruttura.dart';
+import 'package:casotto/views/AddOmbrellone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AddEventoArgs.dart';
 import 'arguments/AddOrdineViewArgs.dart';
+import 'arguments/AddStrutturaArgs.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/AttrezzaturaNomeArg.dart';
 import 'arguments/IscrizioneEventoViewArgs.dart';
@@ -66,8 +75,10 @@ import 'arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'arguments/ModificaDataEventoArgs.dart';
 import 'arguments/ModificaEventoArgs.dart';
 import 'arguments/ModificaOrarioEventoArgs.dart';
+import 'arguments/ModificaParametriStrutturaArgs.dart';
 import 'arguments/ModificaPartecipantiEventoArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
+import 'arguments/ModificaStrutturaArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
 import 'arguments/SceltaDataEventoArgs.dart';
@@ -78,6 +89,7 @@ import 'arguments/SingleAttrezzaturaViewArgs.dart';
 import 'arguments/SingleEventoViewArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
+import 'arguments/SingleStrutturaArgs.dart';
 import 'arguments/UtenteStringArg.dart';
 import 'views/AddPrenotazione.dart';
 import 'views/SceltaSpecificheAttrezzature.dart';
@@ -654,6 +666,88 @@ class MyApp extends StatelessWidget {
                     const RouteSettings(name: EventoEliminatoView.routeName),
                 builder: (_) =>
                     EventoEliminatoView(singleEvento: argomenti.singleEvento),
+              );
+            }
+            break;
+
+          case AllStruttureView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(name: AllStruttureView.routeName),
+              builder: (_) => AllStruttureView(),
+            );
+            break;
+
+          case SceltaParametriStrutturaView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(
+                  name: SceltaParametriStrutturaView.routeName),
+              builder: (_) => SceltaParametriStrutturaView(),
+            );
+            break;
+
+          case AddStrutturaView.routeName:
+            if (argomenti is AddStrutturaArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: AddStrutturaView.routeName),
+                builder: (_) => AddStrutturaView(
+                    nome: argomenti.nome, stato: argomenti.stato),
+              );
+            }
+            break;
+
+          case SingleStrutturaView.routeName:
+            if (argomenti is SingleStrutturaArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: SingleStrutturaView.routeName),
+                builder: (_) => SingleStrutturaView(
+                    singleStruttura: argomenti.singleStruttura),
+              );
+            }
+            break;
+
+          case ModificaParametriStrutturaView.routeName:
+            if (argomenti is ModificaParametriStrutturaArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ModificaParametriStrutturaView.routeName),
+                builder: (_) => ModificaParametriStrutturaView(
+                    idStruttura: argomenti.idStruttura),
+              );
+            }
+            break;
+
+          case ModificaStrutturaView.routeName:
+            if (argomenti is ModificaStrutturaArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaStrutturaView.routeName),
+                builder: (_) => ModificaStrutturaView(
+                    idStruttura: argomenti.idStruttura,
+                    nome: argomenti.nome,
+                    stato: argomenti.stato),
+              );
+            }
+            break;
+
+          case ConfermaEliminazioneStrutturaView.routeName:
+            if (argomenti is SingleStrutturaArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazioneStrutturaView.routeName),
+                builder: (_) => ConfermaEliminazioneStrutturaView(
+                    singleStruttura: argomenti.singleStruttura),
+              );
+            }
+            break;
+
+          case EliminaStrutturaView.routeName:
+            if (argomenti is SingleStrutturaArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: EliminaStrutturaView.routeName),
+                builder: (_) => EliminaStrutturaView(
+                    singleStruttura: argomenti.singleStruttura),
               );
             }
             break;

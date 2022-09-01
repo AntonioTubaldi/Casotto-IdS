@@ -62,11 +62,24 @@ class _ModificaDataEventoViewState extends State<ModificaDataEventoView> {
 
   @override
   Widget build(BuildContext context) {
-    print("Giorno selezionato: ${_selectedDate.toString()}");
-    print("Giorno individuato: ${_focusedDate.toString()}");
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: mostraSelezione(),
+      floatingActionButton: Row(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                HomePage.routeName,
+                arguments: const HomePage(),
+                ModalRoute.withName(HomePage.routeName),
+              );
+            },
+            child: Text("HOME"),
+          ),
+          mostraSelezione()!,
+        ],
+      ),
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Calendario'),

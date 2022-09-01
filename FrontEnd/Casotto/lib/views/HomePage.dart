@@ -7,6 +7,7 @@ import '../arguments/UtenteStringArg.dart';
 import 'AllEventi.dart';
 import 'AllEventiAderiti.dart';
 import 'AllOmbrelloni.dart';
+import 'AllStrutture.dart';
 import 'Menu.dart';
 import 'PaginaContatti.dart';
 
@@ -127,6 +128,17 @@ class HomePage extends StatelessWidget {
                     );
                   }),
               title: const Text('Visualizza Attrezzature'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.houseboat),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllStruttureView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza Strutture'),
             ),
           ],
         ),

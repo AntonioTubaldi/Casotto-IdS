@@ -1,33 +1,32 @@
-import 'package:casotto/models/Attrezzatura.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../arguments/AttrezzaturaNomeArg.dart';
-import 'EliminaAttrezzatura.dart';
+import '../arguments/SingleStrutturaArgs.dart';
+import '../models/Struttura.dart';
+import 'EliminaStruttura.dart';
 import 'HomePage.dart';
 
-class ConfermaEliminazioneAttrezzaturaView extends StatefulWidget {
-  const ConfermaEliminazioneAttrezzaturaView(
-      {Key? key, required this.singleAttrezzatura})
+class ConfermaEliminazioneStrutturaView extends StatefulWidget {
+  const ConfermaEliminazioneStrutturaView(
+      {Key? key, required this.singleStruttura})
       : super(key: key);
 
-  final Attrezzatura singleAttrezzatura;
-
-  static const String routeName = "ConfermaEliminazioneAttrezzatura";
+  final Struttura singleStruttura;
+  static const String routeName = "ConfermaEliminazioneStruttura";
 
   @override
-  State<ConfermaEliminazioneAttrezzaturaView> createState() =>
-      _ConfermaEliminazioneAttrezzaturaViewState();
+  State<ConfermaEliminazioneStrutturaView> createState() =>
+      _ConfermaEliminazioneStrutturaViewState();
 }
 
-class _ConfermaEliminazioneAttrezzaturaViewState
-    extends State<ConfermaEliminazioneAttrezzaturaView> {
+class _ConfermaEliminazioneStrutturaViewState
+    extends State<ConfermaEliminazioneStrutturaView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Eliminazione attrezzatura"),
+        title: Text("Eliminazione struttura"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -43,19 +42,17 @@ class _ConfermaEliminazioneAttrezzaturaViewState
       body: Center(
         child: Column(
           children: [
-            Text("Stai per eliminare la seguente attrezzatura: "),
+            Text("Stai per eliminare la seguente struttura: "),
             Text(
-              widget.singleAttrezzatura.getNome(),
+              widget.singleStruttura.getNome(),
             ),
             Text("Sei sicuro?"),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  EliminaAttrezzaturaView.routeName,
-                  arguments: AttrezzaturaNomeArg(
-                    widget.singleAttrezzatura.getNome(),
-                  ),
+                  EliminaStrutturaView.routeName,
+                  arguments: SingleStrutturaArgs(widget.singleStruttura),
                   ModalRoute.withName(HomePage.routeName),
                 );
               },

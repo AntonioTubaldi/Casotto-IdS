@@ -58,13 +58,16 @@ class _AllEventiViewState extends State<AllEventiView> {
                       children: [
                         const Spacer(),
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.home),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(HomePage.routeName),
-                              );
-                            }),
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),
@@ -85,8 +88,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                       Container(
                         child: RawMaterialButton(
                           onPressed: () => {
-                            Navigator.popUntil(
+                            Navigator.pushNamedAndRemoveUntil(
                               context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
                               ModalRoute.withName(HomePage.routeName),
                             ),
                           },
@@ -106,8 +111,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                 return Scaffold(
                   floatingActionButton: FloatingActionButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
@@ -125,7 +132,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                     children: [
                       const Text("Non ci sono eventi disponibili!"),
                       RawMaterialButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.pushNamed(
+                              context, SceltaNomeEPartecipantiView.routeName),
+                        },
                         child: Text("Aggiungi evento",
                             style:
                                 TextStyle(fontSize: 20, color: Colors.white)),
@@ -143,13 +153,16 @@ class _AllEventiViewState extends State<AllEventiView> {
                     child: Row(
                       children: [
                         IconButton(
-                            icon: Icon(color: Colors.teal, Icons.home),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(HomePage.routeName),
-                              );
-                            }),
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),

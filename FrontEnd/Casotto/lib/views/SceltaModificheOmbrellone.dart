@@ -174,8 +174,10 @@ class _SceltaModificheOmbrelloneViewState
                 borderRadius: BorderRadius.circular(50.0),
               ),
               onPressed: () {
-                Navigator.popUntil(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
                   ModalRoute.withName(HomePage.routeName),
                 );
               },

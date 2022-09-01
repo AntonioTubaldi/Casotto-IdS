@@ -1,45 +1,36 @@
-import 'package:flutter/cupertino.dart';
+import 'package:casotto/models/StatoStruttura.dart';
+import 'package:casotto/services/StrutturaService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../services/OmbrelloneService.dart';
 import 'HomePage.dart';
 import 'MessageScreen.dart';
 
-class ModificaOmbrelloneView extends StatefulWidget {
-  const ModificaOmbrelloneView({
-    Key? key,
-    required this.idOmbrellone,
-    required this.prezzo,
-    required this.posizione,
-    required this.prezzoLettini,
-    required this.prezzoSdraio,
-  }) : super(key: key);
-  final String idOmbrellone;
-  final double prezzo;
-  final int posizione;
-  final double prezzoLettini;
-  final double prezzoSdraio;
+class ModificaStrutturaView extends StatefulWidget {
+  const ModificaStrutturaView(
+      {Key? key,
+      required this.idStruttura,
+      required this.nome,
+      required this.stato})
+      : super(key: key);
 
-  static const String routeName = "ModificaOmbrellone";
+  final String idStruttura;
+  final String nome;
+  final StatoStruttura stato;
+  static const String routeName = "ModificaStrutturaView";
 
   @override
-  State<ModificaOmbrelloneView> createState() => _ModificaOmbrelloneViewState();
+  State<ModificaStrutturaView> createState() => _ModificaStrutturaViewState();
 }
 
-class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
-  OmbrelloneService ombrelloneService = new OmbrelloneService();
-
+class _ModificaStrutturaViewState extends State<ModificaStrutturaView> {
+  StrutturaService strutturaService = new StrutturaService();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ombrelloneService.modificaOmbrellone(
-          widget.idOmbrellone,
-          widget.prezzo,
-          widget.posizione,
-          widget.prezzoLettini,
-          widget.prezzoSdraio),
+      future: strutturaService.modificaStruttura(
+          widget.idStruttura, widget.nome, widget.stato),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
@@ -55,7 +46,7 @@ class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
                 appBar: AppBar(
                   backgroundColor: Colors.teal,
                   centerTitle: true,
-                  title: const Text('Riepilogo'),
+                  title: const Text('Struttura Modificata'),
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
@@ -66,25 +57,16 @@ class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },
-                  child: const Text("Home",
-                      style: TextStyle(fontSize: 30, color: Colors.white)),
-                  fillColor: Colors.teal,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+                  child: const Text(
+                    "Home",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  constraints:
-                      BoxConstraints.tightFor(height: 50.0, width: 130),
                 ),
-                body: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: const [
-                    Text("L'ombrellone è stato modificato",
-                        textAlign: TextAlign.center)
-                  ],
+                body: Center(
+                  child: Text("La struttura è stata modificata"),
                 ),
               );
-            } else {
+            } else
               return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.teal,
@@ -106,7 +88,6 @@ class _ModificaOmbrelloneViewState extends State<ModificaOmbrelloneView> {
                   ),
                 ),
               );
-            }
         }
       },
     );

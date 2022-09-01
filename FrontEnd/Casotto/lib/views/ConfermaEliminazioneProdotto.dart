@@ -30,36 +30,39 @@ class _ConfermaEliminazioneProdottoViewState
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.popUntil(
+          Navigator.pushNamedAndRemoveUntil(
             context,
+            HomePage.routeName,
+            arguments: const HomePage(),
             ModalRoute.withName(HomePage.routeName),
           );
         },
         child: Text("Home"),
       ),
       body: Center(
-          child: Column(
-        children: [
-          Text("Stai per eliminare il seguente prodotto: "),
-          Text(
-            widget.singleProdotto.getNome(),
-          ),
-          Text("Sei sicuro?"),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                ProdottoEliminatoView.routeName,
-                arguments: ProdottoStringArgs(
-                  widget.singleProdotto.getNome(),
-                ),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            },
-            child: Text("CONFERMA"),
-          )
-        ],
-      )),
+        child: Column(
+          children: [
+            Text("Stai per eliminare il seguente prodotto: "),
+            Text(
+              widget.singleProdotto.getNome(),
+            ),
+            Text("Sei sicuro?"),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  ProdottoEliminatoView.routeName,
+                  arguments: ProdottoStringArgs(
+                    widget.singleProdotto.getNome(),
+                  ),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+              },
+              child: Text("CONFERMA"),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

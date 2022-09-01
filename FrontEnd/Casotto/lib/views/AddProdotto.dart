@@ -45,8 +45,10 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },
@@ -70,8 +72,10 @@ class _AddProdottoViewState extends State<AddProdottoView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },

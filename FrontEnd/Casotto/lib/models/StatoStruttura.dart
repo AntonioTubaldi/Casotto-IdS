@@ -1,0 +1,1 @@
+enum StatoStruttura { LIBERA, OCCUPATA }

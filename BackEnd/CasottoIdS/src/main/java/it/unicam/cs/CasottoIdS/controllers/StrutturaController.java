@@ -30,7 +30,7 @@ public class StrutturaController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteStruttura(@PathVariable("id") String idStruttura) {
-        this.service.deleteStruttura(idStruttura);
+    public boolean deleteStruttura(@PathVariable("id") String idStruttura) {
+        return this.service.deleteStruttura(idStruttura);
     }
 }

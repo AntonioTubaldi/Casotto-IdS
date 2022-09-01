@@ -44,8 +44,10 @@ class _PrenotazioneConfermataViewState
                 return Scaffold(
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },
@@ -78,8 +80,10 @@ class _PrenotazioneConfermataViewState
                 return Scaffold(
                   floatingActionButton: RawMaterialButton(
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },

@@ -31,70 +31,77 @@ class _ModificaEventoViewState extends State<ModificaEventoView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: eventoService.modificaEvento(widget.idEvento, widget.data,
-            widget.orarioInizio, widget.numeroMaxPartecipanti),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return const MessageScreen(status: MessageScreenStatus.LOADING);
-            case ConnectionState.none:
+      future: eventoService.modificaEvento(widget.idEvento, widget.data,
+          widget.orarioInizio, widget.numeroMaxPartecipanti),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return const MessageScreen(status: MessageScreenStatus.LOADING);
+          case ConnectionState.none:
+            return const MessageScreen(status: MessageScreenStatus.ERROR);
+          case ConnectionState.done:
+            if (snapshot.hasError) {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
-            case ConnectionState.done:
-              if (snapshot.hasError) {
-                return const MessageScreen(status: MessageScreenStatus.ERROR);
-              } else if (snapshot.hasData) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.teal,
-                    centerTitle: true,
-                    title: const Text('Riepilogo'),
-                  ),
-                  floatingActionButton: RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                          context, ModalRoute.withName(HomePage.routeName)),
-                    },
-                    child: const Text("Home",
-                        style: TextStyle(fontSize: 30, color: Colors.white)),
-                    fillColor: Colors.teal,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
+            } else if (snapshot.hasData) {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.teal,
+                  centerTitle: true,
+                  title: const Text('Riepilogo'),
+                ),
+                floatingActionButton: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
                     ),
-                    constraints:
-                        BoxConstraints.tightFor(height: 50.0, width: 130),
+                  },
+                  child: const Text("Home",
+                      style: TextStyle(fontSize: 30, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                  body: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: const [
-                      Text("L'evento è stato modificato",
-                          textAlign: TextAlign.center)
-                    ],
-                  ),
-                );
-              } else {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.teal,
-                    centerTitle: true,
-                    title: const Text('Errore'),
-                  ),
-                  floatingActionButton: RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 130),
+                ),
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: const [
+                    Text("L'evento è stato modificato",
+                        textAlign: TextAlign.center)
+                  ],
+                ),
+              );
+            } else {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.teal,
+                  centerTitle: true,
+                  title: const Text('Errore'),
+                ),
+                floatingActionButton: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
                     ),
+                  },
+                  child: const Text(
+                    "Home",
+                    style: TextStyle(fontSize: 30),
                   ),
-                );
-              }
-          }
-        });
+                ),
+              );
+            }
+        }
+      },
+    );
   }
 }

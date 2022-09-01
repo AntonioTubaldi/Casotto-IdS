@@ -21,6 +21,17 @@ class _SceltaSpecificheAttrezzatureViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomePage.routeName,
+            arguments: const HomePage(),
+            ModalRoute.withName(HomePage.routeName),
+          );
+        },
+        child: Text("HOME"),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.teal,
         centerTitle: true,

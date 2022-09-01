@@ -24,42 +24,47 @@ class _RimuoviOmbrelloneViewState extends State<RimuoviOmbrelloneView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ombrelloneService.rimuoviOmbrellone(widget.idOmbrellone),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return const MessageScreen(status: MessageScreenStatus.LOADING);
-            case ConnectionState.none:
+      future: ombrelloneService.rimuoviOmbrellone(widget.idOmbrellone),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return const MessageScreen(status: MessageScreenStatus.LOADING);
+          case ConnectionState.none:
+            return const MessageScreen(status: MessageScreenStatus.ERROR);
+          case ConnectionState.done:
+            if (snapshot.hasError) {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
-            case ConnectionState.done:
-              if (snapshot.hasError) {
-                return const MessageScreen(status: MessageScreenStatus.ERROR);
-              } else {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.teal,
-                    centerTitle: true,
-                    title: const Text('Riepilogo'),
-                  ),
-                  floatingActionButton: RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                          context, ModalRoute.withName(HomePage.routeName)),
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+            } else {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.teal,
+                  centerTitle: true,
+                  title: const Text('Riepilogo'),
+                ),
+                floatingActionButton: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
                     ),
+                  },
+                  child: const Text(
+                    "Home",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  body: Center(
-                    child: Container(
-                        child: Text(
-                            "L'ombrellone è stato eliminato correttamente")),
-                  ),
-                );
-              }
-          }
-        });
+                ),
+                body: Center(
+                  child: Container(
+                      child:
+                          Text("L'ombrellone è stato eliminato correttamente")),
+                ),
+              );
+            }
+        }
+      },
+    );
   }
 }

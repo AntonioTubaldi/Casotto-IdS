@@ -58,31 +58,34 @@ class _AllOrdiniViewState extends State<AllOrdiniView> {
                     title: const Text('Visualizza Ordini'),
                     backgroundColor: Colors.teal,
                   ),
-
                   body: _getScrollableView(list),
-
-                  bottomNavigationBar:
-                  BottomAppBar(
+                  bottomNavigationBar: BottomAppBar(
                     color: Colors.white,
                     child: Row(
                       children: [
-                        IconButton(icon: Icon(color:Colors.white ,Icons.menu), onPressed: () {}),
+                        IconButton(
+                            icon: Icon(color: Colors.white, Icons.menu),
+                            onPressed: () {}),
                         const Spacer(),
                         // IconButton(icon: Icon(Icons.search), onPressed: () {}),
                         // IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
                       ],
                     ),
                   ),
-                  floatingActionButton:
-                  FloatingActionButton(child: Icon(color: Colors.teal, Icons.home),
-                      backgroundColor: Colors.white,
-                      onPressed: () {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(HomePage.routeName),
-                        );
-                      }),
-                  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+                  floatingActionButton: FloatingActionButton(
+                    child: Icon(color: Colors.teal, Icons.home),
+                    backgroundColor: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
+                        ModalRoute.withName(HomePage.routeName),
+                      );
+                    },
+                  ),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
                 );
               } else {
                 return Scaffold(
@@ -98,8 +101,10 @@ class _AllOrdiniViewState extends State<AllOrdiniView> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },

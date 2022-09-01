@@ -52,8 +52,12 @@ class _ModificaAttrezzaturaViewState extends State<ModificaAttrezzaturaView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(HomePage.routeName)),
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
                   },
                   child: const Text("Home",
                       style: TextStyle(fontSize: 30, color: Colors.white)),
@@ -82,8 +86,10 @@ class _ModificaAttrezzaturaViewState extends State<ModificaAttrezzaturaView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },

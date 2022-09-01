@@ -45,8 +45,12 @@ class _ModificaProdottoViewState extends State<ModificaProdottoView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(HomePage.routeName)),
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
                   },
                   child: const Text(
                     "Home",
@@ -66,8 +70,10 @@ class _ModificaProdottoViewState extends State<ModificaProdottoView> {
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },

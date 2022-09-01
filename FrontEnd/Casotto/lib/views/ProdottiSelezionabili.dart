@@ -101,13 +101,16 @@ class _ProdottiSelezionabiliViewState extends State<ProdottiSelezionabiliView> {
           children: [
             const Spacer(),
             IconButton(
-                icon: Icon(color: Colors.teal, Icons.home),
-                onPressed: () {
-                  Navigator.popUntil(
-                    context,
-                    ModalRoute.withName(HomePage.routeName),
-                  );
-                }),
+              icon: Icon(color: Colors.teal, Icons.home),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+              },
+            ),
             const Spacer(),
           ],
         ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import '../arguments/RiepilogoPrenotazioneViewArgs.dart';
+import 'HomePage.dart';
 import 'RiepilogoPrenotazione.dart';
 
 class SceltaLettiniView extends StatefulWidget {
@@ -26,6 +27,17 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomePage.routeName,
+            arguments: const HomePage(),
+            ModalRoute.withName(HomePage.routeName),
+          );
+        },
+        child: Text("HOME"),
+      ),
       appBar: AppBar(
           backgroundColor: Colors.teal,
           centerTitle: true,

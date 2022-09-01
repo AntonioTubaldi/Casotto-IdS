@@ -53,8 +53,12 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
               return Scaffold(
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(HomePage.routeName)),
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
                   },
                   child: Text(
                     "Home",
@@ -79,8 +83,12 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
               return Scaffold(
                 floatingActionButton: FloatingActionButton(
                   onPressed: () => {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(HomePage.routeName)),
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
                   },
                   child: Text(
                     "Home",

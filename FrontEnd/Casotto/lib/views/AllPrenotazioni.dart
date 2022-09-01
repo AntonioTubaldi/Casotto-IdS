@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:casotto/models/Prenotazione.dart';
 import 'package:casotto/services/PrenotazioneService.dart';
 import 'package:casotto/views/MessageScreen.dart';
@@ -59,6 +61,17 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                     title: const Text('Visualizza Prenotazioni'),
                   ),
                   body: _getScrollableView(list),
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: (() {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
+                        ModalRoute.withName(HomePage.routeName),
+                      );
+                    }),
+                    child: Text("HOME"),
+                  ),
                 );
               } else {
                 return Scaffold(
@@ -74,8 +87,10 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                     onPressed: () => {
-                      Navigator.popUntil(
+                      Navigator.pushNamedAndRemoveUntil(
                         context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
                         ModalRoute.withName(HomePage.routeName),
                       ),
                     },

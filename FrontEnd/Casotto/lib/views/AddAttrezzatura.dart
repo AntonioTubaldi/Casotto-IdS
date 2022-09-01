@@ -52,13 +52,13 @@ class _AddAttrezzaturaViewState extends State<AddAttrezzaturaView> {
                           style: TextStyle(fontSize: 25.0),
                         ),
                       ),
-
                       const Spacer(),
-
                       MaterialButton(
                         onPressed: () => {
-                          Navigator.popUntil(
+                          Navigator.pushNamedAndRemoveUntil(
                             context,
+                            HomePage.routeName,
+                            arguments: const HomePage(),
                             ModalRoute.withName(HomePage.routeName),
                           ),
                         },
@@ -75,8 +75,12 @@ class _AddAttrezzaturaViewState extends State<AddAttrezzaturaView> {
               return Scaffold(
                 floatingActionButton: FloatingActionButton(
                   onPressed: () => {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(HomePage.routeName)),
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
                   },
                   child: const Text(
                     "Home",

@@ -53,8 +53,10 @@ class SinglePrenotazioneView extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () => {
-            Navigator.popUntil(
+            Navigator.pushNamedAndRemoveUntil(
               context,
+              HomePage.routeName,
+              arguments: const HomePage(),
               ModalRoute.withName(HomePage.routeName),
             ),
           },
@@ -76,8 +78,10 @@ class SinglePrenotazioneView extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () => {
-            Navigator.popUntil(
+            Navigator.pushNamedAndRemoveUntil(
               context,
+              HomePage.routeName,
+              arguments: const HomePage(),
               ModalRoute.withName(HomePage.routeName),
             ),
           },

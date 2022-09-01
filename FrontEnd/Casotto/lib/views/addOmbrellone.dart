@@ -35,63 +35,68 @@ class _AddOmbrelloneViewState extends State<AddOmbrelloneView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ombrelloneService.addOmbrellone(widget.prezzo, widget.posizione,
-            widget.prezzoLettini, widget.prezzoSdraio),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return const MessageScreen(status: MessageScreenStatus.LOADING);
-            case ConnectionState.none:
+      future: ombrelloneService.addOmbrellone(widget.prezzo, widget.posizione,
+          widget.prezzoLettini, widget.prezzoSdraio),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return const MessageScreen(status: MessageScreenStatus.LOADING);
+          case ConnectionState.none:
+            return const MessageScreen(status: MessageScreenStatus.ERROR);
+          case ConnectionState.done:
+            if (snapshot.hasError) {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
-            case ConnectionState.done:
-              if (snapshot.hasError) {
-                return const MessageScreen(status: MessageScreenStatus.ERROR);
-              } else if (snapshot.hasData) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.teal,
-                    centerTitle: true,
-                    title: const Text('Riepilogo'),
-                  ),
-                  floatingActionButton: RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+            } else if (snapshot.hasData) {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.teal,
+                  centerTitle: true,
+                  title: const Text('Riepilogo'),
+                ),
+                floatingActionButton: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
                     ),
+                  },
+                  child: const Text(
+                    "Home",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  body: const Center(
-                    child: Text("L'ombrellone è stato aggiunto correttamente"),
-                  ),
-                );
-              } else {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.teal,
-                    centerTitle: true,
-                    title: const Text('Errore'),
-                  ),
-                  floatingActionButton: RawMaterialButton(
-                    onPressed: () => {
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+                ),
+                body: const Center(
+                  child: Text("L'ombrellone è stato aggiunto correttamente"),
+                ),
+              );
+            } else {
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.teal,
+                  centerTitle: true,
+                  title: const Text('Errore'),
+                ),
+                floatingActionButton: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
                     ),
+                  },
+                  child: const Text(
+                    "Home",
+                    style: TextStyle(fontSize: 30),
                   ),
-                );
-              }
-          }
-        });
+                ),
+              );
+            }
+        }
+      },
+    );
   }
 }

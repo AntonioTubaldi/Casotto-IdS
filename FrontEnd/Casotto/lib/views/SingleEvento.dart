@@ -79,8 +79,10 @@ class _SingleEventoViewState extends State<SingleEventoView> {
             padding: const EdgeInsets.all(5),
             child: RawMaterialButton(
               onPressed: () => {
-                Navigator.popUntil(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },

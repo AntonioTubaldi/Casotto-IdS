@@ -154,8 +154,10 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                 padding: const EdgeInsets.all(25.0),
                 child: RawMaterialButton(
                   onPressed: () => {
-                    Navigator.popUntil(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
                       ModalRoute.withName(HomePage.routeName),
                     ),
                   },
@@ -180,41 +182,47 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
           title: const Text("Schermata Prenotazione"),
         ),
         body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            RawMaterialButton(
-              onPressed: () {},
-              child: Text(
-                  "Non ci sono date disponibili per l'ombrellone selezionato"),
-            ),
-            Padding(
-              padding: EdgeInsets.all(30),
-              child: RawMaterialButton(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RawMaterialButton(
+                onPressed: () {},
+                child: Text(
+                    "Non ci sono date disponibili per l'ombrellone selezionato"),
+              ),
+              Padding(
+                padding: EdgeInsets.all(30),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomePage.routeName,
+                      arguments: const HomePage(),
+                      ModalRoute.withName(HomePage.routeName),
+                    ),
+                  },
+                  child: const Text("Home",
+                      style: TextStyle(fontSize: 30, color: Colors.white)),
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  constraints:
+                      BoxConstraints.tightFor(height: 50.0, width: 130),
+                ),
+              ),
+              RawMaterialButton(
                 onPressed: () => {
-                  Navigator.popUntil(
+                  Navigator.pushNamed(
                     context,
-                    ModalRoute.withName(HomePage.routeName),
+                    RimuoviOmbrelloneView.routeName,
+                    arguments: OmbrelloneStringArg(
+                        widget.ombrellone.getIdOmbrellone()),
                   ),
                 },
-                child: const Text("Home",
-                    style: TextStyle(fontSize: 30, color: Colors.white)),
-                fillColor: Colors.teal,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                constraints: BoxConstraints.tightFor(height: 50.0, width: 130),
               ),
-            ),
-            RawMaterialButton(
-              onPressed: () => {
-                Navigator.pushNamed(
-                  context,
-                  RimuoviOmbrelloneView.routeName,
-                  arguments:
-                      OmbrelloneStringArg(widget.ombrellone.getIdOmbrellone()),
-                ),
-              },
-            ),
-          ]),
+            ],
+          ),
         ),
       );
     }

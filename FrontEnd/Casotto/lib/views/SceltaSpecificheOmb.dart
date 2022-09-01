@@ -1,4 +1,4 @@
-import 'package:casotto/views/addOmbrellone.dart';
+import 'package:casotto/views/AddOmbrellone.dart';
 import 'package:flutter/material.dart';
 import '../arguments/AddOmbrelloneViewArgs.dart';
 import 'HomePage.dart';
@@ -153,8 +153,10 @@ class _SceltaSpecificheOmbViewState extends State<SceltaSpecificheOmbView> {
                 borderRadius: BorderRadius.circular(50.0),
               ),
               onPressed: () {
-                Navigator.popUntil(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
                   ModalRoute.withName(HomePage.routeName),
                 );
               },

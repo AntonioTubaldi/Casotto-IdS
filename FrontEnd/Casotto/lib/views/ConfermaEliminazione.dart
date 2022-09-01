@@ -29,36 +29,39 @@ class _ConfermaEliminazioneViewState extends State<ConfermaEliminazioneView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.popUntil(
+          Navigator.pushNamedAndRemoveUntil(
             context,
+            HomePage.routeName,
+            arguments: const HomePage(),
             ModalRoute.withName(HomePage.routeName),
           );
         },
         child: Text("Home"),
       ),
       body: Center(
-          child: Column(
-        children: [
-          Text("Stai per eliminare il seguente ombrellone: "),
-          Text(
-            widget.singleOmbrellone.getIdOmbrellone(),
-          ),
-          Text("Sei sicuro?"),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                RimuoviOmbrelloneView.routeName,
-                arguments: OmbrelloneStringArg(
-                  widget.singleOmbrellone.getIdOmbrellone(),
-                ),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            },
-            child: Text("CONFERMA"),
-          )
-        ],
-      )),
+        child: Column(
+          children: [
+            Text("Stai per eliminare il seguente ombrellone: "),
+            Text(
+              widget.singleOmbrellone.getIdOmbrellone(),
+            ),
+            Text("Sei sicuro?"),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RimuoviOmbrelloneView.routeName,
+                  arguments: OmbrelloneStringArg(
+                    widget.singleOmbrellone.getIdOmbrellone(),
+                  ),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+              },
+              child: Text("CONFERMA"),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

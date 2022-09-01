@@ -25,6 +25,17 @@ class _SceltaNomeEPartecipantiViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomePage.routeName,
+            arguments: const HomePage(),
+            ModalRoute.withName(HomePage.routeName),
+          );
+        },
+        child: Text("HOME"),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.teal,
         centerTitle: true,
@@ -80,8 +91,8 @@ class _SceltaNomeEPartecipantiViewState
               ),
               constraints: BoxConstraints.tightFor(height: 35.0, width: 150),
             ),
-            const Text(
-                "Inserisci un limite di partecipanti (o seleziona 999 per non impostarlo): "),
+            const Text("Inserisci un limite di partecipanti: "),
+            const Text("(o seleziona 999 per non impostarlo): "),
             DropdownButton<int>(
               value: numeroMaxPartecipanti,
               icon: const Icon(Icons.arrow_downward),

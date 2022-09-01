@@ -1,26 +1,27 @@
+import 'package:casotto/models/StatoStruttura.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../arguments/ModificaProdottoViewArgs.dart';
-import 'AddProdotto.dart';
+import '../arguments/AddStrutturaArgs.dart';
+import 'AddStruttura.dart';
 import 'HomePage.dart';
 
-class SceltaSpecificheProdottoView extends StatefulWidget {
-  const SceltaSpecificheProdottoView({Key? key}) : super(key: key);
+class SceltaParametriStrutturaView extends StatefulWidget {
+  const SceltaParametriStrutturaView({Key? key}) : super(key: key);
 
-  static const String routeName = "SceltaSpecificheProdotto";
+  static const String routeName = "SceltaParametriStruttura";
 
   @override
-  State<SceltaSpecificheProdottoView> createState() =>
-      _SceltaSpecificheProdottoViewState();
+  State<SceltaParametriStrutturaView> createState() =>
+      _SceltaParametriStrutturaViewState();
 }
 
-class _SceltaSpecificheProdottoViewState
-    extends State<SceltaSpecificheProdottoView> {
+class _SceltaParametriStrutturaViewState
+    extends State<SceltaParametriStrutturaView> {
   final _textController = TextEditingController();
-  double prezzo = 1;
   String userPost = "";
+  StatoStruttura stato = StatoStruttura.LIBERA;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _SceltaSpecificheProdottoViewState
       appBar: AppBar(
         backgroundColor: Colors.teal,
         centerTitle: true,
-        title: const Text("Aggiungi un Prodotto"),
+        title: const Text("Aggiungi una struttura"),
       ),
       body: Container(
         width: double.infinity,
@@ -52,14 +53,10 @@ class _SceltaSpecificheProdottoViewState
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       userPost,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      prezzo.toString(),
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
@@ -69,7 +66,7 @@ class _SceltaSpecificheProdottoViewState
             TextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Inserisci il nome del prodotto",
+                hintText: "Inserisci il nome della struttura",
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -95,9 +92,9 @@ class _SceltaSpecificheProdottoViewState
               ),
               constraints: BoxConstraints.tightFor(height: 35.0, width: 150),
             ),
-            Text("Imposta il prezzo: "),
-            DropdownButton<double>(
-              value: prezzo,
+            const Text("Inserisci lo stato della struttura: "),
+            DropdownButton<StatoStruttura>(
+              value: stato,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
               style: const TextStyle(color: Colors.black),
@@ -105,14 +102,16 @@ class _SceltaSpecificheProdottoViewState
                 height: 2,
                 color: Colors.teal,
               ),
-              onChanged: (double? newValue) {
+              onChanged: (StatoStruttura? newValue) {
                 setState(() {
-                  prezzo = newValue!;
+                  stato = newValue!;
                 });
               },
-              items: <double>[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5]
-                  .map<DropdownMenuItem<double>>((double value) {
-                return DropdownMenuItem<double>(
+              items: <StatoStruttura>[
+                StatoStruttura.LIBERA,
+                StatoStruttura.OCCUPATA
+              ].map<DropdownMenuItem<StatoStruttura>>((StatoStruttura value) {
+                return DropdownMenuItem<StatoStruttura>(
                   value: value,
                   child: Text(value.toString()),
                 );
@@ -120,14 +119,15 @@ class _SceltaSpecificheProdottoViewState
             ),
             RawMaterialButton(
               onPressed: () {
-                Navigator.pushNamed(
+                Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AddProdottoView.routeName,
-                  arguments: ModificaProdottoViewArgs(userPost, prezzo),
+                  AddStrutturaView.routeName,
+                  arguments: AddStrutturaArgs(userPost, stato),
+                  ModalRoute.withName(HomePage.routeName),
                 );
               },
               child: Text(
-                "Aggiungi",
+                "Aggiungi struttura",
                 style: TextStyle(fontSize: 15, color: Colors.white),
               ),
               fillColor: Colors.teal,

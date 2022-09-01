@@ -50,8 +50,10 @@ class _EliminaAttrezzaturaViewState extends State<EliminaAttrezzaturaView> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.popUntil(
+                        Navigator.pushNamedAndRemoveUntil(
                           context,
+                          HomePage.routeName,
+                          arguments: const HomePage(),
                           ModalRoute.withName(HomePage.routeName),
                         );
                       },
@@ -64,13 +66,26 @@ class _EliminaAttrezzaturaViewState extends State<EliminaAttrezzaturaView> {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
-                  title: const Text('Ops! Qualcosa è andato storto!'),
+                  title: const Text('Riepilogo'),
                 ),
-                body: const Center(
-                  child: Text(
-                    "L'attrezzatura non è stata eliminata!",
-                    style: TextStyle(fontSize: 30.0),
-                  ),
+                body: Column(
+                  children: [
+                    const Text(
+                      "Ops! Qualcosa è andato storto!",
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          HomePage.routeName,
+                          arguments: const HomePage(),
+                          ModalRoute.withName(HomePage.routeName),
+                        );
+                      },
+                      child: const Text("HOME"),
+                    ),
+                  ],
                 ),
               );
             }

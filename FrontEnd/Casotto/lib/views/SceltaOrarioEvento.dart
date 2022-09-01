@@ -32,17 +32,32 @@ class _SceltaOrarioEventoViewState extends State<SceltaOrarioEventoView> {
     final hours = time.hour.toString().padLeft(2, "0");
     final minutes = time.minute.toString().padLeft(2, "0");
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            AddEventoView.routeName,
-            arguments: AddEventoArgs(
-                widget.nome, widget.data, time, widget.numeroMaxPartecipanti),
-            ModalRoute.withName(HomePage.routeName),
-          );
-        }),
-        child: Text("Aggiungi Evento"),
+      floatingActionButton: Row(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                HomePage.routeName,
+                arguments: const HomePage(),
+                ModalRoute.withName(HomePage.routeName),
+              );
+            },
+            child: Text("HOME"),
+          ),
+          FloatingActionButton(
+            onPressed: (() {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AddEventoView.routeName,
+                arguments: AddEventoArgs(widget.nome, widget.data, time,
+                    widget.numeroMaxPartecipanti),
+                ModalRoute.withName(HomePage.routeName),
+              );
+            }),
+            child: Text("Aggiungi Evento"),
+          ),
+        ],
       ),
       body: Center(
         child: Column(

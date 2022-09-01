@@ -48,8 +48,15 @@ public class StrutturaService {
         return esito;
     }
 
-    public void deleteStruttura(String idStruttura) {
+    public boolean deleteStruttura(String idStruttura) {
         this.repository.deleteById(idStruttura);
+        Optional<Struttura> strutturaFromMongo = this.repository.findById(idStruttura);
+        boolean esito;
+        if(strutturaFromMongo.isPresent()) {
+            esito = false;
+        }
+        else esito = true;
+        return esito;
     }
 
 
