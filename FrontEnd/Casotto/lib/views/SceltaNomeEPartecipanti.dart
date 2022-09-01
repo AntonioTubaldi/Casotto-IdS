@@ -41,14 +41,10 @@ class _SceltaNomeEPartecipantiViewState
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       userPost,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      numeroMaxPartecipanti.toString(),
                       style: TextStyle(fontSize: 20),
                     ),
                   ],

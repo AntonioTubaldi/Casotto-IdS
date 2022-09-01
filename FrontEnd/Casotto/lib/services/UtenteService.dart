@@ -10,15 +10,16 @@ class UtenteService {
   String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/utente";
 
   Future<bool> iscrizioneEvento(String idUtente, String idEvento) async {
-    Uri url = Uri.parse(_baseUrl + "/iscrizione" + idUtente + idEvento);
+    Uri url = Uri.parse(_baseUrl + "/iscrizione/" + idUtente + "/" + idEvento);
     Response response = await http.put(url);
+    print(response.body);
     bool responseBody = jsonDecode(response.body) as bool;
 
     return responseBody;
   }
 
   Future<List<Evento>> visualizzaEventiAderiti(String idUtente) async {
-    Uri url = Uri.parse(_baseUrl + "/visualizza" + idUtente);
+    Uri url = Uri.parse(_baseUrl + "/visualizza/" + idUtente);
     Response response = await http.get(url);
     dynamic responseBody = jsonDecode(response.body);
     List<Evento> toReturn = [];

@@ -1,9 +1,13 @@
 import 'package:casotto/arguments/IscrizioneEventoViewArgs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../arguments/ModificaPartecipantiEventoArgs.dart';
+import '../arguments/SingleEventoViewArgs.dart';
 import '../models/Evento.dart';
+import 'ConfermaEliminazioneEvento.dart';
 import 'HomePage.dart';
 import 'IscrizioneAdEvento.dart';
+import 'ModificaPartecipantiEvento.dart';
 
 class SingleEventoView extends StatefulWidget {
   const SingleEventoView({Key? key, required this.singleEvento})
@@ -111,7 +115,15 @@ class _SingleEventoViewState extends State<SingleEventoView> {
             Padding(
               padding: EdgeInsets.all(10.0),
               child: RawMaterialButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushNamed(
+                    context,
+                    ConfermaEliminazioneEventoView.routeName,
+                    arguments: SingleEventoViewArgs(
+                      widget.singleEvento,
+                    ),
+                  ),
+                },
                 child: const Text("Elimina Evento",
                     style: TextStyle(fontSize: 20, color: Colors.white)),
                 fillColor: Colors.teal,
@@ -124,7 +136,15 @@ class _SingleEventoViewState extends State<SingleEventoView> {
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: RawMaterialButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushNamed(
+                    context,
+                    ModificaPartecipantiEventoView.routeName,
+                    arguments: ModificaPartecipantiEventoArgs(
+                      widget.singleEvento.getIdEvento(),
+                    ),
+                  ),
+                },
                 child: const Text("Modifica Evento",
                     style: TextStyle(fontSize: 19, color: Colors.white)),
                 fillColor: Colors.teal,

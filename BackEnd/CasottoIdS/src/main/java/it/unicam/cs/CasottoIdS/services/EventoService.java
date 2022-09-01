@@ -46,15 +46,14 @@ public class EventoService {
         return esito;
     }
 
-    public boolean modificaEvento(String idEvento, String newNome, LocalDate newData, LocalTime newOrarioInizio, int newNumeroMaxPartecipanti) {
+    public boolean modificaEvento(String idEvento, LocalDate newData, LocalTime newOrarioInizio, int newNumeroMaxPartecipanti) {
         Optional<Evento> eventoFromMongo = this.repository.findById(idEvento);
         boolean esito;
         if(eventoFromMongo.isPresent()) {
             Evento daModificare = eventoFromMongo.get();
-            daModificare.setNome(newNome);
             daModificare.setData(newData);
             daModificare.setOrarioInizio(newOrarioInizio);
-            daModificare.setNumeroPartecipanti(newNumeroMaxPartecipanti);
+            daModificare.setNumeroMaxPartecipanti(newNumeroMaxPartecipanti);
             this.repository.save(daModificare);
             esito = true;
         }

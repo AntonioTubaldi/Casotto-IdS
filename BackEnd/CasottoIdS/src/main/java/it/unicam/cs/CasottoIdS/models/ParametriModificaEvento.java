@@ -3,26 +3,16 @@ package it.unicam.cs.CasottoIdS.models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ParametriEvento {
+public class ParametriModificaEvento {
 
-    public String nome;
     public LocalDate data;
     public LocalTime orarioInizio;
     public int numeroMaxPartecipanti;
 
-    public ParametriEvento(String nome, LocalDate data, LocalTime orarioInizio, int numeroMaxPartecipanti) {
-        this.nome=nome;
+    public ParametriModificaEvento(LocalDate data, LocalTime orarioInizio, int numeroMaxPartecipanti) {
         this.data = data;
         this.orarioInizio = orarioInizio;
         this.numeroMaxPartecipanti = numeroMaxPartecipanti;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public LocalDate getData() {

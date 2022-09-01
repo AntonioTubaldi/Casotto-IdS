@@ -44,13 +44,39 @@ class EventoService {
         body: jsonEncode({
           "nome": nome,
           "data": data.toIso8601String(),
-          "orarioInizio": orarioInizio.toString(),
+          "orarioInizio":
+              '${orarioInizio.hour.toString().padLeft(2, '0')}:${orarioInizio.minute.toString().padLeft(2, '0')}',
           "numeroMaxPartecipanti": numeroMaxPartecipanti
         }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         });
 
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
+
+  Future<bool> modificaEvento(String idEvento, DateTime data,
+      TimeOfDay orarioInizio, int numeroMaxPartecipanti) async {
+    Uri url = Uri.parse(_baseUrl + "/modifica/" + idEvento);
+    Response response = await http.put(url,
+        body: jsonEncode({
+          "data": data.toIso8601String(),
+          "orarioInizio":
+              '${orarioInizio.hour.toString().padLeft(2, '0')}:${orarioInizio.minute.toString().padLeft(2, '0')}',
+          "numeroMaxPartecipanti": numeroMaxPartecipanti
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
+
+  Future<bool> eliminaEvento(String idEvento) async {
+    Uri url = Uri.parse(_baseUrl + "/delete/" + idEvento);
+    Response response = await http.delete(url);
     bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }

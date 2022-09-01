@@ -1,4 +1,5 @@
 import 'package:casotto/services/UtenteService.dart';
+import 'package:casotto/widgets/EventiTab2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -26,7 +27,7 @@ class _AllEventiAderitiViewState extends State<AllEventiAderitiView> {
 
   List<Widget> _getEventiTabs(List<Evento> evento) {
     return evento.map((Evento singleEvento) {
-      return EventiTab(singleEvento: singleEvento);
+      return EventiTab2View(singleEvento: singleEvento);
     }).toList();
   }
 

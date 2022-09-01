@@ -18,13 +18,19 @@ import 'package:casotto/views/AllPrenotazioni.dart';
 import 'package:casotto/views/Calendar.dart';
 import 'package:casotto/views/ConfermaEliminazione.dart';
 import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
+import 'package:casotto/views/ConfermaEliminazioneEvento.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
+import 'package:casotto/views/EventoEliminato.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/IscrizioneAdEvento.dart';
 import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/ModificaAttrezzatura.dart';
+import 'package:casotto/views/ModificaDataEvento.dart';
+import 'package:casotto/views/ModificaEvento.dart';
 import 'package:casotto/views/ModificaOmbrellone.dart';
+import 'package:casotto/views/ModificaOrarioEvento.dart';
+import 'package:casotto/views/ModificaPartecipantiEvento.dart';
 import 'package:casotto/views/ModificaProdotto.dart';
 import 'package:casotto/views/PaginaContatti.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
@@ -57,6 +63,10 @@ import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/AttrezzaturaNomeArg.dart';
 import 'arguments/IscrizioneEventoViewArgs.dart';
 import 'arguments/ModificaAttrezzaturaViewArgs.dart';
+import 'arguments/ModificaDataEventoArgs.dart';
+import 'arguments/ModificaEventoArgs.dart';
+import 'arguments/ModificaOrarioEventoArgs.dart';
+import 'arguments/ModificaPartecipantiEventoArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
@@ -571,6 +581,79 @@ class MyApp extends StatelessWidget {
                     data: argomenti.data,
                     orarioInizio: argomenti.orarioInizio,
                     numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case ModificaPartecipantiEventoView.routeName:
+            if (argomenti is ModificaPartecipantiEventoArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ModificaPartecipantiEventoView.routeName),
+                builder: (_) => ModificaPartecipantiEventoView(
+                  idEvento: argomenti.idEvento,
+                ),
+              );
+            }
+            break;
+
+          case ModificaDataEventoView.routeName:
+            if (argomenti is ModificaDataEventoArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaDataEventoView.routeName),
+                builder: (_) => ModificaDataEventoView(
+                    idEvento: argomenti.idEvento,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case ModificaOrarioEventoView.routeName:
+            if (argomenti is ModificaOrarioEventoArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ModificaOrarioEventoView.routeName),
+                builder: (_) => ModificaOrarioEventoView(
+                    idEvento: argomenti.idEvento,
+                    data: argomenti.data,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case ModificaEventoView.routeName:
+            if (argomenti is ModificaEventoArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaEventoView.routeName),
+                builder: (_) => ModificaEventoView(
+                    idEvento: argomenti.idEvento,
+                    data: argomenti.data,
+                    orarioInizio: argomenti.orarioInizio,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case ConfermaEliminazioneEventoView.routeName:
+            if (argomenti is SingleEventoViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazioneEventoView.routeName),
+                builder: (_) => ConfermaEliminazioneEventoView(
+                    singleEvento: argomenti.singleEvento),
+              );
+            }
+            break;
+
+          case EventoEliminatoView.routeName:
+            if (argomenti is SingleEventoViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: EventoEliminatoView.routeName),
+                builder: (_) =>
+                    EventoEliminatoView(singleEvento: argomenti.singleEvento),
               );
             }
             break;
