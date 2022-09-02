@@ -1,9 +1,6 @@
 package it.unicam.cs.CasottoIdS.services;
 
-import it.unicam.cs.CasottoIdS.models.Ombrellone;
-import it.unicam.cs.CasottoIdS.models.Prenotazione;
 import it.unicam.cs.CasottoIdS.models.Prodotto;
-import it.unicam.cs.CasottoIdS.models.Tipologia;
 import it.unicam.cs.CasottoIdS.repositories.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
