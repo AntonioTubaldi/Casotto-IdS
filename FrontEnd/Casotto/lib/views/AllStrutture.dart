@@ -1,5 +1,8 @@
+import 'package:casotto/arguments/AddStrutturaArgs.dart';
+import 'package:casotto/models/StatoStruttura.dart';
 import 'package:casotto/models/Struttura.dart';
 import 'package:casotto/services/StrutturaService.dart';
+import 'package:casotto/views/AddStruttura.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -74,8 +77,12 @@ class _AllStruttureViewState extends State<AllStruttureView> {
                         const Spacer(),
                         IconButton(
                           icon: Icon(color: Colors.teal, Icons.add),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context,
+                                SceltaParametriStrutturaView.routeName);
+                          },
                         ),
+                        const Spacer(),
                       ],
                     ),
                   ),
@@ -99,23 +106,6 @@ class _AllStruttureViewState extends State<AllStruttureView> {
                             ),
                           },
                         ),
-                      ),
-                      RawMaterialButton(
-                        onPressed: () => {
-                          Navigator.pushNamed(
-                            context,
-                            SceltaParametriStrutturaView.routeName,
-                          ),
-                        },
-                        child: Text("Aggiungi Struttura",
-                            style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
-                        fillColor: Colors.teal,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        constraints:
-                            BoxConstraints.tightFor(height: 50.0, width: 200),
                       ),
                     ],
                   ),

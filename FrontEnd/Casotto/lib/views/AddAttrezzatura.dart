@@ -40,33 +40,32 @@ class _AddAttrezzaturaViewState extends State<AddAttrezzaturaView> {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
-                body: Center(
-                  child: Column(
+                body: const Center(
+                  child: Text(
+                    "Attrezzatura aggiunta all'elenco!",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+                bottomNavigationBar: BottomAppBar(
+                  color: Colors.white,
+                  child: Row(
                     children: [
-                      RawMaterialButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Attrezzatura aggiunta all'elenco!",
-                          style: TextStyle(fontSize: 25.0),
-                        ),
-                      ),
                       const Spacer(),
-                      MaterialButton(
-                        onPressed: () => {
+                      IconButton(
+                        icon: Icon(color: Colors.teal, Icons.home),
+                        onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             HomePage.routeName,
                             arguments: const HomePage(),
                             ModalRoute.withName(HomePage.routeName),
-                          ),
+                          );
                         },
-                        child: const Text(
-                          "Home",
-                          style: TextStyle(fontSize: 30),
-                        ),
                       ),
+                      const Spacer(),
                     ],
                   ),
                 ),

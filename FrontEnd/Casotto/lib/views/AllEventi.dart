@@ -71,7 +71,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.pushNamed(context,
+                                  SceltaNomeEPartecipantiView.routeName);
+                            }),
                         const Spacer(),
                       ],
                     ),
@@ -96,13 +99,6 @@ class _AllEventiViewState extends State<AllEventiView> {
                             ),
                           },
                         ),
-                      ),
-                      FloatingActionButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, SceltaNomeEPartecipantiView.routeName);
-                        },
-                        child: Text("Aggiungi Evento"),
                       ),
                     ],
                   ),
@@ -131,21 +127,6 @@ class _AllEventiViewState extends State<AllEventiView> {
                       child: Column(
                     children: [
                       const Text("Non ci sono eventi disponibili!"),
-                      RawMaterialButton(
-                        onPressed: () => {
-                          Navigator.pushNamed(
-                              context, SceltaNomeEPartecipantiView.routeName),
-                        },
-                        child: Text("Aggiungi evento",
-                            style:
-                                TextStyle(fontSize: 20, color: Colors.white)),
-                        fillColor: Colors.teal,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        constraints:
-                            BoxConstraints.tightFor(height: 50.0, width: 200),
-                      ),
                     ],
                   )),
                   bottomNavigationBar: BottomAppBar(
@@ -166,7 +147,10 @@ class _AllEventiViewState extends State<AllEventiView> {
                         const Spacer(),
                         IconButton(
                             icon: Icon(color: Colors.teal, Icons.add),
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.pushNamed(context,
+                                  SceltaNomeEPartecipantiView.routeName);
+                            }),
                       ],
                     ),
                   ),

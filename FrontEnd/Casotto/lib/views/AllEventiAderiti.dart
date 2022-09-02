@@ -104,21 +104,28 @@ class _AllEventiAderitiViewState extends State<AllEventiAderitiView> {
                 );
               } else {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () => {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomePage.routeName,
-                        arguments: const HomePage(),
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                   ),
                   appBar: AppBar(
+                    backgroundColor: Colors.teal,
                     centerTitle: true,
                     title: const Text("Visualizza Eventi Aderiti"),
                   ),

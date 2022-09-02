@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
                       ModalRoute.withName(HomePage.routeName),
                     );
                   }),
-              title: const Text('Visualizza eventi prenotati'),
+              title: const Text('Visualizza eventi aderiti'),
             ),
             ListTile(
               leading: IconButton(
