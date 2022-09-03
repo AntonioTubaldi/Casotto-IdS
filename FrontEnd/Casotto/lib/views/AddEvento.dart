@@ -51,20 +51,29 @@ class _AddEventoViewState extends State<AddEventoView> {
                   centerTitle: true,
                   title: const Text('Riepilogo'),
                 ),
-                floatingActionButton: RawMaterialButton(
-                  onPressed: () => {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      HomePage.routeName,
-                      arguments: const HomePage(),
-                      ModalRoute.withName(HomePage.routeName),
-                    ),
-                  },
-                  child: const Text(
-                    "Home",
-                    style: TextStyle(fontSize: 30),
+                bottomNavigationBar: BottomAppBar(
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+
+                      const Spacer(),
+
+                      IconButton(
+                        icon: Icon(color: Colors.teal, Icons.home),
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            HomePage.routeName,
+                            arguments: const HomePage(),
+                            ModalRoute.withName(HomePage.routeName),
+                          );
+                        },
+                      ),
+                      const Spacer(),
+                    ],
                   ),
                 ),
+
                 body: const Center(
                   child: Text("L'evento è stato aggiunto correttamente"),
                 ),

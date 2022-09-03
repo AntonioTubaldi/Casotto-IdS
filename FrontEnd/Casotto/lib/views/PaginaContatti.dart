@@ -60,16 +60,34 @@ class PaginaContattiView extends StatelessWidget {
                 height: 80.0,
                 width: 150.0,
               ),
-              Text(
-                'TIZIANO',
+              const Card(
+                color: Colors.white12,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  leading: Text(
+                    "Tiziano Tacconi: ",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  title: Text(
+                    '   tiziano.tacconi@studenti.unicam.it',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Source Sans Pro',
+                      fontSize: 10.0,
+                    ),
+                  ),
+                ),
+              ),
+              /* Text(
+                'Tiziano - tiziano.tacconi@studenti.unicam.it',
                 style: TextStyle(
                   fontFamily: 'Source Sans Pro',
                   color: Colors.teal.shade50,
-                  fontSize: 20.0,
-                  letterSpacing: 2.5,
+                  fontSize: 14.0,
+                  letterSpacing: 1.5,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 20.0,
                 width: 150.0,

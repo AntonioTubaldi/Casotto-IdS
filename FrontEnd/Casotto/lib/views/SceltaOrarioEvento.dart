@@ -33,33 +33,39 @@ class _SceltaOrarioEventoViewState extends State<SceltaOrarioEventoView> {
     final hours = time.hour.toString().padLeft(2, "0");
     final minutes = time.minute.toString().padLeft(2, "0");
     return Scaffold(
-      floatingActionButton: Row(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                HomePage.routeName,
-                arguments: const HomePage(),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            },
-            child: Text("HOME"),
-          ),
-          FloatingActionButton(
-            onPressed: (() {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                RiepilogoEventoView.routeName,
-                arguments: AddEventoArgs(widget.nome, widget.data, time,
-                    widget.numeroMaxPartecipanti),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            }),
-            child: Text("Aggiungi Evento"),
-          ),
-        ],
+
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Row(
+          children: [
+            const Spacer(),
+            IconButton(
+              icon: Icon(color: Colors.teal, Icons.home),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+              },
+            ),
+            const Spacer(),
+            IconButton(
+                icon: Icon(color: Colors.teal, Icons.add),
+                onPressed: () { Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AddEventoView.routeName,
+                  arguments: AddEventoArgs(widget.nome, widget.data, time,
+                      widget.numeroMaxPartecipanti),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+                }),
+            const Spacer(),
+          ],
+        ),
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -69,8 +75,13 @@ class _SceltaOrarioEventoViewState extends State<SceltaOrarioEventoView> {
               style: TextStyle(fontSize: 32),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              child: Text("Seleziona l'orario di inizio"),
+            RawMaterialButton(
+              constraints: BoxConstraints.expand(width: 200, height: 50),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Text("Seleziona l'orario di inizio", style: TextStyle(color: Colors.white),),
               onPressed: () async {
                 TimeOfDay? newTime =
                     await showTimePicker(context: context, initialTime: time);
@@ -78,6 +89,8 @@ class _SceltaOrarioEventoViewState extends State<SceltaOrarioEventoView> {
                 setState(() => time = newTime);
               },
             ),
+
+
           ],
         ),
       ),
