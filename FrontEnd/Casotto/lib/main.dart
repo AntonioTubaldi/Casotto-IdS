@@ -43,8 +43,14 @@ import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
 import 'package:casotto/views/ProdottiSelezionabili.dart';
 import 'package:casotto/views/ProdottoEliminato.dart';
+import 'package:casotto/views/RiepilogoAttrezzatura.dart';
+import 'package:casotto/views/RiepilogoEvento.dart';
+import 'package:casotto/views/RiepilogoModificaEvento.dart';
+import 'package:casotto/views/RiepilogoModificaStruttura.dart';
+import 'package:casotto/views/RiepilogoModificheAttrezzatura.dart';
 import 'package:casotto/views/RiepilogoOrdinazione.dart';
 import 'package:casotto/views/RiepilogoPrenotazione.dart';
+import 'package:casotto/views/RiepilogoStruttura.dart';
 import 'package:casotto/views/RimuoviOmbrellone.dart';
 import 'package:casotto/views/SceltaDataEvento.dart';
 import 'package:casotto/views/SceltaLettini.dart';
@@ -454,6 +460,17 @@ class MyApp extends StatelessWidget {
                 builder: (_) => SceltaSpecificheAttrezzatureView());
             break;
 
+          case RiepilogoAttrezzaturaView.routeName:
+            if (argomenti is ModificaAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: RiepilogoAttrezzaturaView.routeName),
+                builder: (_) => RiepilogoAttrezzaturaView(
+                    nome: argomenti.nome, quantita: argomenti.quantita),
+              );
+            }
+            break;
+
           case AddAttrezzaturaView.routeName:
             if (argomenti is ModificaAttrezzaturaViewArgs) {
               return MaterialPageRoute(
@@ -483,6 +500,17 @@ class MyApp extends StatelessWidget {
                     name: SceltaModificheAttrezzaturaView.routeName),
                 builder: (_) => SceltaModificheAttrezzaturaView(
                     singleAttrezzatura: argomenti.attrezzatura),
+              );
+            }
+            break;
+
+          case RiepilogoModificheAttrezzaturaView.routeName:
+            if (argomenti is ModificaAttrezzaturaViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: RiepilogoModificheAttrezzaturaView.routeName),
+                builder: (_) => RiepilogoModificheAttrezzaturaView(
+                    nome: argomenti.nome, newQuantita: argomenti.quantita),
               );
             }
             break;
@@ -584,6 +612,20 @@ class MyApp extends StatelessWidget {
             }
             break;
 
+          case RiepilogoEventoView.routeName:
+            if (argomenti is AddEventoArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: RiepilogoEventoView.routeName),
+                builder: (_) => RiepilogoEventoView(
+                    nome: argomenti.nome,
+                    data: argomenti.data,
+                    orarioInizio: argomenti.orarioInizio,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
           case AddEventoView.routeName:
             if (argomenti is AddEventoArgs) {
               return MaterialPageRoute(
@@ -629,6 +671,20 @@ class MyApp extends StatelessWidget {
                 builder: (_) => ModificaOrarioEventoView(
                     idEvento: argomenti.idEvento,
                     data: argomenti.data,
+                    numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
+              );
+            }
+            break;
+
+          case RiepilogoModificaEventoView.routeName:
+            if (argomenti is ModificaEventoArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: RiepilogoModificaEventoView.routeName),
+                builder: (_) => RiepilogoModificaEventoView(
+                    idEvento: argomenti.idEvento,
+                    data: argomenti.data,
+                    orarioInizio: argomenti.orarioInizio,
                     numeroMaxPartecipanti: argomenti.numeroMaxPartecipanti),
               );
             }
@@ -685,6 +741,17 @@ class MyApp extends StatelessWidget {
             );
             break;
 
+          case RiepilogoStrutturaView.routeName:
+            if (argomenti is AddStrutturaArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: RiepilogoStrutturaView.routeName),
+                builder: (_) => RiepilogoStrutturaView(
+                    nome: argomenti.nome, stato: argomenti.stato),
+              );
+            }
+            break;
+
           case AddStrutturaView.routeName:
             if (argomenti is AddStrutturaArgs) {
               return MaterialPageRoute(
@@ -713,6 +780,19 @@ class MyApp extends StatelessWidget {
                     name: ModificaParametriStrutturaView.routeName),
                 builder: (_) => ModificaParametriStrutturaView(
                     idStruttura: argomenti.idStruttura),
+              );
+            }
+            break;
+
+          case RiepilogoModificaStrutturaView.routeName:
+            if (argomenti is ModificaStrutturaArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: RiepilogoModificaStrutturaView.routeName),
+                builder: (_) => RiepilogoModificaStrutturaView(
+                    idStruttura: argomenti.idStruttura,
+                    nome: argomenti.nome,
+                    stato: argomenti.stato),
               );
             }
             break;

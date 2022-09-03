@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'HomePage.dart';
 import 'ModificaAttrezzatura.dart';
+import 'RiepilogoModificheAttrezzatura.dart';
 
 class SceltaModificheAttrezzaturaView extends StatefulWidget {
   const SceltaModificheAttrezzaturaView(
@@ -83,7 +84,7 @@ class _SceltaModificheAttrezzaturaViewState
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  ModificaAttrezzaturaView.routeName,
+                  RiepilogoModificheAttrezzaturaView.routeName,
                   arguments: ModificaAttrezzaturaViewArgs(
                       widget.singleAttrezzatura.getNome(), quantita),
                   ModalRoute.withName(HomePage.routeName),

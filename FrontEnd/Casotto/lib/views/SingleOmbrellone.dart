@@ -105,7 +105,7 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
             children: [
               _getScrollableView(widget.ombrellone.getDisponibilita()),
               Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(2.0),
                 child: RawMaterialButton(
                   onPressed: () => {
                     Navigator.pushNamed(
@@ -121,11 +121,11 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   constraints:
-                      BoxConstraints.tightFor(height: 50.0, width: 200),
+                      BoxConstraints.tightFor(height: 35.0, width: 200),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(10.0),
                 child: RawMaterialButton(
                   onPressed: () => {
                     Navigator.pushNamed(
@@ -147,11 +147,11 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   constraints:
-                      BoxConstraints.tightFor(height: 50.0, width: 200),
+                      BoxConstraints.tightFor(height: 35.0, width: 200),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(20.0),
                 child: RawMaterialButton(
                   onPressed: () => {
                     Navigator.pushNamedAndRemoveUntil(
@@ -168,7 +168,7 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   constraints:
-                      BoxConstraints.tightFor(height: 50.0, width: 200),
+                      BoxConstraints.tightFor(height: 35.0, width: 200),
                 ),
               ),
             ],

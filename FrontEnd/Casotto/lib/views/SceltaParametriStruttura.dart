@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../arguments/AddStrutturaArgs.dart';
 import 'AddStruttura.dart';
 import 'HomePage.dart';
+import 'RiepilogoStruttura.dart';
 
 class SceltaParametriStrutturaView extends StatefulWidget {
   const SceltaParametriStrutturaView({Key? key}) : super(key: key);
@@ -121,7 +122,7 @@ class _SceltaParametriStrutturaViewState
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AddStrutturaView.routeName,
+                  RiepilogoStrutturaView.routeName,
                   arguments: AddStrutturaArgs(userPost, stato),
                   ModalRoute.withName(HomePage.routeName),
                 );

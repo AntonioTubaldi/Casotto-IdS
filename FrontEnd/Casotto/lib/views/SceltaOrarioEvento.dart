@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../arguments/AddEventoArgs.dart';
 import 'AddEvento.dart';
 import 'HomePage.dart';
+import 'RiepilogoEvento.dart';
 
 class SceltaOrarioEventoView extends StatefulWidget {
   const SceltaOrarioEventoView(
@@ -49,7 +50,7 @@ class _SceltaOrarioEventoViewState extends State<SceltaOrarioEventoView> {
             onPressed: (() {
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                AddEventoView.routeName,
+                RiepilogoEventoView.routeName,
                 arguments: AddEventoArgs(widget.nome, widget.data, time,
                     widget.numeroMaxPartecipanti),
                 ModalRoute.withName(HomePage.routeName),

@@ -7,6 +7,7 @@ import '../arguments/ModificaStrutturaArgs.dart';
 import '../models/StatoStruttura.dart';
 import 'HomePage.dart';
 import 'ModificaStruttura.dart';
+import 'RiepilogoModificaStruttura.dart';
 
 class ModificaParametriStrutturaView extends StatefulWidget {
   const ModificaParametriStrutturaView({Key? key, required this.idStruttura})
@@ -124,7 +125,7 @@ class _ModificaParametriStrutturaViewState
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  ModificaStrutturaView.routeName,
+                  RiepilogoModificaStrutturaView.routeName,
                   arguments: ModificaStrutturaArgs(
                       widget.idStruttura, userPost, stato),
                   ModalRoute.withName(HomePage.routeName),

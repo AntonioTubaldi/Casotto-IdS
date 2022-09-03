@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'AddAttrezzatura.dart';
 import 'HomePage.dart';
+import 'RiepilogoAttrezzatura.dart';
 
 class SceltaSpecificheAttrezzatureView extends StatefulWidget {
   const SceltaSpecificheAttrezzatureView({Key? key}) : super(key: key);
@@ -117,7 +118,7 @@ class _SceltaSpecificheAttrezzatureViewState
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AddAttrezzaturaView.routeName,
+                  RiepilogoAttrezzaturaView.routeName,
                   arguments: ModificaAttrezzaturaViewArgs(userPost, quantita),
                   ModalRoute.withName(HomePage.routeName),
                 );
