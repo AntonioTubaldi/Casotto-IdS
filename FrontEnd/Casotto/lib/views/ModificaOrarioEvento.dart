@@ -56,7 +56,7 @@ class _ModificaOrarioEventoViewState extends State<ModificaOrarioEventoView> {
                 ModalRoute.withName(HomePage.routeName),
               );
             }),
-            child: Text("Aggiungi Evento"),
+            child: Text("Conferma modifiche"),
           ),
         ],
       ),

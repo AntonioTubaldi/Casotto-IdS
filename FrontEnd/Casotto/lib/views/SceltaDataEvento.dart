@@ -64,22 +64,7 @@ class _SceltaDataEventoViewState extends State<SceltaDataEventoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: Row(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                HomePage.routeName,
-                arguments: const HomePage(),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            },
-            child: Text("HOME"),
-          ),
-          mostraSelezione()!
-        ],
-      ),
+      floatingActionButton: mostraSelezione(),
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Calendario'),

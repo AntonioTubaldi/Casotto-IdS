@@ -108,9 +108,11 @@ class _SingleEventoViewState extends State<SingleEventoView> {
               child: Column(
                 children: [
                   Text(widget.singleEvento.getNome()),
-                  Text(widget.singleEvento.getDataString()),
-                  Text(widget.singleEvento.getOrarioInizioString()),
-                  Text(widget.singleEvento.getNumeroPartecipanti().toString()),
+                  Text("Data: " + widget.singleEvento.getDataString()),
+                  Text("Inizia alle: " +
+                      widget.singleEvento.getOrarioInizioString()),
+                  Text("Iscritti: " +
+                      widget.singleEvento.getNumeroPartecipanti().toString()),
                 ],
               ),
             ),

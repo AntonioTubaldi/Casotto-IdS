@@ -52,23 +52,8 @@ class _CalendarViewState extends State<CalendarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: mostraPrenotazioni(),
       backgroundColor: Colors.white,
-      floatingActionButton: Row(
-        children: [
-          mostraPrenotazioni()!,
-          ElevatedButton(
-            onPressed: (() {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                HomePage.routeName,
-                arguments: const HomePage(),
-                ModalRoute.withName(HomePage.routeName),
-              );
-            }),
-            child: Text("HOME"),
-          ),
-        ],
-      ),
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Calendario'),
