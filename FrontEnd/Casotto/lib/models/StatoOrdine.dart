@@ -1,1 +1,1 @@
-enum StatoOrdine { DA_GESTIRE, CHIUSO }
+enum StatoOrdine { DA_GESTIRE, IN_GESTIONE }

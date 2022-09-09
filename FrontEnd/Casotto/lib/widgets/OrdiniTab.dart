@@ -1,6 +1,9 @@
 import 'package:casotto/models/Ordine.dart';
 import 'package:flutter/material.dart';
 
+import '../arguments/SingleOrdineArgs.dart';
+import '../views/SingleOrdine.dart';
+
 class OrdiniTab extends StatelessWidget {
   const OrdiniTab({Key? key, required this.child}) : super(key: key);
 
@@ -13,7 +16,13 @@ class OrdiniTab extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(20),
       child: ElevatedButton(
-        onPressed: () => {},
+        onPressed: () => {
+          Navigator.pushNamed(
+            context,
+            SingleOrdineView.routeName,
+            arguments: SingleOrdineArgs(child),
+          ),
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,

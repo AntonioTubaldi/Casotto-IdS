@@ -70,9 +70,9 @@ class Ordine {
   String getStatoString() {
     switch (this.stato) {
       case StatoOrdine.DA_GESTIRE:
-        return "DA_GESTIRE";
-      case StatoOrdine.CHIUSO:
-        return "CHIUSO";
+        return "DA GESTIRE";
+      case StatoOrdine.IN_GESTIONE:
+        return "IN GESTIONE";
     }
   }
 

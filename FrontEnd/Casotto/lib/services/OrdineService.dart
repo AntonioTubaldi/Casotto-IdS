@@ -91,4 +91,22 @@ class OrdineService {
     bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }
+
+  Future<bool> gestisceOrdine(String idOrdine) async {
+    await Future.delayed(Duration(seconds: 1));
+
+    Uri url = Uri.parse(_baseUrl + "/gestisce/" + idOrdine);
+    Response response = await http.put(url);
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
+
+  Future<bool> chiudeOrdine(String idOrdine) async {
+    await Future.delayed(Duration(seconds: 1));
+
+    Uri url = Uri.parse(_baseUrl + "/chiude/" + idOrdine);
+    Response response = await http.delete(url);
+    bool responseBody = jsonDecode(response.body) as bool;
+    return responseBody;
+  }
 }

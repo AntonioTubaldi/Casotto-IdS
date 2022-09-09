@@ -111,4 +111,47 @@ class PrenotazioneService {
     bool responseBody = jsonDecode(response.body) as bool;
     return responseBody;
   }
+
+  Future<List<Prenotazione>> findAllByIdUtente(String idUtente) async {
+    Uri url = Uri.parse(_baseUrl + "/all/" + idUtente);
+    Response response = await http.get(url);
+    dynamic responseBody = jsonDecode(response.body);
+
+    List<Prenotazione> toReturn = [];
+
+    for (var prenotazioneObject in responseBody) {
+      String? idPrenotazione = prenotazioneObject["idPrenotazione"];
+      String? idUtente = prenotazioneObject["idUtente"];
+      String? idOmbrellone = prenotazioneObject["idOmbrellone"];
+      double? costoTotale = prenotazioneObject["costoTotale"];
+      List<SlotData> dataToReturn = [];
+      for (var dataObject in prenotazioneObject["dataPrenotazione"]) {
+        Giorno durata = Giorno.values.firstWhere(
+            (e) => e.toString() == "Giorno." + dataObject["durata"]);
+        DateTime data = DateTime.parse(dataObject["data"]);
+
+        SlotData slotDataToAdd = SlotData(durata, data);
+        dataToReturn.add(slotDataToAdd);
+      }
+      StatoPrenotazione stato = StatoPrenotazione.values.firstWhere((e) =>
+          e.toString() ==
+          "StatoPrenotazione." + prenotazioneObject["statoPrenotazione"]);
+      int? numeroLettini = prenotazioneObject["numeroLettini"];
+      int? numeroSdraio = prenotazioneObject["numeroSdraio"];
+
+      Prenotazione prenotazioneToAdd = Prenotazione(
+          idPrenotazione!,
+          idUtente!,
+          idOmbrellone!,
+          costoTotale!,
+          dataToReturn,
+          stato,
+          numeroLettini!,
+          numeroSdraio!);
+
+      toReturn.add(prenotazioneToAdd);
+    }
+
+    return toReturn;
+  }
 }

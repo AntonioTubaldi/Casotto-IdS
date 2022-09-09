@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 import '../arguments/UtenteStringArg.dart';
 import 'AllEventi.dart';
 import 'AllEventiAderiti.dart';
+import 'AllNotifiche.dart';
 import 'AllOmbrelloni.dart';
+import 'AllPrenotazioniUtente.dart';
+import 'AllPromozioniGestore.dart';
+import 'AllPromozioniUtente.dart';
 import 'AllStrutture.dart';
+import 'AllUtenti.dart';
 import 'Menu.dart';
 import 'PaginaContatti.dart';
 
@@ -139,6 +144,61 @@ class HomePage extends StatelessWidget {
                     );
                   }),
               title: const Text('Visualizza Strutture'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.people),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllUtentiView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza Utenti'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.message),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllNotificheView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza messaggi'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.calendar_month),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllPrenotazioniUtenteView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza le tue Prenotazioni'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.menu_book),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllPromozioniGestoreView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza promozioni gestore'),
+            ),
+            ListTile(
+              leading: IconButton(
+                  icon: Icon(color: Colors.teal, Icons.list),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AllPromozioniUtenteView.routeName,
+                    );
+                  }),
+              title: const Text('Visualizza promozioni utente'),
             ),
           ],
         ),

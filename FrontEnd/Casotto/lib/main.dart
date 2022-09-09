@@ -9,26 +9,36 @@ import 'package:casotto/views/AddAttrezzatura.dart';
 import 'package:casotto/views/AddEvento.dart';
 import 'package:casotto/views/AddOrdine.dart';
 import 'package:casotto/views/AddProdotto.dart';
+import 'package:casotto/views/AddPromozione.dart';
 import 'package:casotto/views/AddStruttura.dart';
 import 'package:casotto/views/AllAttrezzature.dart';
 import 'package:casotto/views/AllEventi.dart';
 import 'package:casotto/views/AllEventiAderiti.dart';
+import 'package:casotto/views/AllNotifiche.dart';
 import 'package:casotto/views/AllOmbrelloni.dart';
 import 'package:casotto/views/AllOrdini.dart';
 import 'package:casotto/views/AllPrenotazioni.dart';
+import 'package:casotto/views/AllPrenotazioniUtente.dart';
+import 'package:casotto/views/AllPromozioniGestore.dart';
+import 'package:casotto/views/AllPromozioniUtente.dart';
 import 'package:casotto/views/AllStrutture.dart';
+import 'package:casotto/views/AllUtenti.dart';
 import 'package:casotto/views/Calendar.dart';
+import 'package:casotto/views/ChiudeOrdine.dart';
 import 'package:casotto/views/ConfermaEliminazione.dart';
 import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
 import 'package:casotto/views/ConfermaEliminazioneEvento.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
 import 'package:casotto/views/ConfermaEliminazioneStruttura.dart';
+import 'package:casotto/views/ConfermaInvioMessaggio.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
 import 'package:casotto/views/EliminaStruttura.dart';
 import 'package:casotto/views/EventoEliminato.dart';
+import 'package:casotto/views/GestisceOrdine.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/IscrizioneAdEvento.dart';
 import 'package:casotto/views/Menu.dart';
+import 'package:casotto/views/MessaggioInviato.dart';
 import 'package:casotto/views/ModificaAttrezzatura.dart';
 import 'package:casotto/views/ModificaDataEvento.dart';
 import 'package:casotto/views/ModificaEvento.dart';
@@ -62,20 +72,28 @@ import 'package:casotto/views/SceltaParametriStruttura.dart';
 import 'package:casotto/views/SceltaPrezzoProdotto.dart';
 import 'package:casotto/views/SceltaSpecificheOmb.dart';
 import 'package:casotto/views/SceltaSpecificheProdotto.dart';
+import 'package:casotto/views/SceltaSpecifichePromozione.dart';
+import 'package:casotto/views/ScritturaMessaggio.dart';
 import 'package:casotto/views/SingleAttrezzatura.dart';
 import 'package:casotto/views/SingleEvento.dart';
 import 'package:casotto/views/SingleOmbrellone.dart';
+import 'package:casotto/views/SingleOrdine.dart';
 import 'package:casotto/views/SinglePrenotazione.dart';
+import 'package:casotto/views/SinglePrenotazioneUtente.dart';
 import 'package:casotto/views/SingleProdotto.dart';
+import 'package:casotto/views/SinglePromozioneGestore.dart';
 import 'package:casotto/views/SingleStruttura.dart';
 import 'package:casotto/views/AddOmbrellone.dart';
+import 'package:casotto/views/SingleUtente.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'arguments/AddEventoArgs.dart';
 import 'arguments/AddOrdineViewArgs.dart';
+import 'arguments/AddPromozioneArgs.dart';
 import 'arguments/AddStrutturaArgs.dart';
 import 'arguments/AllPrenotazioniViewArgs.dart';
 import 'arguments/AttrezzaturaNomeArg.dart';
+import 'arguments/ConfermaInvioArgs.dart';
 import 'arguments/IscrizioneEventoViewArgs.dart';
 import 'arguments/ModificaAttrezzaturaViewArgs.dart';
 import 'arguments/ModificaDataEventoArgs.dart';
@@ -93,9 +111,12 @@ import 'arguments/SceltaModificheOmbrelloneViewArgs.dart';
 import 'arguments/SceltaOrarioEventoArgs.dart';
 import 'arguments/SingleAttrezzaturaViewArgs.dart';
 import 'arguments/SingleEventoViewArgs.dart';
+import 'arguments/SingleOrdineArgs.dart';
 import 'arguments/SinglePrenotazioneViewArgs.dart';
 import 'arguments/SingleProdottoViewArgs.dart';
+import 'arguments/SinglePromozioneArgs.dart';
 import 'arguments/SingleStrutturaArgs.dart';
+import 'arguments/SingleUtenteArgs.dart';
 import 'arguments/UtenteStringArg.dart';
 import 'views/AddPrenotazione.dart';
 import 'views/SceltaSpecificheAttrezzature.dart';
@@ -830,6 +851,163 @@ class MyApp extends StatelessWidget {
                     singleStruttura: argomenti.singleStruttura),
               );
             }
+            break;
+
+          case AllUtentiView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(name: AllUtentiView.routeName),
+              builder: (_) => AllUtentiView(),
+            );
+            break;
+
+          case SingleUtenteView.routeName:
+            if (argomenti is SingleUtenteArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: SingleUtenteView.routeName),
+                builder: (_) =>
+                    SingleUtenteView(singleUtente: argomenti.singleUtente),
+              );
+            }
+            break;
+
+          case ScritturaMessaggioView.routeName:
+            if (argomenti is SingleUtenteArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ScritturaMessaggioView.routeName),
+                builder: (_) => ScritturaMessaggioView(
+                    singleUtente: argomenti.singleUtente),
+              );
+            }
+            break;
+
+          case ConfermaInvioMessaggioView.routeName:
+            if (argomenti is ConfermaInvioArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaInvioMessaggioView.routeName),
+                builder: (_) => ConfermaInvioMessaggioView(
+                    singleUtente: argomenti.singleUtente,
+                    titolo: argomenti.titolo,
+                    descrizione: argomenti.descrizione),
+              );
+            }
+            break;
+
+          case MessaggioInviatoView.routeName:
+            if (argomenti is ConfermaInvioArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: MessaggioInviatoView.routeName),
+                builder: (_) => MessaggioInviatoView(
+                    singleUtente: argomenti.singleUtente,
+                    titolo: argomenti.titolo,
+                    descrizione: argomenti.descrizione),
+              );
+            }
+            break;
+
+          case AllNotificheView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(name: AllNotificheView.routeName),
+              builder: (_) => AllNotificheView(),
+            );
+            break;
+
+          case AllPrenotazioniUtenteView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(
+                  name: AllPrenotazioniUtenteView.routeName),
+              builder: (_) => AllPrenotazioniUtenteView(),
+            );
+            break;
+
+          case SinglePrenotazioneUtenteView.routeName:
+            if (argomenti is SinglePrenotazioneViewArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SinglePrenotazioneUtenteView.routeName),
+                builder: (_) => SinglePrenotazioneUtenteView(
+                    singlePrenotazione: argomenti.prenotazione1),
+              );
+            }
+            break;
+
+          case SingleOrdineView.routeName:
+            if (argomenti is SingleOrdineArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: SingleOrdineView.routeName),
+                builder: (_) =>
+                    SingleOrdineView(singleOrdine: argomenti.singleOrdine),
+              );
+            }
+            break;
+
+          case GestisceOrdineView.routeName:
+            if (argomenti is SingleOrdineArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: GestisceOrdineView.routeName),
+                builder: (_) =>
+                    GestisceOrdineView(singleOrdine: argomenti.singleOrdine),
+              );
+            }
+            break;
+
+          case ChiudeOrdineView.routeName:
+            if (argomenti is SingleOrdineArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(name: ChiudeOrdineView.routeName),
+                builder: (_) =>
+                    ChiudeOrdineView(singleOrdine: argomenti.singleOrdine),
+              );
+            }
+            break;
+
+          case AllPromozioniGestoreView.routeName:
+            return MaterialPageRoute(
+              settings:
+                  const RouteSettings(name: AllPromozioniGestoreView.routeName),
+              builder: (_) => AllPromozioniGestoreView(),
+            );
+            break;
+
+          case SceltaSpecifichePromozioneView.routeName:
+            return MaterialPageRoute(
+              settings: const RouteSettings(
+                  name: SceltaSpecifichePromozioneView.routeName),
+              builder: (_) => SceltaSpecifichePromozioneView(),
+            );
+            break;
+
+          case AddPromozioneView.routeName:
+            if (argomenti is AddPromozioneArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: AddPromozioneView.routeName),
+                builder: (_) => AddPromozioneView(
+                    idProdotto: argomenti.idProdotto,
+                    newPrezzo: argomenti.newPrezzo),
+              );
+            }
+            break;
+          case SinglePromozioneGestoreView.routeName:
+            if (argomenti is SinglePromozioneArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SinglePromozioneGestoreView.routeName),
+                builder: (_) => SinglePromozioneGestoreView(
+                    singlePromozione: argomenti.singlePromozione),
+              );
+            }
+            break;
+
+          case AllPromozioniUtenteView.routeName:
+            return MaterialPageRoute(
+              settings:
+                  const RouteSettings(name: AllPromozioniUtenteView.routeName),
+              builder: (_) => AllPromozioniUtenteView(),
+            );
             break;
         }
       },
