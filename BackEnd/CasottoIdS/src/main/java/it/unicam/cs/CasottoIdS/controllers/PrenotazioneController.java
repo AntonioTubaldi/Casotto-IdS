@@ -46,4 +46,9 @@ public class PrenotazioneController {
     public void cancellaById(@PathVariable("id") String idOmbrellone) {
         this.service.deleteByIdOmbrellone(idOmbrellone);
     }
+
+    @GetMapping("/all/{id}")
+    public List<Prenotazione> findAllByIdUtente(@PathVariable("id") String idUtente) {
+        return this.service.findByIdUtente(idUtente);
+    }
 }

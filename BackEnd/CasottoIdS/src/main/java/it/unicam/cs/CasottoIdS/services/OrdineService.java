@@ -36,19 +36,29 @@ public class OrdineService {
 
     }
     
-    public boolean confermaOrdine(String idOrdine){
-
-            Optional<Ordine> ordinazioneFromMongo = this.repository.findById(idOrdine);
-
+    public boolean gestisceOrdine(String idOrdine){
+        boolean esito;
+        Optional<Ordine> ordinazioneFromMongo = this.repository.findById(idOrdine);
             if(ordinazioneFromMongo.isPresent()) {
                 Ordine ordinazioneToUpdate = ordinazioneFromMongo.get();
-                ordinazioneToUpdate.setStato(StatoOrdine.CHIUSO);
+                ordinazioneToUpdate.setStato(StatoOrdine.IN_GESTIONE);
                 this.repository.save(ordinazioneToUpdate);
-                utenteService.notificaUtente(ordinazioneToUpdate.getIdUtente(), new Notifica("Ordinazione Confermata", "La tua ordinazione è stata confermata"));
-                return true;
+                esito = true;
 
-            } else
+            } else esito=false;
 
-                return false;
+            return esito;
+    }
+
+    public boolean chiudeOrdine(String idOrdine){
+        boolean esito;
+        this.repository.deleteById(idOrdine);
+        Optional<Ordine> ordinazioneFromMongo = this.repository.findById(idOrdine);
+        if(ordinazioneFromMongo.isPresent()) {
+            esito = false;
+
+        } else esito=true;
+
+        return esito;
     }
 }

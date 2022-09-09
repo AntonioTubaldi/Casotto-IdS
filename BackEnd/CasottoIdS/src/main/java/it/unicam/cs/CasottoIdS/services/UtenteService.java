@@ -79,4 +79,30 @@ public class UtenteService {
         }
         else return null;
     }
+
+    public List<Notifica> visualizzaMessaggi(String idUtente) {
+        Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
+        if(utenteFromMongo.isPresent()) {
+            Utente singleUtente = utenteFromMongo.get();
+            return singleUtente.getNotifiche();
+        }
+        else return null;
+
+    }
+
+    public boolean inviaMessaggio(String idUtente, String titolo, String descrizione) {
+        boolean esito;
+        Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
+        if(utenteFromMongo.isPresent()) {
+            Utente singleUtente = utenteFromMongo.get();
+            Notifica nuovaNotifica = new Notifica(titolo,descrizione);
+            singleUtente.addNotificaById(nuovaNotifica);
+            this.repository.save(singleUtente);
+            esito = true;
+        }
+        else esito = false;
+
+        return esito;
+
+    }
 }

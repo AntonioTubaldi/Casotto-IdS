@@ -2,6 +2,7 @@ package it.unicam.cs.CasottoIdS;
 
 import it.unicam.cs.CasottoIdS.models.*;
 import it.unicam.cs.CasottoIdS.repositories.*;
+import it.unicam.cs.CasottoIdS.services.PromozioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -43,6 +44,9 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	@Autowired
 	private EventoRepository eventoRepository;
 
+	@Autowired
+	private PromozioneRepository promozioneRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CasottoIdSApplication.class, args);
 	}
@@ -57,6 +61,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		attrezzaturaRepository.deleteAll();
 		strutturaRepository.deleteAll();
 		eventoRepository.deleteAll();
+		promozioneRepository.deleteAll();
 
 
 		Calendar calendario = Calendar.getInstance();
@@ -155,6 +160,12 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		eventoRepository.save(evento1);
 		Evento evento2 = new Evento("Torneo beach volley", LocalDate.of(2022,8, 27), LocalTime.of(20,00),  50 );
 		eventoRepository.save(evento2);
+
+
+		Promozione promozione1 = new Promozione(prodotto1.getNome(), prodotto1.getPrezzo(), 200);
+		promozioneRepository.save(promozione1);
+		Promozione promozione2 = new Promozione(prodotto4.getNome(), prodotto4.getPrezzo(), 300);
+		promozioneRepository.save(promozione2);
 
 
 	}

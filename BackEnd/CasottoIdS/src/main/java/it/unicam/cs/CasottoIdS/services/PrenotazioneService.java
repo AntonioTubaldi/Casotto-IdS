@@ -106,6 +106,10 @@ public class PrenotazioneService {
 
     }
 
+    public List<Prenotazione> findByIdUtente(String idUtente) {
+        return this.repository.findAllByIdUtente(idUtente);
+    }
+
 
 
 }

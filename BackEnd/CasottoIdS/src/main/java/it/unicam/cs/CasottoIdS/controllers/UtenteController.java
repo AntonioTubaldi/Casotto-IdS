@@ -2,6 +2,8 @@ package it.unicam.cs.CasottoIdS.controllers;
 
 
 import it.unicam.cs.CasottoIdS.models.Evento;
+import it.unicam.cs.CasottoIdS.models.Notifica;
+import it.unicam.cs.CasottoIdS.models.ParametriNotifica;
 import it.unicam.cs.CasottoIdS.models.Utente;
 import it.unicam.cs.CasottoIdS.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,6 @@ public class UtenteController {
     public List<Utente> getAll() {
         return this.service.getAll();
     }
-/*
-    @PutMapping("/addNotifica/{id}")
-    public boolean notificaUtente(@PathVariable("id)") String idUtente, @RequestBody Notifica nuovaNotifica) {
-        return this.service.notificaUtente(idUtente,nuovaNotifica);
-
-    }
-    */
 
 
     @PutMapping("/iscrizione/{id1}/{id2}")
@@ -38,4 +33,15 @@ public class UtenteController {
     public List<Evento> visualizzaEventiAderiti(@PathVariable("id") String idUtente) {
         return this.service.visualizzaEventiAderiti(idUtente);
     }
+
+    @GetMapping("messaggi/{id}")
+    public List<Notifica> visualizzaMessaggi(@PathVariable("id") String idUtente) {
+        return this.service.visualizzaMessaggi(idUtente);
+    }
+
+    @PutMapping("/notifica/{id}")
+    public boolean inviaMessaggio(@PathVariable("id") String idUtente, @RequestBody ParametriNotifica p) {
+        return this.service.inviaMessaggio(idUtente,p.titolo,p.descrizione);
+    }
 }
+

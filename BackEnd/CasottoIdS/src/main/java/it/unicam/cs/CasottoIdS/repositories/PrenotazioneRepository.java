@@ -11,5 +11,6 @@ public interface PrenotazioneRepository extends MongoRepository<Prenotazione, St
 
 public List<Prenotazione> findByIdOmbrellone(String idOmbrellone);
 public void deleteByIdOmbrellone(String idOmbrellone);
+public List<Prenotazione> findAllByIdUtente(String idUtente);
 
 }

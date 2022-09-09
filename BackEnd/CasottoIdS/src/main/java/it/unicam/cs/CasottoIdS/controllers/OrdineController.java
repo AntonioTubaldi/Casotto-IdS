@@ -26,4 +26,14 @@ public class OrdineController {
     public boolean addOrdine(@RequestBody ParametriOrdine p) {
         return this.service.addOrdine(p.idUtente, p.idOmbrellone, p.costoTotale, p.prodotti);
     }
+
+    @PutMapping("/gestisce/{id}")
+    public boolean gestisceOrdine(@PathVariable("id") String idOrdine) {
+        return this.service.gestisceOrdine(idOrdine);
+    }
+
+    @DeleteMapping("/chiude/{id}")
+    public boolean chiudeOrdine(@PathVariable("id") String idOrdine) {
+        return this.service.chiudeOrdine(idOrdine);
+    }
 }
