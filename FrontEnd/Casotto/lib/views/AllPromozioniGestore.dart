@@ -1,5 +1,7 @@
 import 'package:casotto/models/Promozione.dart';
 import 'package:casotto/services/PromozioneService.dart';
+import 'package:casotto/views/EliminaPromozione.dart';
+import 'package:casotto/views/SinglePromozioneGestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -56,34 +58,45 @@ class _AllPromozioniGestoreViewState extends State<AllPromozioniGestoreView> {
               if (snapshot.data!.isNotEmpty) {
                 List<Promozione> list = snapshot.data!;
                 return Scaffold(
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.teal, Icons.add),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              SceltaSpecifichePromozioneView.routeName,
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text('Visualizza le promozioni attive'),
+                    backgroundColor: Colors.teal,
+                    title: const Text('Promozioni attive'),
                   ),
                   body: Column(
                     children: [
                       _getScrollableView(list),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            SceltaSpecifichePromozioneView.routeName,
-                          );
-                        },
-                        child: Text("Aggiungi promozione"),
-                      ),
                     ],
-                  ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: (() {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomePage.routeName,
-                        arguments: const HomePage(),
-                        ModalRoute.withName(HomePage.routeName),
-                      );
-                    }),
-                    child: Text("HOME"),
                   ),
                 );
               } else {
@@ -91,7 +104,7 @@ class _AllPromozioniGestoreViewState extends State<AllPromozioniGestoreView> {
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text("Visualizza le promozioni attive"),
+                    title: const Text("Promozioni attive"),
                   ),
                   floatingActionButton: Row(
                     children: [
@@ -106,17 +119,10 @@ class _AllPromozioniGestoreViewState extends State<AllPromozioniGestoreView> {
                         }),
                         child: Text("HOME"),
                       ),
-                      FloatingActionButton(
-                        onPressed: (() {}),
-                        child: Text("Aggiungi Promozione"),
-                      ),
                     ],
                   ),
                   body: Center(
-                    child: RawMaterialButton(
-                      onPressed: () {},
-                      child: Text("Non ci sono promozioni da mostrare"),
-                    ),
+                    child: const Text("Non ci sono promozioni da mostrare"),
                   ),
                 );
               }

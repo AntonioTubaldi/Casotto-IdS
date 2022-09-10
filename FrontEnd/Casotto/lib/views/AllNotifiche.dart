@@ -100,37 +100,25 @@ class _AllNotificheViewState extends State<AllNotificheView> {
                 );
               } else {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () => {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomePage.routeName,
-                        arguments: const HomePage(),
-                        ModalRoute.withName(HomePage.routeName),
-                      ),
-                    },
-                    child: Text(
-                      "Home",
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text("Visualizza Messaggi"),
                   ),
                   body: Center(
                       child: Column(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Non ci sono messaggi nella tua bacheca"),
-                      ),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Center(
+                          child: Text("Non ci sono messaggi nella tua bacheca",
+                              style: TextStyle(fontSize: 15))),
                     ],
                   )),
                   bottomNavigationBar: BottomAppBar(
                     color: Colors.white,
                     child: Row(
                       children: [
+                        const Spacer(),
                         IconButton(
                           icon: Icon(color: Colors.teal, Icons.home),
                           onPressed: () {
@@ -143,10 +131,6 @@ class _AllNotificheViewState extends State<AllNotificheView> {
                           },
                         ),
                         const Spacer(),
-                        IconButton(
-                          icon: Icon(color: Colors.teal, Icons.add),
-                          onPressed: () {},
-                        ),
                       ],
                     ),
                   ),

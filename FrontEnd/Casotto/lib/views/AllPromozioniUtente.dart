@@ -55,40 +55,59 @@ class _AllPromozioniUtenteViewState extends State<AllPromozioniUtenteView> {
               if (snapshot.data!.isNotEmpty) {
                 List<Promozione> list = snapshot.data!;
                 return Scaffold(
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
                   appBar: AppBar(
                     centerTitle: true,
-                    title: const Text('Visualizza le promozioni attive'),
+                    backgroundColor: Colors.teal,
+                    title: const Text('Promozioni attive'),
                   ),
                   body: _getScrollableView(list),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: (() {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomePage.routeName,
-                        arguments: const HomePage(),
-                        ModalRoute.withName(HomePage.routeName),
-                      );
-                    }),
-                    child: Text("HOME"),
-                  ),
                 );
               } else {
                 return Scaffold(
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.teal, Icons.home),
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomePage.routeName,
+                              arguments: const HomePage(),
+                              ModalRoute.withName(HomePage.routeName),
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
                   appBar: AppBar(
                     backgroundColor: Colors.teal,
                     centerTitle: true,
-                    title: const Text("Visualizza le promozioni attive"),
-                  ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: (() {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        HomePage.routeName,
-                        arguments: const HomePage(),
-                        ModalRoute.withName(HomePage.routeName),
-                      );
-                    }),
-                    child: Text("HOME"),
+                    title: const Text("Promozioni attive"),
                   ),
                   body: Center(
                     child: RawMaterialButton(

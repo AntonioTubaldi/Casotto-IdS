@@ -2,6 +2,7 @@ import 'package:casotto/arguments/AddOmbrelloneViewArgs.dart';
 import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/AddProdottoViewArgs.dart';
 import 'package:casotto/arguments/OmbrelloneStringArg.dart';
+import 'package:casotto/arguments/PromozioneIdArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
@@ -32,6 +33,7 @@ import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
 import 'package:casotto/views/ConfermaEliminazioneStruttura.dart';
 import 'package:casotto/views/ConfermaInvioMessaggio.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
+import 'package:casotto/views/EliminaPromozione.dart';
 import 'package:casotto/views/EliminaStruttura.dart';
 import 'package:casotto/views/EventoEliminato.dart';
 import 'package:casotto/views/GestisceOrdine.dart';
@@ -47,6 +49,7 @@ import 'package:casotto/views/ModificaOrarioEvento.dart';
 import 'package:casotto/views/ModificaParametriStruttura.dart';
 import 'package:casotto/views/ModificaPartecipantiEvento.dart';
 import 'package:casotto/views/ModificaProdotto.dart';
+import 'package:casotto/views/ModificaPromozione.dart';
 import 'package:casotto/views/ModificaStruttura.dart';
 import 'package:casotto/views/PaginaContatti.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
@@ -102,6 +105,7 @@ import 'arguments/ModificaOrarioEventoArgs.dart';
 import 'arguments/ModificaParametriStrutturaArgs.dart';
 import 'arguments/ModificaPartecipantiEventoArgs.dart';
 import 'arguments/ModificaProdottoViewArgs.dart';
+import 'arguments/ModificaPromozioneViewArgs.dart';
 import 'arguments/ModificaStrutturaArgs.dart';
 import 'arguments/ProdottiSelezionabiliArgs.dart';
 import 'arguments/ProdottoStringArgs.dart';
@@ -1008,6 +1012,30 @@ class MyApp extends StatelessWidget {
                   const RouteSettings(name: AllPromozioniUtenteView.routeName),
               builder: (_) => AllPromozioniUtenteView(),
             );
+            break;
+
+          case ModificaPromozioneView.routeName:
+            if (argomenti is ModificaPromozioneViewArgs) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: ModificaProdottoView.routeName),
+                builder: (_) => ModificaProdottoView(
+                    nome: argomenti.idPromozione,
+                    newPrezzo: argomenti.newPrezzo),
+              );
+            }
+            break;
+
+          case EliminaPromozioneView.routeName:
+            if (argomenti is PromozioneIdArg) {
+              return MaterialPageRoute(
+                settings:
+                    const RouteSettings(name: EliminaPromozioneView.routeName),
+                builder: (_) =>
+                    EliminaPromozioneView(idPromozione: argomenti.idPromozione),
+              );
+            }
+
             break;
         }
       },

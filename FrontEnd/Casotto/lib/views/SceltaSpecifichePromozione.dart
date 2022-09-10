@@ -24,16 +24,25 @@ class _SceltaSpecifichePromozioneViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            HomePage.routeName,
-            arguments: const HomePage(),
-            ModalRoute.withName(HomePage.routeName),
-          );
-        },
-        child: Text("HOME"),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: Row(
+          children: [
+            const Spacer(),
+            IconButton(
+              icon: Icon(color: Colors.teal, Icons.home),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  HomePage.routeName,
+                  arguments: const HomePage(),
+                  ModalRoute.withName(HomePage.routeName),
+                );
+              },
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
       appBar: AppBar(
         backgroundColor: Colors.teal,

@@ -38,7 +38,7 @@ class UtenteTab extends StatelessWidget {
               ),
             ),
             Text(
-              'Congome: ' + singleUtente.getCognome(),
+              'Cognome: ' + singleUtente.getCognome(),
               style: const TextStyle(
                 fontSize: 30,
                 fontFamily: 'Avenir',
