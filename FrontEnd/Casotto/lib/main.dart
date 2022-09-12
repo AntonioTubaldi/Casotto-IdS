@@ -30,6 +30,7 @@ import 'package:casotto/views/ConfermaEliminazione.dart';
 import 'package:casotto/views/ConfermaEliminazioneAttrezzatura.dart';
 import 'package:casotto/views/ConfermaEliminazioneEvento.dart';
 import 'package:casotto/views/ConfermaEliminazioneProdotto.dart';
+import 'package:casotto/views/ConfermaEliminazionePromozione.dart';
 import 'package:casotto/views/ConfermaEliminazioneStruttura.dart';
 import 'package:casotto/views/ConfermaInvioMessaggio.dart';
 import 'package:casotto/views/EliminaAttrezzatura.dart';
@@ -69,6 +70,7 @@ import 'package:casotto/views/SceltaDataEvento.dart';
 import 'package:casotto/views/SceltaLettini.dart';
 import 'package:casotto/views/SceltaModificheAttrezzatura.dart';
 import 'package:casotto/views/SceltaModificheOmbrellone.dart';
+import 'package:casotto/views/SceltaModifichePromozione.dart';
 import 'package:casotto/views/SceltaNomeEPartecipanti.dart';
 import 'package:casotto/views/SceltaOrarioEvento.dart';
 import 'package:casotto/views/SceltaParametriStruttura.dart';
@@ -1014,25 +1016,49 @@ class MyApp extends StatelessWidget {
             );
             break;
 
+          case SceltaModifichePromozioneView.routeName:
+            if (argomenti is SinglePromozioneArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: SceltaModifichePromozioneView.routeName),
+                builder: (_) => SceltaModifichePromozioneView(
+                    singlePromozione: argomenti.singlePromozione),
+              );
+            }
+
+            break;
+
           case ModificaPromozioneView.routeName:
             if (argomenti is ModificaPromozioneViewArgs) {
               return MaterialPageRoute(
                 settings:
-                    const RouteSettings(name: ModificaProdottoView.routeName),
-                builder: (_) => ModificaProdottoView(
-                    nome: argomenti.idPromozione,
+                    const RouteSettings(name: ModificaPromozioneView.routeName),
+                builder: (_) => ModificaPromozioneView(
+                    idPromozione: argomenti.idPromozione,
                     newPrezzo: argomenti.newPrezzo),
               );
             }
             break;
 
           case EliminaPromozioneView.routeName:
-            if (argomenti is PromozioneIdArg) {
+            if (argomenti is SinglePromozioneArgs) {
               return MaterialPageRoute(
                 settings:
                     const RouteSettings(name: EliminaPromozioneView.routeName),
-                builder: (_) =>
-                    EliminaPromozioneView(idPromozione: argomenti.idPromozione),
+                builder: (_) => EliminaPromozioneView(
+                    singlePromozione: argomenti.singlePromozione),
+              );
+            }
+
+            break;
+
+          case ConfermaEliminazionePromozioneView.routeName:
+            if (argomenti is SinglePromozioneArgs) {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                    name: ConfermaEliminazionePromozioneView.routeName),
+                builder: (_) => ConfermaEliminazionePromozioneView(
+                    singlePromozione: argomenti.singlePromozione),
               );
             }
 

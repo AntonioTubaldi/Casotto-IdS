@@ -106,23 +106,32 @@ class _AllPromozioniGestoreViewState extends State<AllPromozioniGestoreView> {
                     centerTitle: true,
                     title: const Text("Promozioni attive"),
                   ),
-                  floatingActionButton: Row(
-                    children: [
-                      FloatingActionButton(
-                        onPressed: (() {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            HomePage.routeName,
-                            arguments: const HomePage(),
-                            ModalRoute.withName(HomePage.routeName),
-                          );
-                        }),
-                        child: Text("HOME"),
-                      ),
-                    ],
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: (() {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        HomePage.routeName,
+                        arguments: const HomePage(),
+                        ModalRoute.withName(HomePage.routeName),
+                      );
+                    }),
+                    child: Text("HOME"),
                   ),
                   body: Center(
-                    child: const Text("Non ci sono promozioni da mostrare"),
+                    child: Column(
+                      children: [
+                        const Text("Non ci sono promozioni da mostrare"),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              SceltaSpecifichePromozioneView.routeName,
+                            );
+                          },
+                          child: Text("Aggiungi promozione"),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }

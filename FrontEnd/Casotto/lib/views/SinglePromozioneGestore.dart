@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../arguments/SinglePromozioneArgs.dart';
+import 'ConfermaEliminazionePromozione.dart';
 import 'HomePage.dart';
+import 'SceltaModifichePromozione.dart';
 
 class SinglePromozioneGestoreView extends StatelessWidget {
   const SinglePromozioneGestoreView({Key? key, required this.singlePromozione})
@@ -68,9 +71,8 @@ class SinglePromozioneGestoreView extends StatelessWidget {
                 onPressed: () => {
                   Navigator.pushNamedAndRemoveUntil(
                     context,
-                    EliminaPromozioneView.routeName,
-                    arguments: SinglePromozioneGestoreView(
-                        singlePromozione: singlePromozione),
+                    ConfermaEliminazionePromozioneView.routeName,
+                    arguments: SinglePromozioneArgs(singlePromozione),
                     ModalRoute.withName(HomePage.routeName),
                   ),
                 },
@@ -87,7 +89,14 @@ class SinglePromozioneGestoreView extends StatelessWidget {
               ),
             ),
             RawMaterialButton(
-              onPressed: () => {},
+              onPressed: () => {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  SceltaModifichePromozioneView.routeName,
+                  arguments: SinglePromozioneArgs(singlePromozione),
+                  ModalRoute.withName(HomePage.routeName),
+                ),
+              },
               fillColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),

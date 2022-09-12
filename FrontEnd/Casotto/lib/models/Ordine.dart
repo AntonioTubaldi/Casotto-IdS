@@ -39,6 +39,12 @@ class Ordine {
     return prodotti;
   }
 
+  String? getListaProdottiString(List<Prodotto> prodotti) {
+    for (var prodottoObject in prodotti) {
+      return prodottoObject.getNome();
+    }
+  }
+
   void setIdOrdine(String idOrdine) {
     this.idOrdine = idOrdine;
   }

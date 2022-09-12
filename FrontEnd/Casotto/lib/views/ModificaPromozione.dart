@@ -42,7 +42,7 @@ class _ModificaPromozioneViewState extends State<ModificaPromozioneView> {
                 appBar: AppBar(
                   backgroundColor: Colors.teal,
                   centerTitle: true,
-                  title: const Text('Prodotto Modificato'),
+                  title: const Text('Promozione Modificata'),
                 ),
                 floatingActionButton: RawMaterialButton(
                   onPressed: () => {
@@ -82,6 +82,9 @@ class _ModificaPromozioneViewState extends State<ModificaPromozioneView> {
                     "Home",
                     style: TextStyle(fontSize: 30),
                   ),
+                ),
+                body: const Center(
+                  child: Text("Qualcosa è andato storto!"),
                 ),
               );
             }

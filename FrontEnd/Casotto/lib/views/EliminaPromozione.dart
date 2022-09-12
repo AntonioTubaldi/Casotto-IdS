@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../models/Promozione.dart';
 import 'HomePage.dart';
 import 'MessageScreen.dart';
 
 class EliminaPromozioneView extends StatefulWidget {
-  const EliminaPromozioneView({Key? key, required this.idPromozione})
+  const EliminaPromozioneView({Key? key, required this.singlePromozione})
       : super(key: key);
 
   static const String routeName = "EliminaPromozione";
-  final String idPromozione;
+  final Promozione singlePromozione;
 
   @override
   State<EliminaPromozioneView> createState() => _EliminaPromozioneViewState();
@@ -23,7 +24,8 @@ class _EliminaPromozioneViewState extends State<EliminaPromozioneView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<void>(
-      future: promozioneService.rimuoviPromozione(widget.idPromozione),
+      future: promozioneService
+          .rimuoviPromozione(widget.singlePromozione.getIdPromozione()),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

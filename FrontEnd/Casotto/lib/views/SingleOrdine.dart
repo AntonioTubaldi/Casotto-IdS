@@ -43,52 +43,46 @@ class SingleOrdineView extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                const SizedBox(width: 75.0),
-                Card(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(children: [
-                      Text("Ombrellone: ${singleOrdine.getIdOmbrellone()}",
-                          style: const TextStyle(fontSize: 20)),
-                      Text(
-                        "Stato: ${singleOrdine.getStatoString()}",
-                        style: const TextStyle(fontSize: 20),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Ombrellone: ${singleOrdine.getIdOmbrellone()}",
+                    style: const TextStyle(fontSize: 20)),
+                Text(
+                    "Prodotti: ${singleOrdine.getListaProdottiString(singleOrdine.prodotti)}",
+                    style: const TextStyle(fontSize: 20)),
+                Text(
+                  "Stato: ${singleOrdine.getStatoString()}",
+                  style: const TextStyle(fontSize: 20),
+                ),
+                //children
+
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: RawMaterialButton(
+                    onPressed: () => {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        GestisceOrdineView.routeName,
+                        arguments: SingleOrdineArgs(singleOrdine),
+                        ModalRoute.withName(HomePage.routeName),
                       ),
-                    ] //children
-                        ),
-                  ),
-                )
-              ]),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: RawMaterialButton(
-                  onPressed: () => {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      GestisceOrdineView.routeName,
-                      arguments: SingleOrdineArgs(singleOrdine),
-                      ModalRoute.withName(HomePage.routeName),
+                    },
+                    fillColor: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
-                  },
-                  fillColor: Colors.teal,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  constraints:
-                      const BoxConstraints.tightFor(height: 50.0, width: 200),
-                  child: const Text(
-                    "Gestisci Ordine",
-                    style: TextStyle(fontSize: 22, color: Colors.white),
+                    constraints:
+                        const BoxConstraints.tightFor(height: 50.0, width: 200),
+                    child: const Text(
+                      "Gestisci Ordine",
+                      style: TextStyle(fontSize: 22, color: Colors.white),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
@@ -132,6 +126,9 @@ class SingleOrdineView extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: Column(children: [
                         Text("Ombrellone: ${singleOrdine.getIdOmbrellone()}",
+                            style: const TextStyle(fontSize: 20)),
+                        Text(
+                            "Prodotti: ${singleOrdine.getListaProdottiString(singleOrdine.prodotti)}",
                             style: const TextStyle(fontSize: 20)),
                         Text(
                           "Stato: ${singleOrdine.getStatoString()}",
