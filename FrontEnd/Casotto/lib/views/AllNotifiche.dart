@@ -1,5 +1,6 @@
 import 'package:casotto/models/Notifica.dart';
 import 'package:casotto/services/UtenteService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -39,7 +40,8 @@ class _AllNotificheViewState extends State<AllNotificheView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Notifica>>(
-      future: utenteService.visualizzaMessaggi("123"),
+      future: utenteService
+          .visualizzaMessaggi(FirebaseAuth.instance.currentUser!.uid),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

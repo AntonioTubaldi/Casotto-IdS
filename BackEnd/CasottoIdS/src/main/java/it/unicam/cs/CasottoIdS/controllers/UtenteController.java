@@ -1,10 +1,7 @@
 package it.unicam.cs.CasottoIdS.controllers;
 
 
-import it.unicam.cs.CasottoIdS.models.Evento;
-import it.unicam.cs.CasottoIdS.models.Notifica;
-import it.unicam.cs.CasottoIdS.models.ParametriNotifica;
-import it.unicam.cs.CasottoIdS.models.Utente;
+import it.unicam.cs.CasottoIdS.models.*;
 import it.unicam.cs.CasottoIdS.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +39,28 @@ public class UtenteController {
     @PutMapping("/notifica/{id}")
     public boolean inviaMessaggio(@PathVariable("id") String idUtente, @RequestBody ParametriNotifica p) {
         return this.service.inviaMessaggio(idUtente,p.titolo,p.descrizione);
+    }
+
+    @PostMapping("/new")
+    public boolean createUtente(@RequestBody ParametriUtente p) {
+        return this.service.createUtente(p.idUtente,p.nome,p.cognome,p.ruolo);
+
+    }
+
+    @GetMapping("/{id}")
+    public Ruolo getRuolo(@PathVariable("id") String idUtente) {
+        return this.service.getRuolo(idUtente);
+    }
+
+
+    @PutMapping("/set/{id}")
+    public void setRuolo(@PathVariable("id") String idUtente) {
+        this.service.setRuolo(idUtente);
+    }
+
+    @GetMapping("/get/{id}")
+    public Utente getUtenteById(@PathVariable("id") String idUtente) {
+        return this.service.getUtenteById(idUtente);
     }
 }
 

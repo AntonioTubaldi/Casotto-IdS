@@ -54,7 +54,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		ombrelloneRepository.deleteAll();
-		utenteRepository.deleteAll();
+		// utenteRepository.deleteAll();
 		prenotazioneRepository.deleteAll();
 		prodottoRepository.deleteAll();
 		ordineRepository.deleteAll();
@@ -103,22 +103,25 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		ombrelloneRepository.save(Two);
 		Ombrellone Three = new Ombrellone(8, 3, lista1,1,1);
 		ombrelloneRepository.save(Three);
-
-		Utente utente1 = new Utente("Antonio", "Tubaldi", Ruolo.REGISTRATO);
+/*
+		Utente utente1 = new Utente( "123","Antonio", "Tubaldi", Ruolo.REGISTRATO);
 		utente1.setIdUtente("123");
 		utenteRepository.save(utente1);
-		Utente utente2 = new Utente("Tiziano", "Tacconi", Ruolo.REGISTRATO);
+		Utente utente2 = new Utente("234","Tiziano", "Tacconi", Ruolo.REGISTRATO);
 		utente2.setIdUtente("234");
 		utenteRepository.save(utente2);
+		Utente utente3 = new Utente("567","Pippo", "Baudo", Ruolo.GESTORE);
+		utente2.setIdUtente("567");
+		utenteRepository.save(utente3);
 
-		List<Utente> listaUtenti = new ArrayList<>(List.of(utente1,utente2));
-
+		List<Utente> listaUtenti = new ArrayList<>(List.of(utente1,utente2)); */
+/*
 		Prenotazione prenotazione1 = new Prenotazione(utente1.getIdUtente(), One.getIdOmbrellone(), 10, lista,2,1);
 		prenotazioneRepository.save(prenotazione1);
 		Prenotazione prenotazione2 = new Prenotazione(utente2.getIdUtente(), Two.getIdOmbrellone(), 10, lista,2,1);
 		prenotazioneRepository.save(prenotazione2);
 		Prenotazione prenotazione3 = new Prenotazione(utente2.getIdUtente(), One.getIdOmbrellone(), 20, lista1,2,1);
-		prenotazioneRepository.save(prenotazione3);
+		prenotazioneRepository.save(prenotazione3); */
 
 		Prodotto prodotto1 = new Prodotto("Gelato", 8);
 		prodottoRepository.save(prodotto1);
@@ -132,11 +135,11 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		List<Prodotto> provaOrdine = new ArrayList<>(List.of(prodotto1,prodotto2,prodotto4));
 		List<Prodotto> provaOrdine1 = new ArrayList<>(List.of(prodotto3,prodotto2,prodotto4));
 
-
+/*
 		Ordine ordine1 = new Ordine(utente1.getIdUtente(), One.getIdOmbrellone(), prodotto1.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine);
 		ordineRepository.save(ordine1);
 		Ordine ordine2 = new Ordine(utente2.getIdUtente(), Two.getIdOmbrellone(), prodotto3.getPrezzo()+prodotto2.getPrezzo()+prodotto4.getPrezzo(), provaOrdine1);
-		ordineRepository.save(ordine2);
+		ordineRepository.save(ordine2); */
 
 
 		Attrezzatura attrezzatura1 = new Attrezzatura("Pallone da beach volley", 4);

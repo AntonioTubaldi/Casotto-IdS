@@ -2,6 +2,7 @@ import 'package:casotto/arguments/AddPrenotazioneViewArgs.dart';
 import 'package:casotto/views/AddPrenotazione.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/widgets/SelectableSlotDataTab.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/Giorno.dart';
 import '../models/Ombrellone.dart';
@@ -62,7 +63,7 @@ class RiepilogoPrenotazioneView extends StatelessWidget {
                   context,
                   AddPrenotazioneView.routeName,
                   arguments: AddPrenotazioneViewArgs(
-                      "123",
+                      FirebaseAuth.instance.currentUser!.uid,
                       singleOmbrellone.getIdOmbrellone(),
                       selezionati,
                       numeroLettini,

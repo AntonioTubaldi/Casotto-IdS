@@ -1,5 +1,6 @@
 import 'package:casotto/arguments/AddOrdineViewArgs.dart';
 import 'package:casotto/views/AddOrdine.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../models/Prodotto.dart';
 import 'HomePage.dart';
@@ -54,7 +55,10 @@ class RiepilogoOrdinazioneView extends StatelessWidget {
                   context,
                   AddOrdineView.routeName,
                   arguments: AddOrdineViewArgs(
-                      "123", "999", contaPrezzo(lista), lista),
+                      FirebaseAuth.instance.currentUser!.uid,
+                      "999",
+                      contaPrezzo(lista),
+                      lista),
                   ModalRoute.withName(HomePage.routeName),
                 ),
               },

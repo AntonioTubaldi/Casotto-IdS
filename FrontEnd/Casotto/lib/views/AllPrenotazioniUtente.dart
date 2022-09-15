@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -40,7 +41,8 @@ class _AllPrenotazioniUtenteViewState extends State<AllPrenotazioniUtenteView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Prenotazione>>(
-      future: _prenotazioneService.findAllByIdUtente("123"),
+      future: _prenotazioneService
+          .findAllByIdUtente(FirebaseAuth.instance.currentUser!.uid),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

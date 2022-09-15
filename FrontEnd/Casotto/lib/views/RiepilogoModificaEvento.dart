@@ -59,7 +59,7 @@ class _RiepilogoModificaEventoViewState
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    "Nuovo orario di inizio: ${widget.orarioInizio}",
+                    "Nuovo orario di inizio: ${widget.orarioInizio.toString()}",
                     style: const TextStyle(color: Colors.black),
                   ),
                 ),

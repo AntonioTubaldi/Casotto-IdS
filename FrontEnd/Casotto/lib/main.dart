@@ -6,6 +6,7 @@ import 'package:casotto/arguments/PromozioneIdArg.dart';
 import 'package:casotto/arguments/RiepilogoPrenotazioneViewArgs.dart';
 import 'package:casotto/arguments/SingleOmbrelloneViewArgs.dart';
 import 'package:casotto/models/Ombrellone.dart';
+import 'package:casotto/views/AbilitazioneQRCode.dart';
 import 'package:casotto/views/AddAttrezzatura.dart';
 import 'package:casotto/views/AddEvento.dart';
 import 'package:casotto/views/AddOrdine.dart';
@@ -40,6 +41,9 @@ import 'package:casotto/views/EventoEliminato.dart';
 import 'package:casotto/views/GestisceOrdine.dart';
 import 'package:casotto/views/HomePage.dart';
 import 'package:casotto/views/IscrizioneAdEvento.dart';
+import 'package:casotto/views/LoginAddettoSpiaggia.dart';
+import 'package:casotto/views/LoginGestore.dart';
+import 'package:casotto/views/LoginUtente.dart';
 import 'package:casotto/views/Menu.dart';
 import 'package:casotto/views/MessaggioInviato.dart';
 import 'package:casotto/views/ModificaAttrezzatura.dart';
@@ -55,8 +59,10 @@ import 'package:casotto/views/ModificaStruttura.dart';
 import 'package:casotto/views/PaginaContatti.dart';
 import 'package:casotto/views/PrenotazioneConfermata.dart';
 import 'package:casotto/views/PrenotazioneEliminata.dart';
+import 'package:casotto/views/PrimaPagina.dart';
 import 'package:casotto/views/ProdottiSelezionabili.dart';
 import 'package:casotto/views/ProdottoEliminato.dart';
+import 'package:casotto/views/QRCode.dart';
 import 'package:casotto/views/RiepilogoAttrezzatura.dart';
 import 'package:casotto/views/RiepilogoEvento.dart';
 import 'package:casotto/views/RiepilogoModificaEvento.dart';
@@ -126,12 +132,17 @@ import 'arguments/SingleUtenteArgs.dart';
 import 'arguments/UtenteStringArg.dart';
 import 'views/AddPrenotazione.dart';
 import 'views/SceltaSpecificheAttrezzature.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future main() async {
   // To load the .env file contents into dotenv.
   // NOTE: fileName defaults to .env and can be omitted in this case.
   // Ensure that the filename corresponds to the path in step 1 and 2.
   await dotenv.load();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -147,10 +158,54 @@ class MyApp extends StatelessWidget {
         final percorso = settings.name;
 
         switch (percorso) {
+          case PrimaPaginaView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => PrimaPaginaView(),
+              settings: const RouteSettings(name: PrimaPaginaView.routeName),
+            );
+            break;
+
+          case LoginUtenteView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => LoginUtenteView(),
+              settings: const RouteSettings(name: LoginUtenteView.routeName),
+            );
+            break;
+
+          case LoginGestoreView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => LoginGestoreView(),
+              settings: const RouteSettings(name: LoginGestoreView.routeName),
+            );
+            break;
+
+          case LoginAddettoSpiaggiaView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => LoginAddettoSpiaggiaView(),
+              settings:
+                  const RouteSettings(name: LoginAddettoSpiaggiaView.routeName),
+            );
+            break;
+
           case HomePage.routeName:
             return MaterialPageRoute(
               builder: (_) => HomePage(),
               settings: const RouteSettings(name: HomePage.routeName),
+            );
+            break;
+
+          case QRCodeView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => QRCodeView(),
+              settings: const RouteSettings(name: QRCodeView.routeName),
+            );
+            break;
+
+          case AbilitazioneQRCodeView.routeName:
+            return MaterialPageRoute(
+              builder: (_) => AbilitazioneQRCodeView(),
+              settings:
+                  const RouteSettings(name: AbilitazioneQRCodeView.routeName),
             );
             break;
 
@@ -1065,7 +1120,7 @@ class MyApp extends StatelessWidget {
             break;
         }
       },
-      initialRoute: HomePage.routeName,
+      initialRoute: PrimaPaginaView.routeName,
     );
   }
 }

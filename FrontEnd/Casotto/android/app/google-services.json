@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "320200743978",
+    "project_id": "casotto-15f37",
+    "storage_bucket": "casotto-15f37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320200743978:android:ce526f45ef8463a5cc3753",
+        "android_client_info": {
+          "package_name": "com.example.casotto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320200743978-djnilv9a6shpqq4tj1p9sahm3he086fa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt8mhPy36rxMbrkTbl5J3fukGMiIIk7eQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320200743978-djnilv9a6shpqq4tj1p9sahm3he086fa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

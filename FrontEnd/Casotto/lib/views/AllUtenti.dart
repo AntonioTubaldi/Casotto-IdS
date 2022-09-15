@@ -71,11 +71,6 @@ class _AllUtentiViewState extends State<AllUtentiView> {
                           },
                         ),
                         const Spacer(),
-                        IconButton(
-                          icon: Icon(color: Colors.teal, Icons.add),
-                          onPressed: () {},
-                        ),
-                        const Spacer(),
                       ],
                     ),
                   ),

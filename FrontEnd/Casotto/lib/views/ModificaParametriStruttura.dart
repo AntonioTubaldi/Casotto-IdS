@@ -117,7 +117,7 @@ class _ModificaParametriStrutturaViewState
               ].map<DropdownMenuItem<StatoStruttura>>((StatoStruttura value) {
                 return DropdownMenuItem<StatoStruttura>(
                   value: value,
-                  child: Text(value.toString()),
+                  child: Text(value.name),
                 );
               }).toList(),
             ),

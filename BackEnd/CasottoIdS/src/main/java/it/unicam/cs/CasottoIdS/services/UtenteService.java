@@ -2,6 +2,7 @@ package it.unicam.cs.CasottoIdS.services;
 
 import it.unicam.cs.CasottoIdS.models.Evento;
 import it.unicam.cs.CasottoIdS.models.Notifica;
+import it.unicam.cs.CasottoIdS.models.Ruolo;
 import it.unicam.cs.CasottoIdS.models.Utente;
 import it.unicam.cs.CasottoIdS.repositories.EventoRepository;
 import it.unicam.cs.CasottoIdS.repositories.UtenteRepository;
@@ -104,5 +105,47 @@ public class UtenteService {
 
         return esito;
 
+    }
+
+    public boolean createUtente(String idUtente, String nome, String cognome, Ruolo ruolo) {
+        boolean esito;
+        Utente newUtente = new Utente(idUtente,nome,cognome,ruolo);
+        this.repository.save(newUtente);
+        Optional<Utente> utenteFromMongo = this.repository.findById(newUtente.getIdUtente());
+        if(utenteFromMongo.isPresent()) {
+            esito = true;
+        }
+        else esito = false;
+
+        return esito;
+
+    }
+
+    public Ruolo getRuolo(String idUtente) {
+        Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
+        if(utenteFromMongo.isPresent()) {
+            Utente singleUtente = utenteFromMongo.get();
+            Ruolo ruoloUtente = singleUtente.getRuolo();
+            return ruoloUtente;
+        } else return null;
+    }
+
+
+    public void setRuolo(String idUtente) {
+        Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
+        if(utenteFromMongo.isPresent()) {
+            Utente singleUtente = utenteFromMongo.get();
+            singleUtente.setRuolo(Ruolo.OSPITE);
+            this.repository.save(singleUtente);
+        }
+
+    }
+
+    public Utente getUtenteById(String idUtente) {
+        Optional<Utente> utenteFromMongo = this.repository.findById(idUtente);
+        if(utenteFromMongo.isPresent()) {
+            Utente singleUtente = utenteFromMongo.get();
+            return singleUtente;
+        } else return null;
     }
 }

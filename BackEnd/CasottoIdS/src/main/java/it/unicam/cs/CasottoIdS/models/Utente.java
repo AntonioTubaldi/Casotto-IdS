@@ -22,7 +22,8 @@ public class Utente {
 
 
 
-    public Utente(String nome, String cognome, Ruolo ruolo) {
+    public Utente(String idUtente,String nome, String cognome, Ruolo ruolo) {
+        this.idUtente=idUtente;
         this.nome = nome;
         this.cognome = cognome;
         this.notifiche = new ArrayList<>();
