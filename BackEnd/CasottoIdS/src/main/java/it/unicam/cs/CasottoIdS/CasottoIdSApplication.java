@@ -67,7 +67,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 		Calendar calendario = Calendar.getInstance();
 
 
-		calendario.set(2022, 8, 1, 0, 0, 0);
+		calendario.set(2022, 9, 1, 0, 0, 0);
 		SlotData iniziale = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
 				.atZone(ZoneId.systemDefault())
 				.toLocalDate());
@@ -79,14 +79,14 @@ public class CasottoIdSApplication implements CommandLineRunner {
 				List.of(iniziale, iniziale2)
 		);
 
-		calendario.set(2022, 7, 1, 0, 0, 0);
+		calendario.set(2022, 10, 1, 0, 0, 0);
 		SlotData iniziale3 = new SlotData(Giorno.MATTINA, calendario.getTime().toInstant()
 				.atZone(ZoneId.systemDefault())
 				.toLocalDate());
 		SlotData iniziale4 = new SlotData(POMERIGGIO, calendario.getTime().toInstant()
 				.atZone(ZoneId.systemDefault())
 				.toLocalDate());
-		calendario.set(2022, 7, 2, 0, 0, 0);
+		calendario.set(2022, 10, 2, 0, 0, 0);
 		SlotData iniziale5 = new SlotData(POMERIGGIO, calendario.getTime().toInstant()
 				.atZone(ZoneId.systemDefault())
 				.toLocalDate());
