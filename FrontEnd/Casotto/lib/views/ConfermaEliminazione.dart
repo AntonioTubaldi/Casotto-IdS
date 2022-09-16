@@ -25,6 +25,7 @@ class _ConfermaEliminazioneViewState extends State<ConfermaEliminazioneView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Eliminazione ombrellone"),
       ),
       floatingActionButton: FloatingActionButton(
@@ -45,8 +46,12 @@ class _ConfermaEliminazioneViewState extends State<ConfermaEliminazioneView> {
             Text(
               widget.singleOmbrellone.getIdOmbrellone(),
             ),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.white),
+            ),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

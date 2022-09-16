@@ -67,6 +67,7 @@ class _AddPrenotazioneViewState extends State<AddPrenotazioneView> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: Center(

@@ -27,6 +27,7 @@ class _ConfermaEliminazioneAttrezzaturaViewState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Eliminazione attrezzatura"),
       ),
       floatingActionButton: FloatingActionButton(
@@ -47,8 +48,12 @@ class _ConfermaEliminazioneAttrezzaturaViewState
             Text(
               widget.singleAttrezzatura.getNome(),
             ),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.white),
+            ),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

@@ -44,6 +44,7 @@ class _EliminaPrenotazioniState extends State<EliminaPrenotazione> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: const Center(

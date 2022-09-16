@@ -42,8 +42,12 @@ class ConfermaEliminazionePromozioneView extends StatelessWidget {
                 " euro a " +
                 singlePromozione.getNewPrezzo().toString() +
                 " euro"),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.white),
+            ),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

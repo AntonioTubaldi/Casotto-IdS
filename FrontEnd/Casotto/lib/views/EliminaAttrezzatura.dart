@@ -66,6 +66,7 @@ class _EliminaAttrezzaturaViewState extends State<EliminaAttrezzaturaView> {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: Column(

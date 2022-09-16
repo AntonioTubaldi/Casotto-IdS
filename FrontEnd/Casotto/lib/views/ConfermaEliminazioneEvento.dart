@@ -45,8 +45,12 @@ class _ConfermaEliminazioneEventoViewState
             Text(
               widget.singleEvento.getNome(),
             ),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.white),
+            ),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

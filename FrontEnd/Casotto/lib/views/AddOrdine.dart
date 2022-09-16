@@ -61,6 +61,7 @@ class _AddOrdineViewState extends State<AddOrdineView> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: Center(

@@ -36,15 +36,20 @@ class _AbilitazioneQRCodeViewState extends State<AbilitazioneQRCodeView> {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Abilitazione effettuata'),
                 ),
                 body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Ora sei abilitato",
-                      style: TextStyle(fontSize: 30.0),
+                    Center(
+                      child: const Text(
+                        "Ora sei abilitato",
+                        style: TextStyle(fontSize: 30.0),
+                      ),
                     ),
-                    ElevatedButton(
+                    RawMaterialButton(
+                      fillColor: Colors.teal,
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
@@ -53,7 +58,8 @@ class _AbilitazioneQRCodeViewState extends State<AbilitazioneQRCodeView> {
                           ModalRoute.withName(HomePage.routeName),
                         );
                       },
-                      child: const Text("AVANTI"),
+                      child: const Text("AVANTI",
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),

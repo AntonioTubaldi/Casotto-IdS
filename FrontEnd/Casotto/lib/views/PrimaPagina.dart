@@ -26,36 +26,62 @@ class PrimaPaginaView extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        LoginUtenteView.routeName,
-                      );
-                    },
-                    child: Text("Login Utente"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        LoginGestoreView.routeName,
-                      );
-                    },
-                    child: Text("Login Gestore"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        LoginAddettoSpiaggiaView.routeName,
-                      );
-                    },
-                    child: Text("Login Addetto Spiaggia"),
-                  ),
-                ],
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RawMaterialButton(
+                      fillColor: Colors.teal,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      constraints:
+                          BoxConstraints.tightFor(height: 40.0, width: 170),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          LoginUtenteView.routeName,
+                        );
+                      },
+                      child: Text("Login Utente",
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    RawMaterialButton(
+                      fillColor: Colors.teal,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      constraints:
+                          BoxConstraints.tightFor(height: 40.0, width: 170),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          LoginGestoreView.routeName,
+                        );
+                      },
+                      child: Text("Login Gestore",
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    RawMaterialButton(
+                      fillColor: Colors.teal,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      constraints:
+                          BoxConstraints.tightFor(height: 40.0, width: 170),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          LoginAddettoSpiaggiaView.routeName,
+                        );
+                      },
+                      child: Text(
+                        "Login Addetto Spiaggia",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

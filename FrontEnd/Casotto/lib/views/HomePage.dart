@@ -25,7 +25,7 @@ import 'QRCode.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String routeName = "Homepage";
-
+  // da 32  46 E DA 244 A 537
   @override
   Widget build(BuildContext context) {
     UtenteService utenteService = new UtenteService();
@@ -44,11 +44,31 @@ class HomePage extends StatelessWidget {
               return const MessageScreen(status: MessageScreenStatus.ERROR);
             } else if (snapshot.hasData) {
               if (snapshot.data! == Ruolo.GESTORE) {
+                /* ------GESTORE------*/
+
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
                     backgroundColor: Colors.teal,
                     title: const Text('HomePage'),
+                  ),
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.teal,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.white, Icons.logout),
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PrimaPaginaView.routeName,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   floatingActionButton: FloatingActionButton(
                     onPressed: () {
@@ -58,7 +78,7 @@ class HomePage extends StatelessWidget {
                         PrimaPaginaView.routeName,
                       );
                     },
-                    child: Text("LOGOUT"),
+                    child: Text("LOGOUT"), //cambiare grafica logout
                   ),
                   drawer: Drawer(
                     child: ListView(
@@ -242,21 +262,31 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.data! == Ruolo.OSPITE) {
+                /* ------UTENTE OSPITE------*/
+
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
                     backgroundColor: Colors.teal,
                     title: const Text('Ospite'),
                   ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushReplacementNamed(
-                        context,
-                        PrimaPaginaView.routeName,
-                      );
-                    },
-                    child: Text("LOGOUT"),
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.teal,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.white, Icons.logout),
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PrimaPaginaView.routeName,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   drawer: Drawer(
                     child: ListView(
@@ -383,21 +413,31 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.data! == Ruolo.REGISTRATO) {
+                /* ------UTENTE REGISTRATO------*/
+
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
                     backgroundColor: Colors.teal,
                     title: const Text('Registrato'),
                   ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushReplacementNamed(
-                        context,
-                        PrimaPaginaView.routeName,
-                      );
-                    },
-                    child: Text("LOGOUT"),
+                  bottomNavigationBar: BottomAppBar(
+                    color: Colors.teal,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        IconButton(
+                          icon: Icon(color: Colors.white, Icons.logout),
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PrimaPaginaView.routeName,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   drawer: Drawer(
                     child: ListView(
@@ -477,6 +517,8 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               } else {
+                /* ------ADDETTO SPIAGGIA------*/
+
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
@@ -491,7 +533,7 @@ class HomePage extends StatelessWidget {
                         PrimaPaginaView.routeName,
                       );
                     },
-                    child: Text("LOGOUT"),
+                    child: Text("LOGOUT"), //cambiare grafica logout
                   ),
                   drawer: Drawer(
                     child: ListView(
