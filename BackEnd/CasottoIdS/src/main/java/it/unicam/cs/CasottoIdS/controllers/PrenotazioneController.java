@@ -21,7 +21,6 @@ public class PrenotazioneController {
 
     @PostMapping("/data")
     public List<Prenotazione> getPrenotazioneByData(@RequestBody GetPrenotazioneByDataBody bodyData) {
-        System.out.println("Data ritornata: " + bodyData.data);
         return this.service.getPrenotazioneByData(bodyData.data);
 
     }
