@@ -9,6 +9,9 @@ import 'package:casotto/widgets/SelectableSlotDataTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/Ombrellone.dart';
+import '../models/Ruolo.dart';
+import '../services/OmbrelloneService.dart';
 import '../services/UtenteService.dart';
 import 'MessageScreen.dart';
 import 'RiepilogoPrenotazione.dart';
@@ -95,10 +98,17 @@ class SinglePrenotazioneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OmbrelloneService ombrelloneService = new OmbrelloneService();
     UtenteService utenteService = new UtenteService();
 
-    return FutureBuilder<Utente>(
-        future: utenteService.getUtenteById(singlePrenotazione.getIdUtente()),
+    return FutureBuilder<List<Object>>(
+        future: Future.wait(
+          [
+            ombrelloneService
+                .getOmbrelloneById(singlePrenotazione.getIdOmbrellone()),
+            utenteService.getUtenteById(singlePrenotazione.getIdUtente()),
+          ],
+        ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.active:
@@ -110,6 +120,8 @@ class SinglePrenotazioneView extends StatelessWidget {
               if (snapshot.hasError) {
                 return const MessageScreen(status: MessageScreenStatus.ERROR);
               } else if (snapshot.hasData) {
+                Ombrellone singleOmbrellone = snapshot.data![0] as Ombrellone;
+                Utente singleUtente = snapshot.data![1] as Utente;
                 return Scaffold(
                   floatingActionButtonLocation:
                       FloatingActionButtonLocation.centerDocked,
@@ -133,12 +145,20 @@ class SinglePrenotazioneView extends StatelessWidget {
                                 singlePrenotazione.getIdPrenotazione())),
                         ElevatedButton(
                             onPressed: () {},
-                            child: Text("Utente associato: " +
-                                snapshot.data!.getNome())),
+                            child: Text(
+                                "Utente associato: " + singleUtente.getNome())),
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text("CostoTotale: " +
-                              singlePrenotazione.getCostoTotale().toString()),
+                          child: Text(
+                            "CostoTotale: " +
+                                (singlePrenotazione.getCostoTotale() +
+                                        (singlePrenotazione.getNumeroLettini() *
+                                            singleOmbrellone
+                                                .getPrezzoLettini()) +
+                                        (singlePrenotazione.getNumeroSdraio() *
+                                            singleOmbrellone.getPrezzoSdraio()))
+                                    .toString(),
+                          ),
                         ),
                         ElevatedButton(
                           onPressed: () {},

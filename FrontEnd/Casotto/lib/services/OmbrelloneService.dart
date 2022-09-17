@@ -11,8 +11,6 @@ class OmbrelloneService {
   String _baseUrl = dotenv.env["BACKEND_URL"].toString() + "/ombrellone";
 
   Future<List<Ombrellone>> getAllOmbrelloni() async {
-    await Future.delayed(Duration(seconds: 1));
-
     Uri url = Uri.parse(_baseUrl + "/all");
     Response response = await http.get(url);
     dynamic responseBody = jsonDecode(response.body);
@@ -145,5 +143,32 @@ class OmbrelloneService {
     }
 
     return toReturn;
+  }
+
+  Future<Ombrellone> getOmbrelloneById(String idOmbrellone) async {
+    Uri url = Uri.parse(_baseUrl + "/single/" + idOmbrellone);
+    Response response = await http.get(url);
+    dynamic responseBody = jsonDecode(response.body);
+
+    String idOmbrellone2 = responseBody["idOmbrellone"];
+    double prezzo = responseBody["prezzo"];
+    int posizione = responseBody["posizione"];
+    List<SlotData> dataToReturn = [];
+    for (var dataObject in responseBody["disponibilita"]) {
+      Giorno durata = Giorno.values
+          .firstWhere((e) => e.toString() == "Giorno." + dataObject["durata"]);
+      DateTime data = DateTime.parse(dataObject["data"]);
+
+      SlotData slotDataToAdd = SlotData(durata, data);
+      dataToReturn.add(slotDataToAdd);
+    }
+
+    double prezzoLettini = responseBody["prezzoLettini"];
+    double prezzoSdraio = responseBody["prezzoSdraio"];
+
+    Ombrellone ombrelloneToAdd = Ombrellone(idOmbrellone2, prezzo, posizione,
+        dataToReturn, prezzoLettini, prezzoSdraio);
+
+    return ombrelloneToAdd;
   }
 }

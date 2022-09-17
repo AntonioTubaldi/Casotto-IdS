@@ -170,7 +170,6 @@ class UtenteService {
     Response response = await http.get(url);
     dynamic responseBody = jsonDecode(response.body);
 
-    // for (var utenteObject in responseBody) {
     String idUtente2 = responseBody["idUtente"];
     String nome = responseBody["nome"];
     String cognome = responseBody["cognome"];

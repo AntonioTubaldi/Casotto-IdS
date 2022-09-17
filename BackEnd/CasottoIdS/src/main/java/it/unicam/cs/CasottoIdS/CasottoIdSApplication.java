@@ -161,7 +161,7 @@ public class CasottoIdSApplication implements CommandLineRunner {
 
 		Evento evento1 = new Evento("Torneo calcetto", LocalDate.now(), LocalTime.of(19,30),  10 );
 		eventoRepository.save(evento1);
-		Evento evento2 = new Evento("Torneo beach volley", LocalDate.of(2022,8, 27), LocalTime.of(20,00),  50 );
+		Evento evento2 = new Evento("Torneo beach volley", LocalDate.of(2022,9, 27), LocalTime.of(20,00),  50 );
 		eventoRepository.save(evento2);
 
 

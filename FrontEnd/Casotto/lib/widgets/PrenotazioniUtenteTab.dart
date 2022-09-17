@@ -31,15 +31,7 @@ class PrenotazioniUtenteTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Costo: ' + singlePrenotazione.getCostoTotale().toString(),
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: 'Avenir',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              'Stato: ' + singlePrenotazione.getStatoPrenotazioneString(),
+              'Prenotazione ' + singlePrenotazione.getStatoPrenotazioneString(),
               style: TextStyle(
                 fontSize: 30,
                 fontFamily: 'Avenir',

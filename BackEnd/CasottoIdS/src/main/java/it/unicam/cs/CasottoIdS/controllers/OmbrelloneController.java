@@ -22,7 +22,7 @@ public class OmbrelloneController {
         return this.service.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/single/{id}")
     public Ombrellone getOmbrelloneById(@PathVariable("id") String idOmbrellone) {
         return this.service.getById(idOmbrellone);
     }
