@@ -69,6 +69,7 @@ class _EliminaPrenotazioniState extends State<EliminaPrenotazione> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Ops! Qualcosa è andato storto!'),
                 ),
                 body: const Center(

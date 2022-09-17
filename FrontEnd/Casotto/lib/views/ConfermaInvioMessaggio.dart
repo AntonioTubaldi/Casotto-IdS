@@ -31,9 +31,11 @@ class _ConfermaInvioMessaggioViewState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Invio Messaggio"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -42,10 +44,11 @@ class _ConfermaInvioMessaggioViewState
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("Home"),
+        child: Text("Home", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Stai per inviare questo messaggio: "),
             Text(
@@ -60,8 +63,14 @@ class _ConfermaInvioMessaggioViewState
                   " " +
                   "${widget.singleUtente.getCognome()}",
             ),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            SizedBox(height: 10),
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.black),
+            ),
+            SizedBox(height: 10),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
@@ -71,7 +80,7 @@ class _ConfermaInvioMessaggioViewState
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text("CONFERMA", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

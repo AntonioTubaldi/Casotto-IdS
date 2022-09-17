@@ -59,11 +59,12 @@ class _PrenotazioneConfermataViewState
                         BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Operazione'),
                   ),
                   body: Center(

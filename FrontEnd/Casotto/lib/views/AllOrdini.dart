@@ -113,10 +113,10 @@ class _AllOrdiniViewState extends State<AllOrdiniView> {
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
-                  body: Center(
-                    child: RawMaterialButton(
-                      onPressed: () {},
-                      child: Text("Non ci sono ordini da visualizzare"),
+                  body: const Center(
+                    child: Text(
+                      "Non ci sono ordini da visualizzare",
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 );

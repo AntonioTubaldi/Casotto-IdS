@@ -1,3 +1,4 @@
+import 'package:casotto/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -35,8 +36,10 @@ class _ModificaOrarioEventoViewState extends State<ModificaOrarioEventoView> {
     final minutes = time.minute.toString().padLeft(2, "0");
     return Scaffold(
       floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
+          RawMaterialButton(
+            fillColor: Colors.teal,
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -45,9 +48,11 @@ class _ModificaOrarioEventoViewState extends State<ModificaOrarioEventoView> {
                 ModalRoute.withName(HomePage.routeName),
               );
             },
-            child: Text("HOME"),
+            child: Text("HOME", style: TextStyle(color: Colors.white)),
           ),
-          FloatingActionButton(
+          const Spacer(),
+          RawMaterialButton(
+            fillColor: Colors.teal,
             onPressed: (() {
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -57,7 +62,8 @@ class _ModificaOrarioEventoViewState extends State<ModificaOrarioEventoView> {
                 ModalRoute.withName(HomePage.routeName),
               );
             }),
-            child: Text("Conferma modifiche"),
+            child: Text("Conferma modifiche",
+                style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -70,8 +76,10 @@ class _ModificaOrarioEventoViewState extends State<ModificaOrarioEventoView> {
               style: TextStyle(fontSize: 32),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              child: Text("Modifica l'orario di inizio"),
+            RawMaterialButton(
+              fillColor: Colors.teal,
+              child: Text("Modifica l'orario di inizio",
+                  style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 TimeOfDay? newTime =
                     await showTimePicker(context: context, initialTime: time);

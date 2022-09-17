@@ -40,32 +40,42 @@ class _EliminaPromozioneViewState extends State<EliminaPromozioneView> {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
-                body: Column(
-                  children: [
-                    const Text(
-                      "Promozione eliminata",
-                      style: TextStyle(fontSize: 30.0),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          HomePage.routeName,
-                          arguments: const HomePage(),
-                          ModalRoute.withName(HomePage.routeName),
-                        );
-                      },
-                      child: const Text("HOME"),
-                    ),
-                  ],
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Promozione eliminata",
+                        style: TextStyle(fontSize: 22.0),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      RawMaterialButton(
+                        fillColor: Colors.teal,
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            HomePage.routeName,
+                            arguments: const HomePage(),
+                            ModalRoute.withName(HomePage.routeName),
+                          );
+                        },
+                        child: const Text("HOME",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                    ],
+                  ),
                 ),
               );
             } else {
               return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: Column(

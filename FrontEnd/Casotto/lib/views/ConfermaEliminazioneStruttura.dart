@@ -26,9 +26,11 @@ class _ConfermaEliminazioneStrutturaViewState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Eliminazione struttura"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -37,17 +39,22 @@ class _ConfermaEliminazioneStrutturaViewState
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("Home"),
+        child: Text("Home", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Stai per eliminare la seguente struttura: "),
             Text(
               widget.singleStruttura.getNome(),
             ),
-            Text("Sei sicuro?"),
-            ElevatedButton(
+            Text(
+              "Sei sicuro?",
+              style: TextStyle(color: Colors.white),
+            ),
+            RawMaterialButton(
+              fillColor: Colors.teal,
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
@@ -56,7 +63,7 @@ class _ConfermaEliminazioneStrutturaViewState
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text("CONFERMA", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

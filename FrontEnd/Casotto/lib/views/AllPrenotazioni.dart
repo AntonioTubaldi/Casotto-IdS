@@ -58,6 +58,7 @@ class _AllPrenotazioniViewState extends State<AllPrenotazioniView> {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Visualizza Prenotazioni'),
                   ),
                   body: _getScrollableView(list),

@@ -20,7 +20,8 @@ class SingleOrdineView extends StatelessWidget {
     if (singleOrdine.getStatoString() == "DA GESTIRE") {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Il singolo ordine"),
+          centerTitle: true,
+          title: const Text("Ordine"),
           backgroundColor: Colors.teal,
         ),
         floatingActionButton: RawMaterialButton(
@@ -45,7 +46,7 @@ class SingleOrdineView extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Ombrellone: ${singleOrdine.getIdOmbrellone()}",
                     style: const TextStyle(fontSize: 20)),
@@ -57,7 +58,9 @@ class SingleOrdineView extends StatelessWidget {
                   style: const TextStyle(fontSize: 20),
                 ),
                 //children
-
+                SizedBox(
+                  height: 20,
+                ),
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: RawMaterialButton(

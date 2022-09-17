@@ -30,7 +30,8 @@ class _ModificaParametriStrutturaViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -39,7 +40,7 @@ class _ModificaParametriStrutturaViewState
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("HOME"),
+        child: Text("HOME", style: TextStyle(color: Colors.white)),
       ),
       appBar: AppBar(
         backgroundColor: Colors.teal,

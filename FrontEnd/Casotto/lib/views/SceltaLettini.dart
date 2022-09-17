@@ -22,8 +22,8 @@ class SceltaLettiniView extends StatefulWidget {
 }
 
 class _SceltaLettiniViewState extends State<SceltaLettiniView> {
-  int numeroLettini = 1;
-  int numeroSdraio = 1;
+  int numeroLettini = 0;
+  int numeroSdraio = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +48,8 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            Text("Costo dei lettini: " +
+                widget.singleOmbrellone.getPrezzoLettini().toString()),
             Text("Scegli quanti lettini prenotare: "),
             DropdownButton<int>(
               value: numeroLettini,
@@ -63,13 +65,16 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
                   numeroLettini = newValue!;
                 });
               },
-              items: <int>[1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
+              items:
+                  <int>[0, 1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: Text(value.toString()),
                 );
               }).toList(),
             ),
+            Text("Costo delle sdraio: " +
+                widget.singleOmbrellone.getPrezzoSdraio().toString()),
             Text("Scegli quante sdraio prenotare: "),
             DropdownButton<int>(
               value: numeroSdraio,
@@ -85,7 +90,8 @@ class _SceltaLettiniViewState extends State<SceltaLettiniView> {
                   numeroSdraio = newValue!;
                 });
               },
-              items: <int>[1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
+              items:
+                  <int>[0, 1, 2, 3, 4].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: Text(value.toString()),

@@ -56,20 +56,18 @@ class _ChiudeOrdineViewState extends State<ChiudeOrdineView> {
                         BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Operazione'),
                   ),
-                  body: Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "L'ordine è stato chiuso ed eliminato",
-                        style: TextStyle(fontSize: 30),
-                      ),
+                  body: const Center(
+                    child: const Text(
+                      "L'ordine è stato chiuso ed eliminato",
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 );
@@ -97,6 +95,7 @@ class _ChiudeOrdineViewState extends State<ChiudeOrdineView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Operazione'),
                   ),
                   body: Center(

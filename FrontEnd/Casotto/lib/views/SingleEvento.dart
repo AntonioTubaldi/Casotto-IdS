@@ -31,27 +31,29 @@ class _SingleEventoViewState extends State<SingleEventoView> {
     if (widget.singleEvento.getNumeroPartecipanti() <
         widget.singleEvento.getNumeroMaxPartecipanti()) {
       return Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          RawMaterialButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                IscrizioneAdEventoView.routeName,
-                arguments: IscrizioneEventoViewArgs(
-                    FirebaseAuth.instance.currentUser!.uid,
-                    widget.singleEvento.getIdEvento()),
-              );
-            },
-            child: Text(
-              "Iscriviti",
-              style: TextStyle(fontSize: 25, color: Colors.white),
+          Center(
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  IscrizioneAdEventoView.routeName,
+                  arguments: IscrizioneEventoViewArgs(
+                      FirebaseAuth.instance.currentUser!.uid,
+                      widget.singleEvento.getIdEvento()),
+                );
+              },
+              child: Text(
+                "Iscriviti",
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              ),
+              fillColor: Colors.teal,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
             ),
-            fillColor: Colors.teal,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
-            ),
-            constraints: BoxConstraints.tightFor(height: 50.0, width: 160),
           ),
         ],
       );
@@ -94,8 +96,11 @@ class _SingleEventoViewState extends State<SingleEventoView> {
                 if (snapshot.data! == Ruolo.GESTORE) {
                   return Scaffold(
                     floatingActionButton: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _iscrizioneEvento()!,
+                        SizedBox(
+                          width: 40.0,
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(5),
                           child: RawMaterialButton(
@@ -129,17 +134,30 @@ class _SingleEventoViewState extends State<SingleEventoView> {
                         children: [
                           Container(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(widget.singleEvento.getNome()),
-                                Text("Data: " +
-                                    widget.singleEvento.getDataString()),
-                                Text("Inizia alle: " +
-                                    widget.singleEvento
-                                        .getOrarioInizioString()),
-                                Text("Iscritti: " +
-                                    widget.singleEvento
-                                        .getNumeroPartecipanti()
-                                        .toString()),
+                                Text(
+                                  widget.singleEvento.getNome(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Data: " +
+                                      widget.singleEvento.getDataString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Inizia alle: " +
+                                      widget.singleEvento
+                                          .getOrarioInizioString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Iscritti: " +
+                                      widget.singleEvento
+                                          .getNumeroPartecipanti()
+                                          .toString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ],
                             ),
                           ),
@@ -196,6 +214,7 @@ class _SingleEventoViewState extends State<SingleEventoView> {
                 } else {
                   return Scaffold(
                     floatingActionButton: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _iscrizioneEvento()!,
                         Padding(
@@ -223,6 +242,7 @@ class _SingleEventoViewState extends State<SingleEventoView> {
                       ],
                     ),
                     appBar: AppBar(
+                      centerTitle: true,
                       title: Text("Riepilogo Evento"),
                       backgroundColor: Colors.teal,
                     ),
@@ -232,16 +252,28 @@ class _SingleEventoViewState extends State<SingleEventoView> {
                           Container(
                             child: Column(
                               children: [
-                                Text(widget.singleEvento.getNome()),
-                                Text("Data: " +
-                                    widget.singleEvento.getDataString()),
-                                Text("Inizia alle: " +
-                                    widget.singleEvento
-                                        .getOrarioInizioString()),
-                                Text("Iscritti: " +
-                                    widget.singleEvento
-                                        .getNumeroPartecipanti()
-                                        .toString()),
+                                Text(
+                                  widget.singleEvento.getNome(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Data: " +
+                                      widget.singleEvento.getDataString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Inizia alle: " +
+                                      widget.singleEvento
+                                          .getOrarioInizioString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "Iscritti: " +
+                                      widget.singleEvento
+                                          .getNumeroPartecipanti()
+                                          .toString(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ],
                             ),
                           ),

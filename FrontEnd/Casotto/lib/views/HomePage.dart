@@ -70,16 +70,6 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushReplacementNamed(
-                        context,
-                        PrimaPaginaView.routeName,
-                      );
-                    },
-                    child: Text("LOGOUT"), //cambiare grafica logout
-                  ),
                   drawer: Drawer(
                     child: ListView(
                       padding: EdgeInsets.zero,
@@ -137,18 +127,6 @@ class HomePage extends StatelessWidget {
                         ),
                         ListTile(
                           leading: IconButton(
-                              icon: Icon(
-                                  color: Colors.teal, Icons.menu_open_outlined),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  AllOrdiniView.routeName,
-                                );
-                              }),
-                          title: const Text('Visualizza Ordini'),
-                        ),
-                        ListTile(
-                          leading: IconButton(
                               icon: Icon(color: Colors.teal, Icons.person),
                               onPressed: () {
                                 Navigator.pushNamed(
@@ -166,21 +144,6 @@ class HomePage extends StatelessWidget {
                                     context, AllEventiView.routeName);
                               }),
                           title: const Text('Visualizza eventi'),
-                        ),
-                        ListTile(
-                          leading: IconButton(
-                              icon: Icon(
-                                  color: Colors.teal, Icons.event_available),
-                              onPressed: () {
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  AllEventiAderitiView.routeName,
-                                  arguments: UtenteStringArg(
-                                      FirebaseAuth.instance.currentUser!.uid),
-                                  ModalRoute.withName(HomePage.routeName),
-                                );
-                              }),
-                          title: const Text('Visualizza eventi aderiti'),
                         ),
                         ListTile(
                           leading: IconButton(
@@ -214,29 +177,6 @@ class HomePage extends StatelessWidget {
                                 );
                               }),
                           title: const Text('Visualizza Utenti'),
-                        ),
-                        ListTile(
-                          leading: IconButton(
-                              icon: Icon(color: Colors.teal, Icons.message),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  AllNotificheView.routeName,
-                                );
-                              }),
-                          title: const Text('Visualizza messaggi'),
-                        ),
-                        ListTile(
-                          leading: IconButton(
-                              icon: Icon(
-                                  color: Colors.teal, Icons.calendar_month),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  AllPrenotazioniUtenteView.routeName,
-                                );
-                              }),
-                          title: const Text('Visualizza le tue Prenotazioni'),
                         ),
                         ListTile(
                           leading: IconButton(

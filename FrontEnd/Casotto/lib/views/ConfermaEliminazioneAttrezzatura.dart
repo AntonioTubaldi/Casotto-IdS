@@ -30,7 +30,8 @@ class _ConfermaEliminazioneAttrezzaturaViewState
         backgroundColor: Colors.teal,
         title: Text("Eliminazione attrezzatura"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -39,10 +40,11 @@ class _ConfermaEliminazioneAttrezzaturaViewState
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("Home"),
+        child: Text("Home", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Stai per eliminare la seguente attrezzatura: "),
             Text(
@@ -64,7 +66,10 @@ class _ConfermaEliminazioneAttrezzaturaViewState
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text(
+                "CONFERMA",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

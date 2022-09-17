@@ -115,7 +115,6 @@ class _SingleOmbrelloneViewState extends State<SingleOmbrelloneView> {
                 if (widget.ombrellone.getDisponibilita().isNotEmpty) {
                   if (snapshot.data! == Ruolo.GESTORE) {
                     return Scaffold(
-                      floatingActionButton: _showPrenotazione(),
                       appBar: AppBar(
                         title: Text("Schermata Prenotazione"),
                         backgroundColor: Colors.teal,

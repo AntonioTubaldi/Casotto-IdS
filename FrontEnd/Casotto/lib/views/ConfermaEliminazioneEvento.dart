@@ -25,9 +25,11 @@ class _ConfermaEliminazioneEventoViewState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Eliminazione evento"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -36,10 +38,11 @@ class _ConfermaEliminazioneEventoViewState
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("Home"),
+        child: Text("Home", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Stai per eliminare il seguente evento: "),
             Text(
@@ -59,7 +62,10 @@ class _ConfermaEliminazioneEventoViewState
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text(
+                "CONFERMA",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

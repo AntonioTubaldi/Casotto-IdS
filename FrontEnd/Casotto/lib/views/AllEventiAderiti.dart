@@ -75,6 +75,7 @@ class _AllEventiAderitiViewState extends State<AllEventiAderitiView> {
                             );
                           },
                         ),
+                        const Spacer(),
                       ],
                     ),
                   ),

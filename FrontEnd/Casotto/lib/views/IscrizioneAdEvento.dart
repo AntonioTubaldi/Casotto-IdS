@@ -56,6 +56,7 @@ class _IscrizioneAdEventoViewState extends State<IscrizioneAdEventoView> {
                 ),
                 appBar: AppBar(
                   centerTitle: true,
+                  backgroundColor: Colors.teal,
                   title: const Text('Riepilogo'),
                 ),
                 body: Center(

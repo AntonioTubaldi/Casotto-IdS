@@ -71,17 +71,6 @@ class _MenuViewState extends State<MenuView> {
                       color: Colors.white,
                       child: Row(
                         children: [
-                          IconButton(
-                              icon:
-                                  Icon(color: Colors.teal, Icons.shopping_cart),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ProdottiSelezionabiliView.routeName,
-                                  arguments: ProdottiSelezionabiliArgs(list),
-                                );
-                              }),
-
                           //crea uno spazio che si adatta automaticamente
                           const Spacer(),
 

@@ -46,7 +46,8 @@ class _MessaggioInviatoViewState extends State<MessaggioInviatoView> {
               bool risposta = snapshot.data!;
               if (risposta) {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
+                  floatingActionButton: RawMaterialButton(
+                    fillColor: Colors.teal,
                     onPressed: () => {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
@@ -56,27 +57,26 @@ class _MessaggioInviatoViewState extends State<MessaggioInviatoView> {
                       ),
                     },
                     child: const Text(
-                      "H",
-                      style: TextStyle(fontSize: 30),
+                      "Home",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Invio'),
                   ),
-                  body: Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Messaggio Inviato",
-                        style: TextStyle(fontSize: 30),
-                      ),
+                  body: const Center(
+                    child: Text(
+                      "Messaggio Inviato",
+                      style: TextStyle(fontSize: 30),
                     ),
                   ),
                 );
               } else {
                 return Scaffold(
-                  floatingActionButton: FloatingActionButton(
+                  floatingActionButton: RawMaterialButton(
+                    fillColor: Colors.teal,
                     onPressed: () => {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
@@ -86,8 +86,8 @@ class _MessaggioInviatoViewState extends State<MessaggioInviatoView> {
                       ),
                     },
                     child: Text(
-                      "H",
-                      style: TextStyle(fontSize: 30),
+                      "Home",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(

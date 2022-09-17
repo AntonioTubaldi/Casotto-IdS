@@ -41,60 +41,65 @@ class SingleAttrezzaturaView extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("attrezzatura: ${singleAttrezzatura.getNome()}",
-                style: const TextStyle(fontSize: 20)),
-            Text(
-              "quantita: ${singleAttrezzatura.getQuantita()}",
-              style: const TextStyle(fontSize: 20),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: RawMaterialButton(
-                onPressed: () => {
-                  Navigator.pushNamed(
-                    context,
-                    ConfermaEliminazioneAttrezzaturaView.routeName,
-                    arguments: SingleAttrezzaturaViewArgs(singleAttrezzatura),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("attrezzatura: ${singleAttrezzatura.getNome()}",
+                  style: const TextStyle(fontSize: 20)),
+              Text(
+                "quantita: ${singleAttrezzatura.getQuantita()}",
+                style: const TextStyle(fontSize: 20),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      ConfermaEliminazioneAttrezzaturaView.routeName,
+                      arguments: SingleAttrezzaturaViewArgs(singleAttrezzatura),
+                    ),
+                  },
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                },
-                fillColor: Colors.teal,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                constraints:
-                    const BoxConstraints.tightFor(height: 50.0, width: 250),
-                child: const Text(
-                  "Elimina Attrezzatura",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  constraints:
+                      const BoxConstraints.tightFor(height: 50.0, width: 250),
+                  child: const Text(
+                    "Elimina Attrezzatura",
+                    style: TextStyle(fontSize: 22, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: RawMaterialButton(
-                onPressed: () => {
-                  Navigator.pushNamed(
-                    context,
-                    SceltaModificheAttrezzaturaView.routeName,
-                    arguments: SingleAttrezzaturaViewArgs(singleAttrezzatura),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: RawMaterialButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(
+                      context,
+                      SceltaModificheAttrezzaturaView.routeName,
+                      arguments: SingleAttrezzaturaViewArgs(singleAttrezzatura),
+                    ),
+                  },
+                  fillColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                },
-                fillColor: Colors.teal,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                constraints:
-                    const BoxConstraints.tightFor(height: 50.0, width: 250),
-                child: const Text(
-                  "Modifica Attrezzatura",
-                  style: TextStyle(fontSize: 21, color: Colors.white),
+                  constraints:
+                      const BoxConstraints.tightFor(height: 50.0, width: 250),
+                  child: const Text(
+                    "Modifica Attrezzatura",
+                    style: TextStyle(fontSize: 21, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

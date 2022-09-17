@@ -19,9 +19,11 @@ class ConfermaEliminazionePromozioneView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Eliminazione promozione"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: RawMaterialButton(
+        fillColor: Colors.teal,
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -30,10 +32,11 @@ class ConfermaEliminazionePromozioneView extends StatelessWidget {
             ModalRoute.withName(HomePage.routeName),
           );
         },
-        child: Text("Home"),
+        child: Text("Home", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Stai per eliminare la seguente promozione: "),
             Text(singlePromozione.idProdotto +
@@ -42,10 +45,12 @@ class ConfermaEliminazionePromozioneView extends StatelessWidget {
                 " euro a " +
                 singlePromozione.getNewPrezzo().toString() +
                 " euro"),
+            SizedBox(height: 20),
             Text(
               "Sei sicuro?",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
+            SizedBox(height: 20),
             RawMaterialButton(
               fillColor: Colors.teal,
               onPressed: () {
@@ -58,7 +63,7 @@ class ConfermaEliminazionePromozioneView extends StatelessWidget {
                   ModalRoute.withName(HomePage.routeName),
                 );
               },
-              child: Text("CONFERMA"),
+              child: Text("CONFERMA", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

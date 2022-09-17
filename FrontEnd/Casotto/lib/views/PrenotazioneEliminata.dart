@@ -56,6 +56,7 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Eliminazione'),
                   ),
                   body: Center(
@@ -86,6 +87,7 @@ class _PrenotazioneEliminataViewState extends State<PrenotazioneEliminataView> {
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Eliminazione'),
                   ),
                   body: Center(

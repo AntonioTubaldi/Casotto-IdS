@@ -56,20 +56,18 @@ class _GestisceOrdineViewState extends State<GestisceOrdineView> {
                         BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(
                     centerTitle: true,
+                    backgroundColor: Colors.teal,
                     title: const Text('Esito Operazione'),
                   ),
-                  body: Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "L'ordine risulta ora in gestione",
-                        style: TextStyle(fontSize: 30),
-                      ),
+                  body: const Center(
+                    child: const Text(
+                      "L'ordine risulta ora in gestione",
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 );
@@ -92,7 +90,7 @@ class _GestisceOrdineViewState extends State<GestisceOrdineView> {
                         const BoxConstraints.tightFor(height: 50.0, width: 100),
                     child: const Text(
                       "Home",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                   appBar: AppBar(
